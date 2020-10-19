@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <!-- Llibreries necessaries per us de js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+
+    <!-- Llibreries necessaries per us de css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <script type="text/javascript" src="js/Historial.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1 class="my-4">Historial</h1>
+
+        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom: 10px">
+            Select
+        </button>
+        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item" href="#">Purchased</a>
+            <a class="dropdown-item" href="#">Sold</a>
+        </div>
+
+        <ul class="list-group list-group-horizontal" >
+            <div style="column-count: 3">
+                <li class="list-group-item list-group-item-action active" >Date</li>
+                <li class="list-group-item list-group-item-action active">Number of Bitcoins</li>
+                <li class="list-group-item list-group-item-action active">Price</li>
+            </div>
+
+            <div id="historial"></div>
+
+        </ul>
+
+    </div>
+</body>
+
+</html>

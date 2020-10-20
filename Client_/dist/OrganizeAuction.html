@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <!-- Llibreries necessaries per us de js -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    
+        <!-- Llibreries necessaries per us de css -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+        <script type="text/javascript" src="js/UserAuctionsHistorial.js"></script>
+    
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Actual Auctions</title>
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+
+            <!-- Bootstrap Date-Picker Plugin -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    </head>
+
+    
+
+    <body>
+        <div class="container">
+            <h1> Organize an auction </h1>
+            <div>
+                <table class="table table-dark">
+                    <tr>
+                        <th scope="col" class="bg-primary">Avaliable bitcoins for auction: </th>
+                        <th scope="col">nBitcoins</th>
+                      </tr>
+                </table>
+                
+            </div>
+            <form>
+                <div class="form-group">
+                  <label for="numberOfBitcoins">Amount of Bitcoins</label>
+                  <input type="email" class="form-control" id="numberOfBitcoins" aria-describedby="amountOfBitcoins" placeholder="Bitcoins to auction">
+                  
+                </div>
+
+                <div class="form-group">
+                    <label for="numberOfBitcoins">Base price</label>
+                    <input type="email" class="form-control" id="basePrice" aria-describedby="amountOfBitcoins" placeholder="Starting price">
+                    
+                  </div>
+                
+                <div class="form-group"> <!-- Date input -->
+                    <label class="control-label" for="date">Opening date</label>
+                    <input class="form-control" id="openingDate" name="date" placeholder="DD/MM/YYY" type="text"/>
+                </div>
+
+                <div class="form-group"> <!-- Date input -->
+                    <label class="control-label" for="date">Closing date</label>
+                    <input class="form-control" id="closingDate" name="date" placeholder="DD/MM/YYY" type="text"/>
+                </div>
+                  
+                
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">I agree with the terms and conditions.</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>         
+    
+        </div>
+    </body>
+    
+    <script>
+        $(document).ready(function(){
+          var date_input=$('input[name="date"]'); //our date input has the name "date"
+          var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+          var options={
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+          };
+          date_input.datepicker(options);
+        })
+    </script>
+
+
+
+
+
+</html>

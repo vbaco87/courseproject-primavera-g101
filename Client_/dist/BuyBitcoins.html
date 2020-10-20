@@ -24,7 +24,10 @@
         <link href="css/styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="js/BuyBitcoins.js"></script>
+    
     </head>
+
 
     
 
@@ -34,18 +37,18 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                   <h5 class="card-title">Bitcoin actual price</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">$40</h6>
+                  <h6 class="card-subtitle mb-2 text-muted" id="bitcoinPrice">getting bitcoin price ...</h6>
                 </div>
               </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">Amount of bitcoins</span>
                 </div>
-                <input type="text" class="form-control" placeholder="Bitcoins" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" id="btp" placeholder="0"  aria-describedby="basic-addon1">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">$$$</span>
+                    <span class="input-group-text" id="basic-addon2">€</span>
                   </div>
-                  <input class="form-control" placeholder="Bitcoins x price" aria-label="Username" aria-describedby="basic-addon1" disabled>               
+                  <input id="amountToPay" class="form-control" placeholder="Bitcoins x price"  aria-describedby="basic-addon1" disabled>               
             </div>
             <button class="btn btn-primary" type="submit">Buy now</button>
             

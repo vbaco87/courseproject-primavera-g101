@@ -62,6 +62,5 @@ public class Bid {
 	public void setTransactionBidder(Transaction transactionBidder) {
 		this.transactionBidder = transactionBidder;
 	}
-	
 
 }

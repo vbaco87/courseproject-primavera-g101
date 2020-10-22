@@ -3,7 +3,6 @@ package com.primavera.CoursProject.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class Bidder extends AbsUser{
 
     Set<Bid> bids = new HashSet<Bid>();
@@ -27,4 +26,5 @@ public class Bidder extends AbsUser{
     public void remAllBids(Set<Bid> bidsToRemove){
         bids.removeAll(bidsToRemove);
     }
+
 }

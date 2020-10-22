@@ -16,7 +16,6 @@ public abstract class AbsUser {
     private String city;
     private String homeAddress;
 
-
     public AbsUser () {
 
     }

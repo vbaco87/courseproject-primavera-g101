@@ -67,6 +67,5 @@ public class Auction {
 	public void setBids(Set<Bid> bids) {
 		this.bids = bids;
 	}
-	
 
 }

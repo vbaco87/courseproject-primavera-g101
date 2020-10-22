@@ -16,8 +16,8 @@ public class Broker extends AbsUser {
         return auctions;
     }
 
-    public boolean addAuction(Auction auctions){
-        return auctions.add(bid);
+    public boolean addAuction(Auction auction){
+        return auctions.add(auction);
     }
 
     public boolean remAuction(Auction auctions){
@@ -41,7 +41,7 @@ public class Broker extends AbsUser {
     }
 
     public void remAllPurchase(Set<Purchase> purchasesToRemove){
-        auctions.removeAll(purchasesoRemove);
+        auctions.removeAll(purchasesToRemove);
     }
 
 }

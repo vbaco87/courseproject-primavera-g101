@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <title>bs4 create resume page - Bootdey.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    	body{
+   
+    margin-top:20px;
+}
+.job-detail {
+    border: 1px solid #ececec;
+    border-radius: 6px;
+    background-color:#fff;
+}
+.form-button .nice-select {
+    width: 100%;
+    height: 39px;
+    line-height: 37px;
+   
+    margin-bottom: 1rem;
+    border: solid 1px #e9e9e9;
+}
+
+.resume-user {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    font-size: 66px;
+    border-radius: 50px;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-color: #e9e9e9;
+    color: #ff4f6c;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    text-align: center;
+}
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/4.9.95/css/materialdesignicons.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>The Primavera Project</title>
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">The Primavera Project</a>
+        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ml-auto ml-md-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="#">Activity Log</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="pagInicial.html">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <a class="nav-link" href="index.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Home
+                        </a>
+                        <div class="sb-sidenav-menu-heading">Bidder</div>
+                        <a class="nav-link" href="ActualAuctions.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            Actual Auctions
+                        </a>
+                        <a class="nav-link" href="UserAuctionsHistorial.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            Auction History
+                        </a>
+                        <a class="nav-link" href="WonAuction.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            My won auctions
+                        </a>
+                        <div class="sb-sidenav-menu-heading">Broker</div>
+                        <a class="nav-link" href="BuyBitcoins.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            Buy Bitcoins
+                        </a>
+                        <a class="nav-link" href="OrganizeAuction.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            Organize an auction
+                        </a>
+                        <a class="nav-link" href="TransactionHistory.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            Transaction History
+                        </a>
+
+                        <div class="sb-sidenav-menu-heading">Admin</div>
+                        <a class="nav-link" href="Commissions.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            Comissions
+                        </a>
+                        
+                        <div class="sb-sidenav-menu-heading">Account</div>
+                        <a class="nav-link" href="wallet.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            Wallet
+                        </a>
+                        
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    <a style="color:rgba(0, 255, 255, 0.658);">Admin</a>
+                </div>
+            </nav>
+        </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="text-dark">General Information</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="job-detail mt-2 p-4">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="resume-user mb-5">
+                            <i class="mdi mdi-account text-white"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="custom-form">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group app-label">
+                                    <label for="frist-name" class="text-muted">First Name</label>
+                                    <input id="frist-name" type="text" class="form-control resume" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group app-label">
+                                    <label for="middle-name" class="text-muted">Middle Name</label>
+                                    <input id="middle-name" type="text" class="form-control resume" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group app-label">
+                                    <label for="surname-name" class="text-muted">Surname</label>
+                                    <input id="surname-name" type="text" class="form-control resume" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group app-label">
+                                    <label for="date-of-birth" class="text-muted">Date Of Birth</label>
+                                    <input id="date-of-birth" type="text" class="form-control resume" placeholder="13-02-1999">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group app-label">
+                                    <label for="General" class="text-muted">General</label>
+                                    <div class="form-button">
+                                        <select class="nice-select">
+                                            <option data-display="General">General</option>
+                                            <option value="1">Male</option>
+                                            <option value="2">Female</option>
+                                            <option value="3">Other</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group app-label">
+                                    <label for="marital-status" class="text-muted">Marital Status</label>
+                                    <div class="form-button">
+                                        <select class="nice-select">
+                                            <option data-display="Status">Status</option>
+                                            <option value="1">Single</option>
+                                            <option value="2">Married</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="text-dark mt-5">Contact Information</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="job-detail mt-2 p-4">
+                <div class="custom-form">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group app-label">
+                                    <label for="citys" class="text-muted">City</label>
+                                    <div class="form-button">
+                                        <select class="nice-select">
+                                            <option data-display="City">City</option>
+                                            <option value="1">Abilene</option>
+                                            <option value="2">Babbitt</option>
+                                            <option value="3">Cape Coral</option>
+                                            <option value="4">Dallas</option>
+                                            <option value="5">Eloy</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group app-label">
+                                    <label for="state" class="text-muted">State</label>
+                                    <div class="form-button">
+                                        <select class="nice-select">
+                                            <option data-display="State">State</option>
+                                            <option value="1">Alabama</option>
+                                            <option value="3">Hawaii</option>
+                                            <option value="4">Maine</option>
+                                            <option value="5">Oregon</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group app-label">
+                                    <label for="country" class="text-muted">Country</label>
+                                    <div class="form-button">
+                                        <select class="nice-select">
+                                            <option data-display="Country">Country</option>
+                                            <option value="1">Alabama</option>
+                                            <option value="2">Delaware</option>
+                                            <option value="3">Iowa</option>
+                                            <option value="4">Missouri</option>
+                                            <option value="5">New York</option>
+                                            <option value="6">Utah</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group app-label">
+                                    <label for="phone" class="text-muted">Phone</label>
+                                    <input id="phone" type="text" class="form-control resume" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group app-label">
+                                    <label for="e-mail" class="text-muted">E-mail</label>
+                                    <input id="e-mail" type="text" class="form-control resume" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group app-label">
+                                    <label for="website" class="text-muted">Website</label>
+                                    <input id="website" type="text" class="form-control resume" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group app-label">
+                                    <label for="address">Address</label>
+                                    <textarea id="address" rows="4" class="form-control resume" placeholder=""></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center">
+                <input type="submit" id="submit" name="send" class="submitBnt btn btn-custom mt-5" value="Submit Resume">
+            </div>
+        </div>
+    </div>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; The Primavera Project 2020</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    &middot;
+                    <a href="#">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	(function ($) {
+
+
+    // Nice Select
+    $('.nice-select').niceSelect();
+
+
+})(jQuery)
+</script>
+</body>
+</html>

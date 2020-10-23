@@ -20,6 +20,19 @@ public abstract class AbsUser {
 
     }
 
+    public AbsUser(String id, String name, String secondName, String email, String password, String phoneNumber, Date birthday, String country, String city, String homeAddress) {
+        this.id = id;
+        this.name = name;
+        this.secondName = secondName;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.birthday = birthday;
+        this.country = country;
+        this.city = city;
+        this.homeAddress = homeAddress;
+    }
+
     public String getId() {
         return id;
     }

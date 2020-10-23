@@ -15,7 +15,11 @@ public class Purchase {
 		this.transactionBroker = transactionBroker;
 		this.transactionPlatform = transactionPlatform;
 	}
-	
+
+	public Purchase() {
+
+	}
+
 	public double getAmount() {
 		return amount;
 	}

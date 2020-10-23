@@ -20,6 +20,10 @@ public class Auction {
 		this.close_date = close_date;
 	}
 
+	public Auction() {
+
+	}
+
 	public String getId() {
 		return id;
 	}

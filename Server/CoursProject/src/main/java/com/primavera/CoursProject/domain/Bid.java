@@ -8,6 +8,10 @@ public class Bid {
 	private Transaction transactionBroker;//le da dinero al broker
 	private Transaction transactionPlatform;//la comision para la plataforma
 	private Transaction transactionBidder;//le quita dinero al bidder
+
+	public Bid() {
+
+	}
 	
 	public Bid(String id, int bitcoins, double amount) {
 		this.id = id;

@@ -111,23 +111,32 @@
     </div>
     <div id="layoutSidenav_content">
         <div class="container">
-
-            <h1 class="my-4">Transaction History</h1>
-
-            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom: 10px">
-                Select
-            </button>
-            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                <a class="dropdown-item" href="#">Purchased</a>
-                <a class="dropdown-item" href="#">Sold</a>
-                <a class="dropdown-item" href="#">Both</a>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="my-4">Transaction History</h1>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary active">
+                            <input type="radio" name="options" id="option1" checked> Purchased
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="option2"> Sold
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="option3"> All
+                        </label>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="mytable" class="table table-bordred table-striped">
+                            <thead>
+                            <th>Date</th>
+                            <th>Number of Bitcoins</th>
+                            <th>Price</th>
+                            </thead>
+                            <tbody> </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-
-            <ul class="list-group list-group-horizontal" >
-                <div id="historial"></div>
-
-            </ul>
-
         </div>
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">

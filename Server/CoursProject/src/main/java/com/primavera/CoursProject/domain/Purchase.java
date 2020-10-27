@@ -16,6 +16,7 @@ public class Purchase {
 		this.transactionPlatform = transactionPlatform;
 	}
 
+	//redefinir equals
 	public Purchase() {
 
 	}

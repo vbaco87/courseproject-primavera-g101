@@ -20,6 +20,8 @@ public class Auction {
 		this.close_date = close_date;
 	}
 
+	//redefinir equals 
+	
 	public Auction() {
 
 	}

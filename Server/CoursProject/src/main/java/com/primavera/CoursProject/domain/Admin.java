@@ -7,6 +7,9 @@ import java.util.Set;
 public class Admin extends AbsUser {
 
     Set<Bid> bids = new HashSet<Bid>();
+    Set<Auction> auctions = new HashSet<Auction>();
+    Set<Purchase> purchases = new HashSet<Purchase>();
+
 
     public Admin() {
 
@@ -31,4 +34,37 @@ public class Admin extends AbsUser {
     public void remAllBids(Set<Bid> bids){
         bids.removeAll(bids);
     }
+    
+    public Set<Auction> getAuction() {
+        return auctions;
+    }
+
+    public boolean addAuction(Auction auction){
+        return auctions.add(auction);
+    }
+
+    public boolean remAuction(Auction auctions){
+        return false;
+    }
+
+    public void remAllAuction(Set<Purchase> auctionsToRemove){
+        auctions.removeAll(auctionsToRemove);
+    }
+
+    public Set<Purchase> getPurchase() {
+        return purchases;
+    }
+
+    public boolean addPurchase(Purchase purchase){
+        return purchases.add(purchase);
+    }
+
+    public boolean remPurchase(Purchase purchases){
+        return false;
+    }
+
+    public void remAllPurchase(Set<Purchase> purchasesToRemove){
+        auctions.removeAll(purchasesToRemove);
+    }
+
 }

@@ -9,6 +9,8 @@ public class Bid {
 	private Transaction transactionPlatform;//la comision para la plataforma
 	private Transaction transactionBidder;//le quita dinero al bidder
 
+	
+	//redefinir equals
 	public Bid() {
 
 	}

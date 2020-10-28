@@ -1,25 +1,23 @@
 package com.primavera.CoursProject.domain;
 
-import org.springframework.util.Assert;
-
 import java.util.HashSet;
 import java.util.Set;
 
 public class Entry {
 
     private int quantity;
-    Set<Assert> asserts = new HashSet<Assert>();
+    Set<IAsset> asserts = new HashSet<IAsset>();
 
     public Entry() {
 
     }
 
-    public Entry(int quantity, Set<Assert> asserts) {
+    public Entry(int quantity, Set<IAsset> asserts) {
         this.quantity = quantity;
         this.asserts = asserts;
     }
 
-    public Set<Assert> getAsserts() {
+    public Set<IAsset> getAsserts() {
         return asserts;
     }
 
@@ -27,7 +25,7 @@ public class Entry {
         return quantity;
     }
 
-    public void setAsserts(Set<Assert> asserts) {
+    public void setAsserts(Set<IAsset> asserts) {
         this.asserts = asserts;
     }
 

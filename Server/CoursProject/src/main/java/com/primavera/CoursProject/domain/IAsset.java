@@ -1,5 +1,5 @@
 package com.primavera.CoursProject.domain;
 
-public interface IAssert {
+public interface IAsset {
     
 }

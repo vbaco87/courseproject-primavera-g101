@@ -1,23 +1,24 @@
 package com.primavera.CoursProject.api;
 
+import com.primavera.CoursProject.application.UserController;
 import com.primavera.CoursProject.application.dto.UserDTO;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-@Validated
 @RestController
+@Validated
 public class UserRestController {
 
-    UserRestController userRestController;
+    UserController userController;
 
-    public UserRestController(UserRestController userRestController) {
-        this.userRestController = userRestController;
+    public UserRestController(UserController userController) {
+        this.userController = userController;
     }
 
     @GetMapping("/user/{id}")
     public UserDTO getUser(@PathVariable String id){
-        return userRestController.getUser(id);
+        return userController.getUser(id);
     }
 }

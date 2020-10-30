@@ -9,6 +9,7 @@ var country = "Espanya"
 var phone = "601689422"
 var address = "c/ espronceda 6";
 
+
 $(document).ready(function () {
     addUserName();
     addUserSurname();
@@ -17,8 +18,28 @@ $(document).ready(function () {
     addUserCountry();
     addUserPhone();
     addUserAddress();
+    getUser();
 
 });
+
+function getUser() {
+    var result = "";
+    var url = "http://localhost:8080/user/123123123";
+    $.ajax
+        ({
+            async: false,
+            headers: {'Access-Control-Allow-Origin': '*'},
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                result = data;
+                console.log(result);
+            }
+            
+        });
+    
+}
 
 function addUserName() {
     $("#userName").append('<label for="frist-name" class="text-muted">First Name</label> <input id="frist-name" type="text" class="form-control resume" placeholder="" value="' + userName + '"></input>');
@@ -45,8 +66,5 @@ function addUserPhone() {
 }
 
 function addUserAddress() {
-
     $("#userAddress").append('<label for="text" class="text-muted">Address</label><input id="address" type="text" class="form-control resume" placeholder="" value="'+address+'"></input>');
-    
-
 }

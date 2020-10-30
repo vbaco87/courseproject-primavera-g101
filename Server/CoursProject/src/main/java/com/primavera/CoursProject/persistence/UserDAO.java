@@ -14,6 +14,7 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
     private final RowMapper<UserDTO> userRowMapper = (resultSet, i) -> {
         UserDTO user = new UserDTO();
 
+        user.setId(resultSet.getString("id"));
         user.setName(resultSet.getString("name"));
         user.setSecondName(resultSet.getString("secondname"));
         user.setEmail(resultSet.getString("email"));
@@ -21,7 +22,7 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
         user.setPhoneNumber(resultSet.getString("phoneNumber"));
         user.setBirthday(resultSet.getDate("birthday"));
         user.setCountry(resultSet.getString("country"));
-        user.setSecondName(resultSet.getString("city"));
+        user.setCity(resultSet.getString("city"));
         user.setHomeAddress(resultSet.getString("cityhomeAddress"));
 
         return user;
@@ -33,7 +34,7 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
 
     @Override
     public UserDTO getUser(String id) {
-        final String queryUser = "SELECT name, secondName, email, password, phoneNumber, birthday, country, city, cityhomeAddress FROM users WHERE id = ?";
+        final String queryUser = "SELECT id, name, secondName, email, password, phoneNumber, birthday, country, city, cityhomeAddress FROM users WHERE id = ?";
         try{
             return jdbcTemplate.queryForObject(queryUser, userRowMapper, id);
         }

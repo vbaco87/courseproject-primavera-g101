@@ -45,7 +45,8 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
 
     @Override
     public void updateUser(UserDTO user) {
-
+        final String queryUpdateUser= "update users set name = ?, secondname = ?, phoneNumber = ?, city = ?, country = ?, cityhomeAddress = ? where id = ?";
+        jdbcTemplate.update(queryUpdateUser, user.getName(), user.getSecondName(), user.getPhoneNumber(), user.getCity(), user.getCountry(), user.getHomeAddress(), user.getId());
     }
 
     @Override

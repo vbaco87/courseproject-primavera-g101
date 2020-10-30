@@ -1,30 +1,32 @@
-var userName = "Judith";
-var surname = "Barberan";
-var email = "jbarberan@edu.tecnocampus.cat"
-var birthdate = "21/05/2000";
+var userName = "";
+var surname = "";
+var email = ""
+var birthDate = "2000-05-21";
 var gender = "famale";
 
-var city = "Barcelona";
-var country = "Espanya"
-var phone = "601689422"
-var address = "c/ espronceda 6";
+var city = "";
+var country = ""
+var phone = ""
+var address = "";
 
 
 $(document).ready(function () {
+    getUser();
     addUserName();
     addUserSurname();
     addUserEmail();
+    addUserBirthdayDate();
     addUserCity();
     addUserCountry();
     addUserPhone();
     addUserAddress();
-    getUser();
+
 
 });
 
 function getUser() {
     var result = "";
-    var url = "http://localhost:8080/user/123123123";
+    var url = "http://localhost:8080/api/users/123123123";
     $.ajax
         ({
             async: false,
@@ -34,11 +36,18 @@ function getUser() {
             dataType: 'json',
             success: function (data) {
                 result = data;
-                console.log(result);
+                console.log(data);
+                userName = data.name;
+                surname = data.secondName;
+                email = data.email;
+
+                city = data.city;
+                country =data.country;
+                phone = data.phoneNumber;
+                address = data.homeAddress;
             }
             
-        });
-    
+        });   
 }
 
 function addUserName() {
@@ -51,6 +60,10 @@ function addUserSurname() {
 
 function addUserEmail() {
     $("#userEmail").append(' <label for="e-mail" class="text-muted">User log-in e-mail</label><input id="e-mail" type="email" class="form-control resume"placeholder="" value="' + email + '" disabled>');
+}
+
+function addUserBirthdayDate() {
+    $("#userBirthday").append('<label for="date-of-birth" class="text-muted">Date Of Birth</label> <input id="date-of-birth" type="date" max="2000-01-01" class="form-control resume" placeholder="13-02-1999" value="'+birthDate+'">');
 }
 
 function addUserCity() {

@@ -3,13 +3,11 @@ package com.primavera.CoursProject.api;
 import com.primavera.CoursProject.application.UserController;
 import com.primavera.CoursProject.application.dto.UserDTO;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
+@RequestMapping("/api")
 @Validated
 public class UserRestController {
 
@@ -19,8 +17,14 @@ public class UserRestController {
         this.userController = userController;
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/users/{id}")
     public UserDTO getUser(@PathVariable String id){
         return userController.getUser(id);
     }
+
+    @PostMapping("/users")
+    public void updateUser(@RequestBody UserDTO user){
+        userController.updateUser(user);
+    }
+
 }

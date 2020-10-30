@@ -16,4 +16,8 @@ public class UserController {
     public UserDTO getUser (String id){
         return user.getUser(id);
     }
+
+    public void updateUser(UserDTO user) {
+        this.user.updateUser(user);
+    }
 }

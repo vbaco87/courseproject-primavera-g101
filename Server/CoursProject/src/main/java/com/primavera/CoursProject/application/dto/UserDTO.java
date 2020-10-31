@@ -4,6 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
+import java.util.UUID;
 
 public class UserDTO {
 
@@ -36,8 +37,9 @@ public class UserDTO {
     private String homeAddress;
 
     public UserDTO() {
-
+        id = UUID.randomUUID().toString();
     }
+
 
     public String getId() {
         return id;

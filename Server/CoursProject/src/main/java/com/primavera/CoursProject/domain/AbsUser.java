@@ -1,6 +1,7 @@
 package com.primavera.CoursProject.domain;
 
 import java.util.Date;
+import java.util.UUID;
 
 public abstract class AbsUser {
 
@@ -17,11 +18,11 @@ public abstract class AbsUser {
     private String homeAddress;
 
     public AbsUser () {
-
+        id = UUID.randomUUID().toString();
     }
 
-    public AbsUser(String id, String name, String secondName, String email, String password, String phoneNumber, Date birthday, String country, String city, String homeAddress) {
-        this.id = id;
+    public AbsUser(String name, String secondName, String email, String password, String phoneNumber, Date birthday, String country, String city, String homeAddress) {
+        id = UUID.randomUUID().toString();
         this.name = name;
         this.secondName = secondName;
         this.email = email;

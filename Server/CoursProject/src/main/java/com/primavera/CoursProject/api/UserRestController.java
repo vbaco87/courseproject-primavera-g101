@@ -22,8 +22,9 @@ public class UserRestController {
         return userController.getUser(id);
     }
 
-    @PostMapping("/users")
-    public void updateUser(@RequestBody UserDTO user){
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    @ResponseBody
+    public void updateUser(final UserDTO user){
         userController.updateUser(user);
     }
 

@@ -21,8 +21,13 @@ $(document).ready(function () {
     addUserPhone();
     addUserAddress();
 
+    
 
 });
+
+function updateUser (){
+    updateUser();
+}
 
 function getUser() {
     var result = "";
@@ -50,6 +55,31 @@ function getUser() {
         });   
 }
 
+function updateUser(){
+    var url = "http://localhost:8080/api/users";
+    var datos = {
+        "id": "789456123",
+        "name":$("#frist-name").val(),
+        "secondName": $("#surname-name").val(),
+        "email": "jbarberan@edu.tecnocampus.cat",
+        "password": "147147",
+        "phoneNumber": "99999999",
+        // "birthday": "2000-05-21",
+        "country": $("#country").val(),
+        "city": $("#city").val(),
+        "homeAddress": $("#address").val()
+      };
+
+      $.ajax({
+        async: false,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type:"POST", // la variable type guarda el tipo de la peticion GET,POST,..
+        url:url, //url guarda la ruta hacia donde se hace la peticion
+        dataType: 'json', // El tipo de datos esperados del servidor. Valor predeterminado: Intelligent Guess (xml, json, script, text, html).
+        data:datos // data recive un objeto con la informacion que se enviara al servidor        
+    })
+}
+
 function addUserName() {
     $("#userName").append('<label for="frist-name" class="text-muted">First Name</label> <input id="frist-name" type="text" class="form-control resume" placeholder="" value="' + userName + '"></input>');
 }
@@ -67,11 +97,11 @@ function addUserBirthdayDate() {
 }
 
 function addUserCity() {
-    $("#userCity").append('<label for="e-mail" class="text-muted">City</label><input id="e-mail" type="text" class="form-control resume" placeholder="" value="'+city+'">');
+    $("#userCity").append('<label for="city" class="text-muted">City</label><input id="city" type="text" class="form-control resume" placeholder="" value="'+city+'">');
 }
 
 function addUserCountry() {
-    $("#userCountry").append('<label for="e-mail" class="text-muted">Country</label><input id="e-mail" type="text" class="form-control resume" placeholder="" value="'+country+'">');
+    $("#userCountry").append('<label for="country" class="text-muted">Country</label><input id="country" type="text" class="form-control resume" placeholder="" value="'+country+'">');
 }
 
 function addUserPhone() {
@@ -79,5 +109,5 @@ function addUserPhone() {
 }
 
 function addUserAddress() {
-    $("#userAddress").append('<label for="text" class="text-muted">Address</label><input id="address" type="text" class="form-control resume" placeholder="" value="'+address+'"></input>');
+    $("#userAddress").append('<label for="address" class="text-muted">Address</label><input id="address" type="text" class="form-control resume" placeholder="" value="'+address+'"></input>');
 }

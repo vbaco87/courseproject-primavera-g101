@@ -9,6 +9,8 @@ var country = ""
 var phone = ""
 var address = "";
 
+var userID = "123123123"
+
 
 $(document).ready(function () {
     getUser();
@@ -21,8 +23,6 @@ $(document).ready(function () {
     addUserPhone();
     addUserAddress();
 
-    
-
 });
 
 function updateUser (){
@@ -31,7 +31,7 @@ function updateUser (){
 
 function getUser() {
     var result = "";
-    var url = "http://localhost:8080/api/users/123123123";
+    var url = "http://localhost:8080/api/users/" + userID;
     $.ajax
         ({
             async: false,
@@ -58,7 +58,7 @@ function getUser() {
 function updateUser(){
     var url = "http://localhost:8080/api/users";
     var datos = {
-        "id": "789456123",
+        "id": userID,
         "name":$("#frist-name").val(),
         "secondName": $("#surname-name").val(),
         "email": "jbarberan@edu.tecnocampus.cat",

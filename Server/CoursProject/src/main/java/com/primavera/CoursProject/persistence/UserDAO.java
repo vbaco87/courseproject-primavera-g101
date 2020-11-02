@@ -50,7 +50,7 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
     }
 
     @Override
-    public void createUser(UserDTO user) {
-
+    public UserDTO createUser(UserDTO user) {
+        return null;
     }
 }

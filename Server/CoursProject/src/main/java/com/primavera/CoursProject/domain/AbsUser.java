@@ -17,6 +17,11 @@ public abstract class AbsUser {
     private String city;
     private String homeAddress;
 
+    private int userType;
+    private static final int ADMIN = 0;
+    private static final int BIDDER = 1;
+    private static final int BROKER = 2;
+
     public AbsUser () {
         id = UUID.randomUUID().toString();
     }
@@ -74,6 +79,10 @@ public abstract class AbsUser {
         return birthday;
     }
 
+    public int getUserType() {
+        return userType;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -112,5 +121,13 @@ public abstract class AbsUser {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
     }
 }

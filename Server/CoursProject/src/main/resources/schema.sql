@@ -10,7 +10,7 @@ CREATE TABLE users
   birthday DATE,
   country VARCHAR (20),
   city VARCHAR (20),
-  cityhomeAddress VARCHAR (255)
-
+  cityhomeAddress VARCHAR (255),
+  userType NUMBER (2)
 );
 

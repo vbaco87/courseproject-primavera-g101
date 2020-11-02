@@ -22,10 +22,15 @@ public class UserRestController {
         return userController.getUser(id);
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    @RequestMapping(value = "/users", method = RequestMethod.PUT)
     @ResponseBody
     public void updateUser(final UserDTO user){
         userController.updateUser(user);
     }
 
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    @ResponseBody
+    public void createUser(final UserDTO user){
+        userController.createUser(user);
+    }
 }

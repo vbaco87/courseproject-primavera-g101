@@ -36,6 +36,8 @@ public class UserDTO {
     private String city;
     private String homeAddress;
 
+    private int userType;
+
     public UserDTO() {
         id = UUID.randomUUID().toString();
     }
@@ -81,6 +83,10 @@ public class UserDTO {
         return homeAddress;
     }
 
+    public int getUserType() {
+        return userType;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -121,4 +127,7 @@ public class UserDTO {
         this.homeAddress = homeAddress;
     }
 
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
 }

@@ -12,8 +12,8 @@ public class Bidder extends AbsUser{
 
     }
 
-    public Bidder (String id, String name, String secondName, String email, String password, String phoneNumber, Date birthday, String country, String city, String homeAddress) {
-        super(id, name, secondName, email, password, phoneNumber, birthday, country, city, homeAddress);
+    public Bidder (String name, String secondName, String email, String password, String phoneNumber, Date birthday, String country, String city, String homeAddress) {
+        super(name, secondName, email, password, phoneNumber, birthday, country, city, homeAddress);
     }
 
     public Set<Bid> getBids() {

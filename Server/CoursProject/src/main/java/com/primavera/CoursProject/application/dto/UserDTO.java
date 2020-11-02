@@ -1,14 +1,33 @@
-package com.primavera.CoursProject.domain;
+package com.primavera.CoursProject.application.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.UUID;
 
-public abstract class AbsUser {
+public class UserDTO {
 
     private String id;
+
+    @Pattern(regexp = "\\b[A-Z][a-z]{3,}\\b",
+            message = "Name must stat with capital letters")
+    @NotBlank(message = "Name cannot be blank")
+    @NotNull(message = "Name cannot be null")
     private String name;
+
+    @Pattern(regexp = "\\b[A-Z][a-z]{3,}\\b",
+            message = "Second name must stat with capital letters")
+    @NotBlank(message = "Second name cannot be blank")
+    @NotNull(message = "Second name cannot be null")
     private String secondName;
+
+    @Pattern(regexp = "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}\\b",
+            message = "Email must look like an email")
+    @NotNull(message = "Email cannot be null")
+    @NotBlank(message = "Email cannot be blank")
     private String email;
+
     private String password;
     private String phoneNumber;
     private Date birthday;
@@ -17,22 +36,10 @@ public abstract class AbsUser {
     private String city;
     private String homeAddress;
 
-    public AbsUser () {
+    public UserDTO() {
         id = UUID.randomUUID().toString();
     }
 
-    public AbsUser(String name, String secondName, String email, String password, String phoneNumber, Date birthday, String country, String city, String homeAddress) {
-        id = UUID.randomUUID().toString();
-        this.name = name;
-        this.secondName = secondName;
-        this.email = email;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.birthday = birthday;
-        this.country = country;
-        this.city = city;
-        this.homeAddress = homeAddress;
-    }
 
     public String getId() {
         return id;
@@ -54,6 +61,14 @@ public abstract class AbsUser {
         return password;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
     public String getCountry() {
         return country;
     }
@@ -64,14 +79,6 @@ public abstract class AbsUser {
 
     public String getHomeAddress() {
         return homeAddress;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public Date getBirthday() {
-        return birthday;
     }
 
     public void setId(String id) {
@@ -94,6 +101,14 @@ public abstract class AbsUser {
         this.password = password;
     }
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     public void setCountry(String country) {
         this.country = country;
     }
@@ -106,11 +121,4 @@ public abstract class AbsUser {
         this.homeAddress = homeAddress;
     }
 
-    public void setPhone_number(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
 }

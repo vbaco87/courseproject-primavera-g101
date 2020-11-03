@@ -73,7 +73,7 @@ function updateUser(){
       $.ajax({
         async: false,
         headers: {'Access-Control-Allow-Origin': '*'},
-        type:"POST", // la variable type guarda el tipo de la peticion GET,POST,..
+        type:"PUT", // la variable type guarda el tipo de la peticion GET,POST,..
         url:url, //url guarda la ruta hacia donde se hace la peticion
         dataType: 'json', // El tipo de datos esperados del servidor. Valor predeterminado: Intelligent Guess (xml, json, script, text, html).
         data:datos // data recive un objeto con la informacion que se enviara al servidor        

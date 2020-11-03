@@ -4,6 +4,8 @@ import com.primavera.CoursProject.application.daos.UserDAO;
 import com.primavera.CoursProject.application.dto.UserDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service // same as @Component
 public class UserController {
 
@@ -21,6 +23,7 @@ public class UserController {
         this.user.updateUser(user);
     }
     public UserDTO createUser(UserDTO user){
-        return null;
+        user.setId(UUID.randomUUID().toString());
+        return this.user.createUser(user);
     }
 }

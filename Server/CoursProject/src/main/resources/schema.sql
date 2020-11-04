@@ -14,3 +14,29 @@ CREATE TABLE users
 
 );
 
+DROP TABLE if EXISTS auctions;
+
+CREATE TABLE auctions(
+  id VARCHAR (256) PRIMARY KEY ,
+  id_creator VARCHAR (256) NOT NULL ,
+  total_bitcoins NUMBER NOT NULL,
+  price NUMBER NOT NULL,
+  opening_date DATE NOT NULL,
+  close_date DATE NOT NULL,
+  FOREIGN KEY (id_creator) REFERENCES users(id)
+);
+
+DROP TABLE if EXISTS bids;
+
+CREATE TABLE bids(
+  id VARCHAR (256) PRIMARY KEY ,
+  id_user VARCHAR (256) NOT NULL,
+  id_auction VARCHAR (256) NOT NULL,
+  bitcoins NUMBER NOT NULL,
+  amount NUMBER NOT NULL,
+  FOREIGN KEY (id_user) REFERENCES users(id),
+  FOREIGN KEY (id_auction) REFERENCES auctions(id)
+);
+
+
+

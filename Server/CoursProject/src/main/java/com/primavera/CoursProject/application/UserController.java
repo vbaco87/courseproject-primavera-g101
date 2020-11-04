@@ -20,4 +20,5 @@ public class UserController {
     public void updateUser(UserDTO user) {
         this.user.updateUser(user);
     }
+    
 }

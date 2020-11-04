@@ -4,5 +4,3 @@ INSERT INTO users VALUES ('963963963', 'Patrica', 'Camacho', 'pcamacho@edu.tecno
 INSERT INTO users VALUES ('789456163', 'Ramon', 'Llop', 'rllop@edu.tecnocampus.cat', '123123', '123123', '2003-12-12', 'Spain', 'Arenys de Mar', 'c/casaSeva');
 INSERT INTO users VALUES ('789456113', 'Rodolfo', 'Vidal', 'rvidal@edu.tecnocampus.cat', '321321', '35795132', '2000-11-14', 'Spain', 'No se', 'c/preguntaliAell');
 INSERT INTO users VALUES ('789456123', 'Lorena', 'Gutierrez', 'lguiti@edu.tecnocampus.cat', '852147', '95123647', '2000-02-20', 'Spain', 'No se', 'c/preguntaliAella');
-
-INSERT INTO auctions VALUES(1, '123123123', 80,90,'2020-08-21','2020-08-25');

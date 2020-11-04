@@ -6,7 +6,7 @@ import java.util.Set;
 public class Auction {
 	
 	private String id;
-	private int total_bitcoins;
+	private double total_bitcoins;
 	private double price;
 	private String opening_date;
 	private String close_date;
@@ -34,11 +34,11 @@ public class Auction {
 		this.id = id;
 	}
 
-	public int getTotal_bitcoins() {
+	public double getTotal_bitcoins() {
 		return total_bitcoins;
 	}
 
-	public void setTotal_bitcoins(int total_bitcoins) {
+	public void setTotal_bitcoins(double total_bitcoins) {
 		this.total_bitcoins = total_bitcoins;
 	}
 

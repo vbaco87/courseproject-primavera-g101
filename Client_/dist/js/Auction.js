@@ -1,8 +1,11 @@
 
 var euros = "18";
 var bitcoins = 2;
-var user = "user123"
+var user = "user123";
 var date = "25 January 2021";
+var userId= "963963963";
+var auctionId="1";
+
 
 $(document).ready(function () {
     addHTML();
@@ -10,7 +13,8 @@ $(document).ready(function () {
         $("#QuantityBid").show();
     });
     $("#Submit").click(() => {
-        //processar bid
+        addBid();
+        $("#SubmitOk").show();
     });
 });
 
@@ -20,3 +24,20 @@ function addHTML() {
     $("#Euro").append(' <div class="media">    <h2 class="mr-3">' + euros + '€    </h2>    <div class="media-body">        <h5 class="mt-0">Euros</h5>      The amount of euros you have in your account is ' + euros + '€.    </div></div>');
 }
 
+function addBid(){
+    var url = "http://localhost:8080/api/bid/"+userId+"/"+auctionId;
+    var datos = {
+        "bitcoins": parseFloat($("#bitcoins").val()),
+        "amount": parseFloat($("#euros").val())
+    };
+
+    $.ajax({
+        async: false,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type:"POST",
+        url:url,
+        contentType: 'application/json',
+        dataType: 'json',
+        data:JSON.stringify(datos)
+    })
+}

@@ -1,27 +1,29 @@
 package com.primavera.CoursProject.domain;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 public class Auction {
 	
 	private String id;
-	private double total_bitcoins;
+	private double totalBitcoins;
 	private double price;
-	private String opening_date;
-	private String close_date;
+	private Date openingDate;
+	private Date closeDate;
 	Set<Bid> bids = new HashSet<Bid>();
 	
-	public Auction(String id, int total_bitcoins, double price, String opening_date, String close_date) {
-		this.id = id;
-		this.total_bitcoins = total_bitcoins;
-		this.price = price;
-		this.opening_date = opening_date;
-		this.close_date = close_date;
-	}
 
 	//redefinir equals 
-	
+	public Auction(String id, double totalBitcoins, double price, Date openingDate, Date closeDate) {
+		this.id = UUID.randomUUID().toString();
+		this.totalBitcoins = totalBitcoins;
+		this.price = price;
+		this.openingDate = openingDate;
+		this.closeDate = closeDate;
+	}
+
 	public Auction() {
 
 	}
@@ -34,12 +36,12 @@ public class Auction {
 		this.id = id;
 	}
 
-	public double getTotal_bitcoins() {
-		return total_bitcoins;
+	public double getTotalBitcoins() {
+		return totalBitcoins;
 	}
 
-	public void setTotal_bitcoins(double total_bitcoins) {
-		this.total_bitcoins = total_bitcoins;
+	public void setTotalBitcoins(double totalBitcoins) {
+		this.totalBitcoins = totalBitcoins;
 	}
 
 	public double getPrice() {
@@ -50,20 +52,20 @@ public class Auction {
 		this.price = price;
 	}
 
-	public String getOpening_date() {
-		return opening_date;
+	public Date getOpeningDate() {
+		return openingDate;
 	}
 
-	public void setOpening_date(String opening_date) {
-		this.opening_date = opening_date;
+	public void setOpeningDate(Date openingDate) {
+		this.openingDate = openingDate;
 	}
 
-	public String getClose_date() {
-		return close_date;
+	public Date getCloseDate() {
+		return closeDate;
 	}
 
-	public void setClose_date(String close_date) {
-		this.close_date = close_date;
+	public void setCloseDate(Date closeDate) {
+		this.closeDate = closeDate;
 	}
 
 	public Set<Bid> getBids() {
@@ -73,5 +75,6 @@ public class Auction {
 	public void setBids(Set<Bid> bids) {
 		this.bids = bids;
 	}
+
 
 }

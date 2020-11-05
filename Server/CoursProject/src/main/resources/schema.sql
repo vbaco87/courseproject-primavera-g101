@@ -6,7 +6,7 @@ CREATE TABLE users
   secondName VARCHAR (20),
   email VARCHAR (255),
   password VARCHAR(70) NOT NULL DEFAULT '123456',
-  phoneNumber VARCHAR(15) NOT NULL,
+  phoneNumber VARCHAR(15) ,
   birthday DATE,
   country VARCHAR (20),
   city VARCHAR (20),

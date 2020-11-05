@@ -38,8 +38,7 @@ public class UserDTO {
 
     private int userType;
 
-    public UserDTO() {
-        id = UUID.randomUUID().toString();
+    public UserDTO(){
     }
 
 

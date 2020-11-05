@@ -13,6 +13,8 @@ var userID = "123123123"
 
 
 $(document).ready(function () {
+
+    createUser();
     getUser();
     addUserName();
     addUserSurname();
@@ -54,11 +56,33 @@ function getUser() {
             
         });   
 }
-
-function updateUser(){
+function createUser(){
     var url = "http://localhost:8080/api/users";
     var datos = {
-        "id": userID,
+        "name":"Sofia",
+        "secondName": "Rodriguez",
+        "email": "srodriguez.tecnocampus.cat",
+        "password": "147147",
+        "phoneNumber": "99999999",
+        // "birthday": "2000-05-21",
+        "country": "Spain",
+        "city": "Valencia",
+        "homeAddress": "c7 singapour 35"
+      };
+
+      $.ajax({
+        async: false,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type:"POST", // la variable type guarda el tipo de la peticion GET,POST,..
+        url:url, //url guarda la ruta hacia donde se hace la peticion
+        dataType: 'json', // El tipo de datos esperados del servidor. Valor predeterminado: Intelligent Guess (xml, json, script, text, html).
+        data:datos // data recive un objeto con la informacion que se enviara al servidor        
+    })
+}
+
+function updateUser(){
+    var url = "http://localhost:8080/api/users/" + userID;
+    var datos = {
         "name":$("#frist-name").val(),
         "secondName": $("#surname-name").val(),
         "email": "jbarberan@edu.tecnocampus.cat",

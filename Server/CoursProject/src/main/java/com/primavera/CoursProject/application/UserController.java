@@ -19,7 +19,8 @@ public class UserController {
         return user.getUser(id);
     }
 
-    public void updateUser(UserDTO user) {
+    public void updateUser(String id, UserDTO user) {
+        user.setId(id);
         this.user.updateUser(user);
     }
     public UserDTO createUser(UserDTO user){

@@ -5,15 +5,15 @@ import java.util.Set;
 
 public class Account {
     private Set<Entry> entry = new HashSet<Entry>();
-    private int bitcoinBalance;
-    private int euroBalance;
-    private int blockedEuros;
+    private double bitcoinBalance;
+    private double euroBalance;
+    private double blockedEuros;
     public Account () {
 
     }
 
     
-    public Account(Set<Entry> entry, int bitcoinBalance, int euroBalance, int blockedEuros) {
+    public Account(Set<Entry> entry, double bitcoinBalance, double euroBalance, double blockedEuros) {
 		super();
 		this.entry = entry;
 		this.bitcoinBalance = bitcoinBalance;
@@ -21,7 +21,7 @@ public class Account {
 		this.blockedEuros = blockedEuros;
 	}
     
-    public Account(Set<Entry> entry, int bitcoinBalance, int euroBalance) {
+    public Account(Set<Entry> entry, double bitcoinBalance, double euroBalance) {
   		super();
   		this.entry = entry;
   		this.bitcoinBalance = bitcoinBalance;
@@ -38,32 +38,32 @@ public class Account {
         this.entry = entry;
     }
 
-	public int getBitcoinBalance() {
+	public double getBitcoinBalance() {
 		return bitcoinBalance;
 	}
 
 
-	public void setBitcoinBalance(int bitcoinBalance) {
+	public void setBitcoinBalance(double bitcoinBalance) {
 		this.bitcoinBalance = bitcoinBalance;
 	}
 
 
-	public int getEuroBalance() {
+	public double getEuroBalance() {
 		return euroBalance;
 	}
 
 
-	public void setEuroBalance(int euroBalance) {
+	public void setEuroBalance(double euroBalance) {
 		this.euroBalance = euroBalance;
 	}
 
 
-	public int getBlockedEuros() {
+	public double getBlockedEuros() {
 		return blockedEuros;
 	}
 
 
-	public void setBlockedEuros(int blockedEuros) {
+	public void setBlockedEuros(double blockedEuros) {
 		this.blockedEuros = blockedEuros;
 	}
     

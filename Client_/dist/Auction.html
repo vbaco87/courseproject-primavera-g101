@@ -124,14 +124,14 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" >Amount of ₿</span>
                         </div>
-                        <input type="text" class="form-control" id="bitcoins" value= "1" placeholder="0₿" aria-label="Username"
+                        <input type="text" class="form-control" id="bitcoins" placeholder="0₿" aria-label="Username"
                             aria-describedby="addon-wrapping">
                     </div>
                     <div class="input-group flex-nowrap">
                         <div class="input-group-prepend">
                             <span class="input-group-text" >Your bid € </span>
                         </div>
-                        <input type="text" class="form-control" id= "euros" value= "1" placeholder="0€" aria-label="Username"
+                        <input type="text" class="form-control" id= "euros" placeholder="0€" aria-label="Username"
                             aria-describedby="addon-wrapping">
                     </div>
                     
@@ -140,6 +140,9 @@
                 </div>
                 <div class="alert alert-success" role="alert" id="SubmitOk" style="margin-top: 10px; display:none;" >
                     Your bid has been processed, now just wait for the end of the auction!
+                </div>
+                <div class="alert alert-danger" role="alert" id="SubmitNotOk" style="margin-top: 10px; display:none;" >
+                    To make a bid you must fill all the fields
                 </div>
 
     <footer class="py-4 bg-light mt-auto">

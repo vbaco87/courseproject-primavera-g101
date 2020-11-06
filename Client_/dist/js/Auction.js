@@ -5,6 +5,8 @@ var user = "user123";
 var date = "25 January 2021";
 var userId= "963963963";
 var auctionId="1";
+var bitcoinsBid;
+var amountBid;
 
 
 $(document).ready(function () {
@@ -13,8 +15,17 @@ $(document).ready(function () {
         $("#QuantityBid").show();
     });
     $("#Submit").click(() => {
-        addBid();
-        $("#SubmitOk").show();
+        $("#SubmitOk").css("display", "none");
+        $("#SubmitNotOk").css("display", "none");
+        bitcoinsBid= $("#bitcoins").val();
+        amountBid = $("#euros").val()
+        if(bitcoinsBid > 0.0 && amountBid>0.0){
+            addBid();
+            $("#SubmitOk").show();
+        }else{
+            $("#SubmitNotOk").show();
+        }
+
     });
 });
 
@@ -27,8 +38,8 @@ function addHTML() {
 function addBid(){
     var url = "http://localhost:8080/api/bid/"+userId+"/"+auctionId;
     var datos = {
-        "bitcoins": parseFloat($("#bitcoins").val()),
-        "amount": parseFloat($("#euros").val())
+        "bitcoins": parseFloat(bitcoinsBid),
+        "amount": parseFloat(amountBid)
     };
 
     $.ajax({

@@ -17,7 +17,7 @@ public class AuctionRestController {
         this.auctionController = auctionController;
     }
 
-    @RequestMapping(value = "/auction/{userId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/auctions/{userId}", method = RequestMethod.POST)
     public void addAuction(@RequestBody AuctionDTO auction, @PathVariable String userId) {
     	auctionController.addAuction(auction, userId);
     }

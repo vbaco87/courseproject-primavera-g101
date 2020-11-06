@@ -36,7 +36,7 @@ function addHTML() {
 }
 
 function addBid(){
-    var url = "http://localhost:8080/api/bid/"+userId+"/"+auctionId;
+    var url = "http://localhost:8080/api/bids/"+userId+"/"+auctionId;
     var datos = {
         "bitcoins": parseFloat(bitcoinsBid),
         "amount": parseFloat(amountBid)

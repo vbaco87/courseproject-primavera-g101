@@ -66,7 +66,7 @@ function updateClosingDate(){
 }
 
 function addAuction(){
-    var url = "http://localhost:8080/api/auction/"+creatorId;
+    var url = "http://localhost:8080/api/auctions/"+creatorId;
     var datos = {
         "totalBitcoins": parseFloat(totalBitcoins),
         "price": parseFloat(price),

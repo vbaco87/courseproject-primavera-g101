@@ -14,7 +14,6 @@ public class Account {
 
     
     public Account(Set<Entry> entry, int bitcoinBalance, int euroBalance, int blockedEuros) {
-		super();
 		this.entry = entry;
 		this.bitcoinBalance = bitcoinBalance;
 		this.euroBalance = euroBalance;
@@ -22,7 +21,6 @@ public class Account {
 	}
     
     public Account(Set<Entry> entry, int bitcoinBalance, int euroBalance) {
-  		super();
   		this.entry = entry;
   		this.bitcoinBalance = bitcoinBalance;
   		this.euroBalance = euroBalance;

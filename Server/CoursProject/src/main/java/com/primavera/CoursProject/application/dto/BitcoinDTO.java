@@ -1,9 +1,9 @@
-package com.primavera.CoursProject.domain;
+package com.primavera.CoursProject.application.dto;
 
-public class Money implements IAsset {
-	private int amount;
-
-	public Money(int amount) {
+public class BitcoinDTO {
+private int amount;
+	
+	public BitcoinDTO(int amount) {
 		this.amount = amount;
 	}
 
@@ -15,6 +15,4 @@ public class Money implements IAsset {
 		this.amount = amount;
 	}
 
-	
-	
 }

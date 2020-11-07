@@ -1,18 +1,20 @@
-package com.primavera.CoursProject.domain;
+package com.primavera.CoursProject.application.dto;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class Entry {
+import com.primavera.CoursProject.domain.IAsset;
 
+public class EntryDTO {
+	//entry debe tener un set de assets?
 	private int quantity;
 	Set<IAsset> asset = new HashSet<IAsset>();
 
-	public Entry() {
+	public EntryDTO() {
 
 	}
 
-	public Entry(int quantity, Set<IAsset> asset) {
+	public EntryDTO(int quantity, Set<IAsset> asset) {
 		this.quantity = quantity;
 		this.asset = asset;
 	}
@@ -32,5 +34,4 @@ public class Entry {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
 }

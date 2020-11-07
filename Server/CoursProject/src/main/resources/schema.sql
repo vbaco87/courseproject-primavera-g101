@@ -14,3 +14,16 @@ CREATE TABLE users
 
 );
 
+DROP TABLE if EXISTS accounts;
+CREATE TABLE accounts
+(
+	user_id VARCHAR (256) PRIMARY KEY,
+ 	bitcoin_balance DECIMAL(10,10),
+	blocked_euros DECIMAL(10,2),
+	euro_balance DECIMAL(10,2)
+	FOREIGN KEY (userId ) REFERENCES users(id)
+
+
+
+)
+

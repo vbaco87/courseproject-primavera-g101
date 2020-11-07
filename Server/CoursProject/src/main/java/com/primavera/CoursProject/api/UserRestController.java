@@ -1,5 +1,6 @@
 package com.primavera.CoursProject.api;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,32 +10,34 @@ import org.springframework.web.bind.annotation.RestController;
 import com.primavera.CoursProject.application.UserController;
 import com.primavera.CoursProject.application.dto.AccountDTO;
 import com.primavera.CoursProject.application.dto.EntryDTO;
-
-
+@CrossOrigin(origins = "*")
 @RestController
 public class UserRestController {
-	  UserController userController;
+	UserController userController;
 
-	    public UserRestController(UserController userController) {
-	        this.userController = userController;
-	    }
+	public UserRestController(UserController userController) {
+		this.userController = userController;
+	}
 
-	    @GetMapping("/available/{id}")
-	    public double getAvaliableMoney(@PathVariable int id) throws Exception {
-	    	
-	    	return userController.getAvaliableMoney(id);
-	    }
+	
+	@GetMapping("/available/{id}")
+	public double getAvaliableMoney(@PathVariable int id) throws Exception {
 
-	    @GetMapping("/account/{id}")
-	    public AccountDTO getAccount(@PathVariable int id) throws Exception {
+		return userController.getAvaliableMoney(id);
+	}
 
-	    	return userController.getAccount(id);
-	    }
+	
+	@GetMapping("/account/{id}")
+	public AccountDTO getAccount(@PathVariable int id) throws Exception {
 
-	    @PostMapping("/update/{accountId}")
-	    public void updateWallet(@PathVariable int accountId ,@RequestBody EntryDTO entry) throws Exception {
-	    	 userController.updateWallet(accountId, entry);
-	    	
-	    }
+		return userController.getAccount(id);
+	}
+
+
+	@PostMapping("/update/{accountId}")
+	public void updateWallet(@PathVariable int accountId, @RequestBody EntryDTO entry) throws Exception {
+		userController.updateWallet(accountId, entry);
+
+	}
 
 }

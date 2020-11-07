@@ -47,7 +47,9 @@ CREATE TABLE auctions(
   price NUMBER NOT NULL,
   opening_date DATE NOT NULL,
   close_date DATE NOT NULL,
-  FOREIGN KEY (id_creator) REFERENCES users(id)
+  id_winner VARCHAR(256) NULL,
+  FOREIGN KEY (id_creator) REFERENCES users(id),
+  FOREIGN KEY (id_winner) REFERENCES users(id)
 );
 
 DROP TABLE if EXISTS bids;

@@ -2,6 +2,9 @@ package com.primavera.CoursProject.api;
 
 import com.primavera.CoursProject.application.AuctionController;
 import com.primavera.CoursProject.application.dto.AuctionDTO;
+
+import java.util.List;
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +23,41 @@ public class AuctionRestController {
     @RequestMapping(value = "/auctions/{userId}", method = RequestMethod.POST)
     public void addAuction(@RequestBody AuctionDTO auction, @PathVariable String userId) {
     	auctionController.addAuction(auction, userId);
+    }
+      
+    @GetMapping("/auctions")
+    public List<AuctionDTO> getBrokerAuctions(@RequestParam(defaultValue ="all") String status) {
+    	if(status.equals("all")) {
+    		return auctionController.getAuctions();
+    	}
+    	else if(status.equals("active")) {
+    		return auctionController.getActiveAuctions();
+    	}
+    	
+    	else if(status.equals("inactive")) {
+    		return auctionController.getInactiveAuctions();
+    	}
+    	  
+    	return null;
+    }
+    
+    @GetMapping("/auctions/{userId}") 
+    public List<AuctionDTO> getBidderParticipatedAuctions(@PathVariable String userId, @RequestParam(defaultValue ="all") String status, @RequestParam(defaultValue ="false") boolean onlyWon){
+    	if(onlyWon) {
+    		return auctionController.getBidderWonAuctions(userId);  
+    	}
+    	if(status.equals("all")) {
+    		return auctionController.getBidderAuctions(userId);
+    	}
+    	else if(status.equals("active")) {
+    		return auctionController.getBidderActiveAuctions(userId);
+    	}
+    	
+    	else if(status.equals("inactive")) {
+    		return auctionController.getBidderInactiveAuctions(userId);
+    	}
+    	  
+    	return null;
     }
 
 }

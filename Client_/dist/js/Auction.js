@@ -5,7 +5,7 @@ var user = "user123"
 var date = "25 January 2021";
 var active = true;
 var euros;
-var accountId=1;
+
 var userId= "963963963";
 var auctionId="1";
 var bitcoinsBid;
@@ -13,9 +13,8 @@ var amountBid;
 
 $(document).ready(function () {
     $.ajax({
-
         headers: { 'Access-Control-Allow-Origin': '*' },
-        url: "http://localhost:8080/available/" + accountId,
+        url: "http://localhost:8080/account/" + userId+"/available",
         async: false,
         type: 'GET',
         crossDomain: true,

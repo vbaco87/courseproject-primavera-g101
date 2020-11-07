@@ -20,16 +20,17 @@ CREATE TABLE accounts
 (
 	user_id VARCHAR (256) PRIMARY KEY,
  	bitcoin_balance DOUBLE,
-	blocked_euros DOUBLE,
 	euro_balance DOUBLE,
+	blocked_euros DOUBLE,
+	
 	FOREIGN KEY (user_id ) REFERENCES users(id)
 );
 
 DROP TABLE if EXISTS entries;
 CREATE TABLE entries
-(
-  id INT AUTO_INCREMENT PRIMARY KEY ,
-  account_id VARCHAR (256) PRIMARY KEY,
+( 
+ account_id VARCHAR (256) PRIMARY KEY,
+  id INT AUTO_INCREMENT,
   quantity DOUBLE,
   type VARCHAR2(7),
   FOREIGN KEY (account_id) REFERENCES accounts(user_id)

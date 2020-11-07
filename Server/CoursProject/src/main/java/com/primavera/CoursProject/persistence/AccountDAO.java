@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.primavera.CoursProject.application.dto.AccountDTO;
-import com.primavera.CoursProject.application.dto.EntryDTO;
+
 
 @Repository
 public class AccountDAO implements com.primavera.CoursProject.application.daos.AccountDAO {
@@ -14,22 +14,13 @@ public class AccountDAO implements com.primavera.CoursProject.application.daos.A
 
 	private final RowMapper<AccountDTO> accountRowMapper = (resultSet, i) -> {
 		AccountDTO account = new AccountDTO();
-		account.setBitcoinBalance(resultSet.getDouble("bitcoin"));
-		account.setEuroBalance(resultSet.getDouble("eurosTotal"));
-		account.setBlockedEuros(resultSet.getDouble("eurosLocked"));
+		account.setBitcoinBalance(resultSet.getDouble("bitcoin_balance"));
+		account.setEuroBalance(resultSet.getDouble("euro_balance"));
+		account.setBlockedEuros(resultSet.getDouble("blocked_euros"));
 
 		return account;
 	};
-	//pasar a entryDAO
-	private final RowMapper<EntryDTO> entryRowMapper = (resultSet, i) -> {
-		EntryDTO entry = new EntryDTO();
-		
-		entry.setQuantity(resultSet.getDouble("quantity"));
-		entry.setType(resultSet.getString("type"));
 
-
-		return entry;
-	};
 	
 	public AccountDAO(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
@@ -46,15 +37,7 @@ public class AccountDAO implements com.primavera.CoursProject.application.daos.A
 
 	}
 	
-	//entryDAO
-	public void insertEntry(String id, EntryDTO entry)  {
-
-		final var query = "INSERT INTO entries (quantity, type, account_id) VALUES (?,?,?)";
-		
-			 jdbcTemplate.update(query,entry.getQuantity(),entry.getType() , id);
-		
-
-	}
+	
 
 	public void updateBitcoin(String userId, double quantity){
 		final var query = "UPDATE accounts SET bitcoin =? WHERE user_id=?";

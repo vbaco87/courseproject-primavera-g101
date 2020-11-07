@@ -23,9 +23,9 @@ public class AccountRestController {
 		this.accountController = accountController;
 	}
 
-	@GetMapping("/account/{id}/avaliable")
-	public double getAvaliableMoney(@PathVariable String id) throws Exception {
-		return accountController.getAvaliableMoney(id);
+	@GetMapping("/account/{id}/available")
+	public double getAvailableMoney(@PathVariable String id) throws Exception {
+		return accountController.getAvailableMoney(id);
 	}
 
 	@GetMapping("/account/{id}")

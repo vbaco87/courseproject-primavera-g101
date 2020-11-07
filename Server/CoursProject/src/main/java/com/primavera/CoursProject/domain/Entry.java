@@ -8,29 +8,39 @@ public class Entry {
 	private int quantity;
 	Set<IAsset> asset = new HashSet<IAsset>();
 
+
+    private double quantity;
+
+    String type;
+
 	public Entry() {
-
-	}
-
-	public Entry(int quantity, Set<IAsset> asset) {
+  }
+	public Entry(double quantity,Sting type) {
 		this.quantity = quantity;
-		this.asset = asset;
+		this.type = type;
 	}
 
-	public Set<IAsset> getAssets() {
-		return asset;
+
+
+  
+
+    public double getQuantity() {
+        return quantity;
+    }
+
+  
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
+    }
+
+
+	public String getType() {
+		return type;
 	}
 
-	public int getQuantity() {
-		return quantity;
-	}
+	public void setType(String type) {
+		this.type = type;
 
-	public void setAssets(Set<IAsset> asserts) {
-		this.asset = asserts;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
 	}
 
 }

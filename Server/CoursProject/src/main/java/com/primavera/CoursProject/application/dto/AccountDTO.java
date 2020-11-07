@@ -3,6 +3,7 @@ package com.primavera.CoursProject.application.dto;
 import java.util.HashSet;
 import java.util.Set;
 
+
 import com.primavera.CoursProject.domain.Entry;
 
 public class AccountDTO {
@@ -79,4 +80,5 @@ public class AccountDTO {
 		return this;
 	}
 	    
+
 }

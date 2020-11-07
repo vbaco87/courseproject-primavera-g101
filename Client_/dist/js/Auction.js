@@ -4,9 +4,26 @@ var bitcoins = 2;
 var user = "user123"
 var date = "25 January 2021";
 var active = true;
-var euros = 20;
+var euros;
+var accountId=1;
 
 $(document).ready(function () {
+    $.ajax({
+
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        url: "http://localhost:8080/available/" + accountId,
+        async: false,
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'json',
+        success: function (data) {
+            euros = data;
+     
+
+        },
+        //error: function() { alert('Failed!'); },
+
+    });
     addHTML();
     $("#Start").click(() => {
         $("#QuantityBid").show();

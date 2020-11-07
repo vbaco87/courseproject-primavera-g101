@@ -4,35 +4,24 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Entry {
-	
-	private int quantity;
-	Set<IAsset> asset = new HashSet<IAsset>();
-
 
     private double quantity;
-
     String type;
 
 	public Entry() {
   }
-	public Entry(double quantity,Sting type) {
+	public Entry(double quantity,String type) {
 		this.quantity = quantity;
 		this.type = type;
 	}
-
-
-
-  
 
     public double getQuantity() {
         return quantity;
     }
 
-  
     public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
-
 
 	public String getType() {
 		return type;
@@ -42,5 +31,4 @@ public class Entry {
 		this.type = type;
 
 	}
-
 }

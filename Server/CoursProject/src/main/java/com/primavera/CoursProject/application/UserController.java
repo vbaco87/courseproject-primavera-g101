@@ -11,10 +11,8 @@ import java.util.UUID;
 public class UserController {
 
     public UserDAO user;
-	private AccountDAO accountDAO;
-    public UserController(UserDAO user,AccountDAO accountDAO) {
+    public UserController(UserDAO user) {
         this.user = user;
-      	this.accountDAO = accountDAO;
     }
 
     public UserDTO getUser (String id){
@@ -48,6 +46,5 @@ public class UserController {
     		case "bitcoin": accountDAO.updateBitcoin(accountId, account.getBitcoinBalance()+entry.getQuantity()); break;
     		case "euros": accountDAO.updateEuros(accountId,account.getEuroBalance()+ entry.getQuantity()); break;
     	}
-
 
 }

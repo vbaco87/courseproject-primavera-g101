@@ -1,3 +1,6 @@
+var creatorId=963963963;
+var price;
+var totalBitcoins;
 
 $(document).ready(function() {
     minDate();
@@ -9,12 +12,24 @@ $(document).ready(function() {
         updateClosingDate();
       });
 
+     $("#submit").click(function(){
+        price= $("#basePrice").val();
+        totalBitcoins= $("#numberOfBitcoins").val();
+        if(price >0.0 && totalBitcoins > 0.0 ){
+            if($("#exampleCheck1").prop('checked')){
+                addAuction();
+                $("#SubmitOk").show();
+            }else{
+                $("#SubmitNotOkT").show();
+            }
+        }else{
+            $("#SubmitNotOk").show();
+        }
+    });
+
 
 });
 
-function addAuction() {
-    console.log("right now i do nothing");
-}
 
 function validate()  {
 
@@ -54,5 +69,24 @@ function updateClosingDate(){
 
         $("#closingDate").attr("min", date);
         $("#closingDate").attr("value", date);
+}
+
+function addAuction(){
+    var url = "http://localhost:8080/api/auctions/"+creatorId;
+    var datos = {
+        "totalBitcoins": parseFloat(totalBitcoins),
+        "price": parseFloat(price),
+        "openingDate": $("#openingDate").val(),
+        "closeDate": $("#closingDate").val()
+    };
+    $.ajax({
+        async: false,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type:"POST",
+        url:url,
+        contentType: 'application/json',
+        dataType: 'json',
+        data:JSON.stringify(datos)
+    })
 }
 

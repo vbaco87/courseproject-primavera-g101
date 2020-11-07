@@ -196,8 +196,19 @@
                             <label class="form-check-label" for="exampleCheck1">I
                                 agree with the terms and conditions.</label>
                         </div>
-                        <button type="submit" class="submitBnt col-lg-12 btn btn-outline-primary"
+                        <button type="submit" id= "submit" class="submitBnt col-lg-12 btn btn-outline-primary"
                             onclick="validate()">Submit</button>
+                        <div>
+                        <div class="alert alert-success" role="alert" id="SubmitOk" style="margin-top: 10px; display:none;" >
+                            Your Auction has been created successfully!
+                        </div>
+                        <div class="alert alert-danger" role="alert" id="SubmitNotOk" style="margin-top: 10px; display:none;" >
+                            To create an Auction you must fill all the fields
+                        </div>
+                        <div class="alert alert-danger" role="alert" id="SubmitNotOkT" style="margin-top: 10px; display:none;" >
+                            To create an Auction you must agree with the terms and conditions
+                        </div>
+                    </div>
                     </form>
                 </div>
                 <footer class="py-4 bg-light mt-auto">

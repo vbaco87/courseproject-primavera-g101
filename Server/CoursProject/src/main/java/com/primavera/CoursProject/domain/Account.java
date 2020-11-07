@@ -13,16 +13,20 @@ public class Account {
     }
 
     
+
     public Account(Set<Entry> entry, double bitcoinBalance, double euroBalance, double blockedEuros) {
 		super();
+
 		this.entry = entry;
 		this.bitcoinBalance = bitcoinBalance;
 		this.euroBalance = euroBalance;
 		this.blockedEuros = blockedEuros;
 	}
     
+
     public Account(Set<Entry> entry, double bitcoinBalance, double euroBalance) {
   		super();
+
   		this.entry = entry;
   		this.bitcoinBalance = bitcoinBalance;
   		this.euroBalance = euroBalance;

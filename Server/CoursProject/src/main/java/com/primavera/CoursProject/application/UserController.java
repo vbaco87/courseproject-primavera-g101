@@ -1,19 +1,28 @@
 package com.primavera.CoursProject.application;
 
-import org.springframework.stereotype.Component;
 
-import com.primavera.CoursProject.application.daos.AccountDAO;
-import com.primavera.CoursProject.application.dto.AccountDTO;
-import com.primavera.CoursProject.application.dto.EntryDTO;
-@Component
+import com.primavera.CoursProject.application.daos.UserDAO;
+import com.primavera.CoursProject.application.dto.UserDTO;
+import org.springframework.stereotype.Service;
+
+@Service // same as @Component
 public class UserController {
-	
-	private AccountDAO accountDAO;
 
-	public UserController(AccountDAO accountDAO) {
-		this.accountDAO = accountDAO;
-	}
-    public double getAvaliableMoney(int userId) throws Exception {
+    public UserDAO user;
+	private AccountDAO accountDAO;
+    public UserController(UserDAO user,AccountDAO accountDAO) {
+        this.user = user;
+      	this.accountDAO = accountDAO;
+    }
+
+    public UserDTO getUser (String id){
+        return user.getUser(id);
+    }
+
+    public void updateUser(UserDTO user) {
+        this.user.updateUser(user);
+    }
+   public double getAvaliableMoney(int userId) throws Exception {
 
     	AccountDTO account  =accountDAO.getAccount(userId);
     	return account.getEuroBalance()-account.getBlockedEuros();
@@ -30,6 +39,5 @@ public class UserController {
     		case "bitcoin": accountDAO.updateBitcoin(accountId, account.getBitcoinBalance()+entry.getQuantity()); break;
     		case "euros": accountDAO.updateEuros(accountId,account.getEuroBalance()+ entry.getQuantity()); break;
     	}
-    }
 
 }

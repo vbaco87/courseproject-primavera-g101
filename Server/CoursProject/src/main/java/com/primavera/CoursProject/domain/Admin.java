@@ -15,8 +15,8 @@ public class Admin extends AbsUser {
 
     }
 
-    public Admin(String id, String name, String secondName, String email, String password, String phoneNumber, Date birthday, String country, String city, String homeAddress) {
-        super(id, name, secondName, email, password, phoneNumber, birthday, country, city, homeAddress);
+    public Admin(String name, String secondName, String email, String password, String phoneNumber, Date birthday, String country, String city, String homeAddress) {
+        super(name, secondName, email, password, phoneNumber, birthday, country, city, homeAddress);
     }
 
     public Set<Bid> getBids() {

@@ -9,9 +9,10 @@ public class BidDTO {
 	private String id;
 	private double bitcoins;
 	private double amount;
+	/*
 	private Transaction transactionBroker;
 	private Transaction transactionPlatform;
-	private Transaction transactionBidder;
+	private Transaction transactionBidder;*/
 
 	public BidDTO() {
 		this.id = UUID.randomUUID().toString();
@@ -46,7 +47,7 @@ public class BidDTO {
 		this.amount = amount;
 	}
 
-
+/*
 	public Transaction getTransactionBroker() {
 		return transactionBroker;
 	}
@@ -74,6 +75,6 @@ public class BidDTO {
 
 	public void setTransactionBidder(Transaction transactionBidder) {
 		this.transactionBidder = transactionBidder;
-	}
+	}*/
 
 }

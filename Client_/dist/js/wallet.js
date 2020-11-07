@@ -1,11 +1,33 @@
 
-var euros = 18;
-var bitcoins = 2;
-var locked= 5;
-var usable = euros - locked;
+var euros;
+var bitcoins;
+var locked;
+var usable;
+var accountId = 1;
+
 
 $(document).ready(function () {
+    $.ajax({
+
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        url: "http://localhost:8080/account/" + accountId,
+        async: false,
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'json',
+        success: function (data) {
+            euros = data.euroBalance;
+            bitcoins = data.bitcoinBalance;
+            locked = data.blockedEuros;
+            usable = euros - locked;
+
+        },
+        //error: function() { alert('Failed!'); },
+
+    });
+
     addHTML();
+
 
 });
 

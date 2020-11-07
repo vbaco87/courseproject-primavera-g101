@@ -75,7 +75,7 @@ public class AccountDTO {
 
 
 	public AccountDTO update(EntryDTO entry2) {
-
+		
 		return this;
 	}
 	    

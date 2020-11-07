@@ -6,7 +6,8 @@ import java.util.Set;
 import com.primavera.CoursProject.domain.IAsset;
 
 public class EntryDTO {
-	//entry debe tener un set de assets?
+	//no seria mejor que entry tuviera un array de assets? [0] = money, [1] = bitcoins
+	// siempre tendra 2 assets, 1 para bitcoins y otro para money
 	private int quantity;
 	Set<IAsset> asset = new HashSet<IAsset>();
 

@@ -4,32 +4,43 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Entry {
+	
+	private int quantity;
+	Set<IAsset> asset = new HashSet<IAsset>();
 
-    private int quantity;
-    Set<IAsset> asserts = new HashSet<IAsset>();
 
-    public Entry() {
+    private double quantity;
 
-    }
+    String type;
 
-    public Entry(int quantity, Set<IAsset> asserts) {
-        this.quantity = quantity;
-        this.asserts = asserts;
-    }
+	public Entry() {
+  }
+	public Entry(double quantity,Sting type) {
+		this.quantity = quantity;
+		this.type = type;
+	}
 
-    public Set<IAsset> getAsserts() {
-        return asserts;
-    }
 
-    public int getQuantity() {
+
+  
+
+    public double getQuantity() {
         return quantity;
     }
 
-    public void setAsserts(Set<IAsset> asserts) {
-        this.asserts = asserts;
-    }
-
-    public void setQuantity(int quantity) {
+  
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
+
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+
+	}
+
 }

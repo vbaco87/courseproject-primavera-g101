@@ -1,33 +1,36 @@
-package com.primavera.CoursProject.domain;
+package com.primavera.CoursProject.application.dto;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class Account {
-    private Set<Entry> entry = new HashSet<Entry>();
+
+import com.primavera.CoursProject.domain.Entry;
+
+public class AccountDTO {
+	private Set<Entry> entry = new HashSet<Entry>();
     private double bitcoinBalance;
-    private double euroBalance;
+    private double  euroBalance;
     private double blockedEuros;
-    public Account () {
+    public AccountDTO () {
 
     }
 
     
-
-    public Account(Set<Entry> entry, double bitcoinBalance, double euroBalance, double blockedEuros) {
-		super();
-
+    public AccountDTO(Set<Entry> entry, double bitcoinBalance, double euroBalance, double blockedEuros) {
 		this.entry = entry;
 		this.bitcoinBalance = bitcoinBalance;
 		this.euroBalance = euroBalance;
 		this.blockedEuros = blockedEuros;
 	}
     
-
-    public Account(Set<Entry> entry, double bitcoinBalance, double euroBalance) {
-  		super();
-
+    public AccountDTO(Set<Entry> entry, double bitcoinBalance, double euroBalance) {
   		this.entry = entry;
+  		this.bitcoinBalance = bitcoinBalance;
+  		this.euroBalance = euroBalance;
+  	}
+    
+    public AccountDTO(double bitcoinBalance, double euroBalance) {
+  		this.entry = null;
   		this.bitcoinBalance = bitcoinBalance;
   		this.euroBalance = euroBalance;
   	}
@@ -70,5 +73,12 @@ public class Account {
 	public void setBlockedEuros(double blockedEuros) {
 		this.blockedEuros = blockedEuros;
 	}
-    
+
+
+	public AccountDTO update(EntryDTO entry2) {
+		
+		return this;
+	}
+	    
+
 }

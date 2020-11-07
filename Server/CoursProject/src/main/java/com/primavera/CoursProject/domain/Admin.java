@@ -10,7 +10,6 @@ public class Admin extends AbsUser {
     Set<Auction> auctions = new HashSet<Auction>();
     Set<Purchase> purchases = new HashSet<Purchase>();
 
-
     public Admin() {
 
     }

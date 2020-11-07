@@ -11,11 +11,11 @@ public class AccountDTO {
     private double bitcoinBalance;
     private double  euroBalance;
     private double blockedEuros;
+
     public AccountDTO () {
 
     }
 
-    
     public AccountDTO(Set<Entry> entry, double bitcoinBalance, double euroBalance, double blockedEuros) {
 		this.entry = entry;
 		this.bitcoinBalance = bitcoinBalance;
@@ -35,8 +35,6 @@ public class AccountDTO {
   		this.euroBalance = euroBalance;
   	}
 
-
-
 	public Set<Entry> getEntry() {
         return entry;
     }
@@ -49,34 +47,27 @@ public class AccountDTO {
 		return bitcoinBalance;
 	}
 
-
 	public void setBitcoinBalance(double bitcoinBalance) {
 		this.bitcoinBalance = bitcoinBalance;
 	}
-
 
 	public double getEuroBalance() {
 		return euroBalance;
 	}
 
-
 	public void setEuroBalance(double euroBalance) {
 		this.euroBalance = euroBalance;
 	}
-
 
 	public double getBlockedEuros() {
 		return blockedEuros;
 	}
 
-
 	public void setBlockedEuros(double blockedEuros) {
 		this.blockedEuros = blockedEuros;
 	}
 
-
 	public AccountDTO update(EntryDTO entry2) {
-		
 		return this;
 	}
 	    

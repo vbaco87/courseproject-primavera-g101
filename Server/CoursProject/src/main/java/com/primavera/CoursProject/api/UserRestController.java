@@ -33,7 +33,6 @@ public class UserRestController {
         userController.updateUser(id, user);
     }
 
-
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     @ResponseBody
     public void createUser(@Validated final UserDTO user){

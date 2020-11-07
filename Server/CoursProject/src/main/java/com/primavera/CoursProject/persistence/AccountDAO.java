@@ -21,7 +21,6 @@ public class AccountDAO implements com.primavera.CoursProject.application.daos.A
 		return account;
 	};
 
-	
 	public AccountDAO(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
@@ -36,8 +35,6 @@ public class AccountDAO implements com.primavera.CoursProject.application.daos.A
 		}
 
 	}
-	
-	
 
 	public void updateBitcoin(String userId, double quantity){
 		final var query = "UPDATE accounts SET bitcoin =? WHERE user_id=?";
@@ -55,6 +52,4 @@ public class AccountDAO implements com.primavera.CoursProject.application.daos.A
 		// TODO Auto-generated method stub
 		
 	}
-
-
 }

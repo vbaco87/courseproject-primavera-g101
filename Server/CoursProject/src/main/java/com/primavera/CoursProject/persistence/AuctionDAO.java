@@ -24,7 +24,6 @@ public class AuctionDAO implements com.primavera.CoursProject.application.daos.A
     public AuctionDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    
 
 	@Override
 	public void addAuction(AuctionDTO auction, String creatorId) {

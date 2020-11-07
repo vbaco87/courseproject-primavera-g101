@@ -14,31 +14,25 @@ CREATE TABLE users
   cityhomeAddress VARCHAR (255)
 
 );
-DROP TABLE if EXISTS account;
-CREATE TABLE account
-(
-  id INT AUTO_INCREMENT PRIMARY KEY ,
-  bitcoin DOUBLE ,
-  eurosTotal DOUBLE,
-  eurosLocked DOUBLE
-);
 
 DROP TABLE if EXISTS accounts;
 CREATE TABLE accounts
 (
 	user_id VARCHAR (256) PRIMARY KEY,
- 	bitcoin_balance DECIMAL(10,10),
-	blocked_euros DECIMAL(10,2),
-	euro_balance DECIMAL(10,2),
+ 	bitcoin_balance DOUBLE,
+	blocked_euros DOUBLE,
+	euro_balance DOUBLE,
 	FOREIGN KEY (user_id ) REFERENCES users(id)
 );
 
-DROP TABLE if EXISTS entry;
-CREATE TABLE entry
+DROP TABLE if EXISTS entries;
+CREATE TABLE entries
 (
   id INT AUTO_INCREMENT PRIMARY KEY ,
-  quantity DOUBLE ,
+  account_id VARCHAR (256) PRIMARY KEY,
+  quantity DOUBLE,
   type VARCHAR2(7),
-  account_id int
+  FOREIGN KEY (account_id) REFERENCES accounts(user_id)
+  
 
 );

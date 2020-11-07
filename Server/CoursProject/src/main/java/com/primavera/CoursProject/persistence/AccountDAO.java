@@ -3,67 +3,70 @@ package com.primavera.CoursProject.persistence;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import com.primavera.CoursProject.application.dto.AccountDTO;
 import com.primavera.CoursProject.application.dto.EntryDTO;
-import com.primavera.CoursProject.application.exceptions.UserDoesNotExistException;
-import org.springframework.stereotype.Repository;
 
 @Repository
 public class AccountDAO implements com.primavera.CoursProject.application.daos.AccountDAO {
-
 	private JdbcTemplate jdbcTemplate;
 
 	private final RowMapper<AccountDTO> accountRowMapper = (resultSet, i) -> {
 		AccountDTO account = new AccountDTO();
-		account.setBitcoinBalance(resultSet.getDouble("bitcoin_balance"));
-		account.setBlockedEuros(resultSet.getDouble("blocked_euros"));
-		account.setEuroBalance(resultSet.getDouble("euro_balance"));
+		account.setBitcoinBalance(resultSet.getDouble("bitcoin"));
+		account.setEuroBalance(resultSet.getDouble("eurosTotal"));
+		account.setBlockedEuros(resultSet.getDouble("eurosLocked"));
+
 		return account;
 	};
+	//pasar a entryDAO
+	private final RowMapper<EntryDTO> entryRowMapper = (resultSet, i) -> {
+		EntryDTO entry = new EntryDTO();
+		
+		entry.setQuantity(resultSet.getDouble("quantity"));
+		entry.setType(resultSet.getString("type"));
 
+
+		return entry;
+	};
+	
 	public AccountDAO(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	public AccountDTO getAvaliableMoney(String userId) {
-		final String queryUser = "SELECT bitcoin_balance,blocked_euros,euro_balance FROM accounts WHERE id = ?";
-        try{
-            return jdbcTemplate.queryForObject(queryUser, accountRowMapper, userId);
-        }
-        catch (EmptyResultDataAccessException e){
-            throw new UserDoesNotExistException(userId);
-        }
-	}
+	public AccountDTO getAccount(String userId) throws Exception {
 
-	public void updateAccount(String userId, AccountDTO accountDTO) {
-		final String queryUpdateUser= "update accountDTO set bitcoin_balance = ?,blocked_euros = ?,euro_balance = ? where id = ?";
-        jdbcTemplate.update(queryUpdateUser, accountDTO.getBitcoinBalance(), accountDTO.getBlockedEuros(), accountDTO.getEuroBalance(), userId);
-	}
-
-
-	public AccountDTO getAccount(int id) throws Exception {
-		final var query = "select * from account where id = ?";
+		final var query = "select * from accounts where user_id = ?";
 		try {
-			return jdbcTemplate.queryForObject(query, accountRowMapper, id);
+			return jdbcTemplate.queryForObject(query, accountRowMapper, userId);
 		} catch (EmptyResultDataAccessException e) {
-			throw new Exception(e); }
+			throw new Exception(e);
+		}
 
 	}
-	public void insertEntry(int id, EntryDTO entry)  {
+	
+	//entryDAO
+	public void insertEntry(String id, EntryDTO entry)  {
 
-		final var query = "INSERT INTO entry (quantity, type, account_id) VALUES (?,?,?)";
-		jdbcTemplate.update(query,entry.getQuantity(),entry.getType() , id);
+		final var query = "INSERT INTO entries (quantity, type, account_id) VALUES (?,?,?)";
+		
+			 jdbcTemplate.update(query,entry.getQuantity(),entry.getType() , id);
+		
+
 	}
 
-	public void updateBitcoin(int id, double quantity){
-		final var query = "UPDATE account SET bitcoin =? WHERE id=?";
-		jdbcTemplate.update(query,quantity , id);
+	public void updateBitcoin(String userId, double quantity){
+		final var query = "UPDATE accounts SET bitcoin =? WHERE user_id=?";
+
+		 jdbcTemplate.update(query,quantity , userId);
+	}
+	
+	public void updateEuros(String userId, double quantity){
+		final var query = "UPDATE accounts SET eurosTotal =? WHERE user_id=?";
+
+		 jdbcTemplate.update(query,quantity , userId);
 	}
 
-	public void updateEuros(int id, double quantity){
-		final var query = "UPDATE account SET eurosTotal =? WHERE id=?";
-		jdbcTemplate.update(query,quantity , id);
-	}
 
 }

@@ -26,7 +26,6 @@ public class AuctionDTO {
 		this.id = id;
 	}
 
-
 	public double getTotalBitcoins() {
 		return totalBitcoins;
 	}
@@ -66,7 +65,6 @@ public class AuctionDTO {
 	public void setBids(Set<Bid> bids) {
 		this.bids = bids;
 	}
-	
-	
+
 }
 

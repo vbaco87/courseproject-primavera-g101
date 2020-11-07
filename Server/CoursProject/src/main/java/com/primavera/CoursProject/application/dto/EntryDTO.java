@@ -8,13 +8,11 @@ import com.primavera.CoursProject.domain.IAsset;
 public class EntryDTO {
 
 	private double quantity;
-	
-	String type;
+	private String type;
 
 	public EntryDTO() {
 
 	}
-
 
 	public double getQuantity() {
 		return quantity;
@@ -24,8 +22,6 @@ public class EntryDTO {
 		this.quantity = quantity;
 	}
 
-
-
 	public String getType() {
 		return type;
 	}
@@ -33,7 +29,5 @@ public class EntryDTO {
 	public void setType(String type) {
 		this.type = type;
 	}
-
-
 
 }

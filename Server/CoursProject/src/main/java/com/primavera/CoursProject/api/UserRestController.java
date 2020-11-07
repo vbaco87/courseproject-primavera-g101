@@ -21,17 +21,23 @@ public class UserRestController {
     public UserRestController(UserController userController) {
         this.userController = userController;
     }
-	
-	
 
     @GetMapping("/users/{id}")
     public UserDTO getUser(@PathVariable String id){
         return userController.getUser(id);
     }
 
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public void updateUser(@PathVariable String id, @Validated final UserDTO user){
+        userController.updateUser(id, user);
+    }
+
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     @ResponseBody
-    public void updateUser(final UserDTO user){
-        userController.updateUser(user);
+    public void createUser(@Validated final UserDTO user){
+        userController.createUser(user);
     }
+
+
 }

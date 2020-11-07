@@ -29,6 +29,5 @@ public class Entry {
 
 	public void setType(String type) {
 		this.type = type;
-
 	}
 }

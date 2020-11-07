@@ -13,7 +13,6 @@ public class Auction {
 	private Date openingDate;
 	private Date closeDate;
 	Set<Bid> bids = new HashSet<Bid>();
-	
 
 	//redefinir equals 
 	public Auction(String id, double totalBitcoins, double price, Date openingDate, Date closeDate) {

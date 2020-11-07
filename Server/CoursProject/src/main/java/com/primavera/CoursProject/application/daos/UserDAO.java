@@ -8,6 +8,6 @@ public interface UserDAO {
 
     public void updateUser(UserDTO user);
 
-    public void createUser(UserDTO user);
+    public UserDTO createUser(UserDTO user);
 
 }

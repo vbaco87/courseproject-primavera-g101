@@ -24,13 +24,13 @@ public class UserRestController {
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
     @ResponseBody
-    public void updateUser(@PathVariable String id, final UserDTO user){
+    public void updateUser(@PathVariable String id, @Validated final UserDTO user){
         userController.updateUser(id, user);
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     @ResponseBody
-    public void createUser(final UserDTO user){
+    public void createUser(@Validated final UserDTO user){
         userController.createUser(user);
     }
 }

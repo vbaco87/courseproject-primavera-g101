@@ -3,8 +3,8 @@ function registerNewUser() {
     if (checkInputValues())
         if ($("#inputPassword").val() === $("#inputConfirmPassword").val()) {
 
+            var status;
             var type = getUserType();
-            console.log(type);
             var url = "http://localhost:8080/api/users";
             var datos = {
                 "name": $("#inputName").val(),
@@ -25,14 +25,27 @@ function registerNewUser() {
                 type: "POST", // la variable type guarda el tipo de la peticion GET,POST,..
                 url: url, //url guarda la ruta hacia donde se hace la peticion
                 dataType: 'json', // El tipo de datos esperados del servidor. Valor predeterminado: Intelligent Guess (xml, json, script, text, html).
-                data: datos // data recive un objeto con la informacion que se enviara al servidor        
-            })            
+                data: datos, // data recive un objeto con la informacion que se enviara al servidor        
+                success: function (textStatus, jqXHR) {
+                    //console.log(textStatus + ": " + jqXHR.status);
+                    status = jqXHR.status;
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    //console.log(textStatus + ": " + jqXHR.status + " " + errorThrown);
+                    status = jqXHR.status;
+                }
+            })
+            if(status/100 == 2){
+                window.open("../index.html");
+            }
+            else{
+                $("#userError").css("display", "block");
+            }
         }
 }
 
 function checkInputValues() {
     return $("#inputPassword").val() != "" && $("#inputName").val() != "" && $("#inputSurname").val() != "" && $("#inputEmail").val() != "" && $("#inputPassword").val() != "" && $("#inputPhoneNumber").val() != "" && $("#inputCounty").val() != "" && $("#inputCity").val() != "" && $("#inputHomeAddress").val() != "";
-
 }
 
 function getUserType() {

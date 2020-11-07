@@ -28,6 +28,14 @@
           <div class="card-body">
             <h5 class="card-title text-center">Register</h5>
 
+            <div class="alert alert-danger" role="alert" id="userError" style="display: none;">
+              <h4 class="alert-heading">ERROR</h4>
+              <p><strong>The user could not be created</strong>, please make sure that the data has been correctly
+                enter.</p>
+
+            </div>
+
+
             <label class="form-check-label" for="exampleRadios1">
               Please, choose what type of user you want to be
             </label>
@@ -110,7 +118,8 @@
                 <label for="inputConfirmPassword">Confirm password</label>
               </div>
 
-              <a class="btn btn-lg btn-primary btn-block text-uppercase" id="registerUser" type="button" onclick="registerNewUser()">Register</a>
+              <a class="btn btn-lg btn-primary btn-block text-uppercase" id="registerUser" type="button"
+                onclick="registerNewUser()">Register</a>
               <a class="d-block text-center mt-2" href="SingIn.html">Sign In</a>
             </form>
 

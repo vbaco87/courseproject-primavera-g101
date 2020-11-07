@@ -1,4 +1,4 @@
-package com.primavera.CoursProject.Persistence;
+package com.primavera.CoursProject.persistence;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,13 +14,13 @@ public class AccountDAO implements com.primavera.CoursProject.application.daos.A
 
 	private final RowMapper<AccountDTO> accountRowMapper = (resultSet, i) -> {
 		AccountDTO account = new AccountDTO();
-		account.setId(resultSet.getInt("id"));
 		account.setBitcoinBalance(resultSet.getDouble("bitcoin"));
 		account.setEuroBalance(resultSet.getDouble("eurosTotal"));
 		account.setBlockedEuros(resultSet.getDouble("eurosLocked"));
 
 		return account;
 	};
+	//pasar a entryDAO
 	private final RowMapper<EntryDTO> entryRowMapper = (resultSet, i) -> {
 		EntryDTO entry = new EntryDTO();
 		
@@ -35,33 +35,38 @@ public class AccountDAO implements com.primavera.CoursProject.application.daos.A
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	public AccountDTO getAccount(int id) throws Exception {
+	public AccountDTO getAccount(String userId) throws Exception {
 
-		final var query = "select * from account where id = ?";
+		final var query = "select * from accounts where user_id = ?";
 		try {
-			return jdbcTemplate.queryForObject(query, accountRowMapper, id);
+			return jdbcTemplate.queryForObject(query, accountRowMapper, userId);
 		} catch (EmptyResultDataAccessException e) {
 			throw new Exception(e);
 		}
 
-	}	
-	public void insertEntry(int id, EntryDTO entry)  {
+	}
+	
+	//entryDAO
+	public void insertEntry(String id, EntryDTO entry)  {
 
-		final var query = "INSERT INTO entry (quantity, type, account_id) VALUES (?,?,?)";
-
+		final var query = "INSERT INTO entries (quantity, type, account_id) VALUES (?,?,?)";
+		
 			 jdbcTemplate.update(query,entry.getQuantity(),entry.getType() , id);
 		
 
 	}
 
-	public void updateBitcoin(int id, double quantity){
-		final var query = "UPDATE account SET bitcoin =? WHERE id=?";
+	public void updateBitcoin(String userId, double quantity){
+		final var query = "UPDATE accounts SET bitcoin =? WHERE user_id=?";
 
-		 jdbcTemplate.update(query,quantity , id);
+		 jdbcTemplate.update(query,quantity , userId);
 	}
-	public void updateEuros(int id, double quantity){
-		final var query = "UPDATE account SET eurosTotal =? WHERE id=?";
+	
+	public void updateEuros(String userId, double quantity){
+		final var query = "UPDATE accounts SET eurosTotal =? WHERE user_id=?";
 
-		 jdbcTemplate.update(query,quantity , id);
+		 jdbcTemplate.update(query,quantity , userId);
 	}
+
+
 }

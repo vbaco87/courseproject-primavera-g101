@@ -20,10 +20,6 @@ public class BidRestController {
         this.bidController = bidController;
     }
     
-    @RequestMapping(value = "/bids/{userId}/{auctionId}", method = RequestMethod.POST)
-    public void addBid(@RequestBody BidDTO bid, @PathVariable String userId,  @PathVariable String auctionId) {
-    	bidController.addBid(bid, userId, auctionId);
-    }
     
     @GetMapping("/bid/{bidId}")
     public BidDTO getBid(@PathVariable String bidId) throws Exception{

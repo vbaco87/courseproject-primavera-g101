@@ -16,10 +16,6 @@ public class AuctionController {
         this.auction = auction;
     }
 
-    public void addAuction(AuctionDTO auction, String userId) {
-    	this.auction.addAuction(auction, userId);
-    }
-
 	public List<AuctionDTO> getAuctions() {
 		return auction.getAuctions();
 	}

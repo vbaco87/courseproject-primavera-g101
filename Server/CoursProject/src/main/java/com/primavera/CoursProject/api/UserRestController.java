@@ -7,6 +7,8 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
   import com.primavera.CoursProject.application.dto.AccountDTO;
+import com.primavera.CoursProject.application.dto.AuctionDTO;
+import com.primavera.CoursProject.application.dto.BidDTO;
 import com.primavera.CoursProject.application.dto.EntryDTO;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,5 +41,14 @@ public class UserRestController {
         userController.createUser(user);
     }
 
+    @RequestMapping(value = "/users/{userId}/auctions", method = RequestMethod.POST)
+    public void addAuction(@RequestBody AuctionDTO auction, @PathVariable String userId) {
+    	userController.addAuction(auction, userId);
+    }
+    
+    @RequestMapping(value = "/users/{userId}/bids/auctions/{auctionId}", method = RequestMethod.POST)
+    public void addBid(@RequestBody BidDTO bid, @PathVariable String userId,  @PathVariable String auctionId) {
+    	userController.addBid(bid, userId, auctionId);
+    }
 
 }

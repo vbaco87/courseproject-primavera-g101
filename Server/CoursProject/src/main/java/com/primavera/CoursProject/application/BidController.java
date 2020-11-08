@@ -17,9 +17,6 @@ public class BidController {
         this.bid = bid;
     }
 
-    public void addBid(BidDTO bid, String userId, String auctionId) {
-    	this.bid.addBid(bid, userId, auctionId);
-    }
 
 	public BidDTO getBid(String bidId) throws Exception {
 		return bid.getBid(bidId);

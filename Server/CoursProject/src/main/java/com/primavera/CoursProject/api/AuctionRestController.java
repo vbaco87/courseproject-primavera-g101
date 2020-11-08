@@ -20,10 +20,6 @@ public class AuctionRestController {
         this.auctionController = auctionController;
     }
 
-    @RequestMapping(value = "/auctions/{userId}", method = RequestMethod.POST)
-    public void addAuction(@RequestBody AuctionDTO auction, @PathVariable String userId) {
-    	auctionController.addAuction(auction, userId);
-    }
       
     @GetMapping("/auctions")
     public List<AuctionDTO> getBrokerAuctions(@RequestParam(defaultValue ="all") String status) {

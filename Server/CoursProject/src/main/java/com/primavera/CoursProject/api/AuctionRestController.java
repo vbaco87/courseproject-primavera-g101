@@ -32,19 +32,19 @@ public class AuctionRestController {
     	}
     	else if(status.equals("active")) {
     		return auctionController.getActiveAuctions();
-    	}
+    	} 
     	
     	else if(status.equals("inactive")) {
-    		return auctionController.getInactiveAuctions();
+    		return auctionController.getInactiveAuctions(); 
     	}
-    	  
-    	return null;
+    	   
+    	return null; 
     }
-    
+     
     @GetMapping("/auctions/{userId}") 
     public List<AuctionDTO> getBidderParticipatedAuctions(@PathVariable String userId, @RequestParam(defaultValue ="all") String status, @RequestParam(defaultValue ="false") boolean onlyWon){
     	if(onlyWon) {
-    		return auctionController.getBidderWonAuctions(userId);  
+    		return auctionController.getBidderWonAuctions(userId);   
     	}
     	if(status.equals("all")) {
     		return auctionController.getBidderAuctions(userId);
@@ -53,8 +53,8 @@ public class AuctionRestController {
     		return auctionController.getBidderActiveAuctions(userId);
     	}
     	
-    	else if(status.equals("inactive")) {
-    		return auctionController.getBidderInactiveAuctions(userId);
+    	else if(status.equals("inactive")) { 
+    		return auctionController.getBidderInactiveAuctions(userId); 
     	}
     	  
     	return null;

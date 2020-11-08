@@ -50,7 +50,7 @@ public class AuctionDAO implements com.primavera.CoursProject.application.daos.A
 	public List<AuctionDTO> getActiveAuctions() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime now = LocalDateTime.now();
-		final var query = "select * from auctions where opening_date between ? and close_date";
+		final var query = "select * from auctions where ? between opening_date and close_date";
 		return jdbcTemplate.query(query, auctionRowMapper, now);
 	}
 
@@ -63,10 +63,10 @@ public class AuctionDAO implements com.primavera.CoursProject.application.daos.A
 		return jdbcTemplate.query(query, auctionRowMapper, now);
 	}
 
-
+ 
 	@Override
 	public List<AuctionDTO> getWonAuctions(String userId) {
-		final var query = "select * from auctions where id_winner = ?";
+		final var query = "select a.id, a.id_creator, a.total_bitcoins, a.price, a.opening_date, a.close_date from auctions a join winners w  on a.id =w.auction_id where w.user_id = ?";
 		return jdbcTemplate.query(query, auctionRowMapper, userId); 
 	}
 

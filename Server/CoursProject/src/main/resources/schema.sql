@@ -47,9 +47,7 @@ CREATE TABLE auctions(
   price NUMBER NOT NULL,
   opening_date DATE NOT NULL,
   close_date DATE NOT NULL,
-  id_winner VARCHAR(256) NULL,
-  FOREIGN KEY (id_creator) REFERENCES users(id),
-  FOREIGN KEY (id_winner) REFERENCES users(id)
+  FOREIGN KEY (id_creator) REFERENCES users(id)
 );
 
 DROP TABLE if EXISTS bids;
@@ -62,4 +60,13 @@ CREATE TABLE bids(
   amount NUMBER NOT NULL,
   FOREIGN KEY (id_user) REFERENCES users(id),
   FOREIGN KEY (id_auction) REFERENCES auctions(id)
+);
+
+DROP TABLE if EXISTS winners;
+CREATE TABLE winners(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  auction_id VARCHAR(256),
+  user_id VARCHAR (256), 
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (auction_id) REFERENCES auctions(id)
 );

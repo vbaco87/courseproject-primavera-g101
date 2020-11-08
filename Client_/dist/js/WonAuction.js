@@ -1,21 +1,20 @@
-var date = "25 de Enero";
-var euros = 18;
-var bitcoins = "2";
-var comission = 0.001;
+var userId = "456456456";
 
 $(document).ready(function () {
-    addHTML();
-    addHTML();
-    addHTML();
-    addHTML();
+    getWonAuctions();
 });
 
-function addHTML() {
-    $("#subastas").append(' <div class="col-lg-6 mb-4"><div class="card h-100"><div class="card-body"><h4 class="card-title"><a href="#">' + date + '</a><span class="badge badge-danger active">Finished</span></h4><ul><li>Auction date ' + date + '</li><li>Initial euros amount ' + euros + ' euros</li><li>Final euros amount ' + (euros + euros*comission) + ' euros </li><li>Bitocins amount ' + bitcoins + '</li></ul></div><button type="button" class="btn btn-outline-primary">See more</button></div></div>');
-}
+function getWonAuctions() {
+    $.get("http://localhost:8080/api/auctions/"+userId+"/?onlyWon=true", (data) => {
 
-function getSubastasGanadas() {
+        for (i = 0; i < data.length; i++) {
+            console.log(data[i]);
+            html =  '<div class="col-lg-6 mb-4"><div class="card h-100"><div class="card-body"><h4 class="card-title"><a href="#">' + data[i].openingDate+ '</a><span class="badge badge-danger active">Finished</span></h4><ul><li>Opening date: ' + data[i].openingDate +'</li><li> Closing date: '+data[i].closeDate+ '</li><li>Bitcoins amount ' + data[i].totalBitcoins + '</li><li>Starting price: '+ data[i].price+'</ul></div><a type="button" class="btn btn-outline-primary" href="Bid.html?auction='+data[i].id+'&user='+userId+'">SEE MY BID</a></div></div>';
+            $("#subastas").append(html);
 
+        }
+
+    });
 }
 
 

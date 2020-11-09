@@ -23,16 +23,19 @@ public class AccountRestController {
 		this.accountController = accountController;
 	}
 
+	// /users/id/account?available=true
 	@GetMapping("/account/{id}/available")
 	public double getAvailableMoney(@PathVariable String id) throws Exception {
 		return accountController.getAvailableMoney(id);
 	}
 
+	// /users/id/account
 	@GetMapping("/account/{id}")
 	public AccountDTO getAccount(@PathVariable String id) throws Exception {
 		return accountController.getAccount(id);
 	}
 
+	// /users/id/account
 	@PostMapping("/account/{accountId}")
 	public void updateWallet(@PathVariable String accountId, @RequestBody EntryDTO entry) throws Exception {
 		accountController.updateWallet(accountId, entry);

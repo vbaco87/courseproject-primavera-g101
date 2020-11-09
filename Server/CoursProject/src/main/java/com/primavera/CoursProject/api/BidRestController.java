@@ -19,13 +19,13 @@ public class BidRestController {
     public BidRestController(BidController bidController) {
         this.bidController = bidController;
     }
-    
-    
+
     @GetMapping("/bid/{bidId}")
     public BidDTO getBid(@PathVariable String bidId) throws Exception{
     	return bidController.getBid(bidId);
     }
-    
+
+    // /users/id/bids
     @GetMapping("/bids/{userId}")
     public List<BidDTO> getUserBids(@PathVariable String userId) throws Exception{
     	return bidController.getUserBids(userId);

@@ -66,7 +66,7 @@ public class AuctionDAO implements com.primavera.CoursProject.application.daos.A
  
 	@Override
 	public List<AuctionDTO> getWonAuctions(String userId) {
-		final var query = "select a.id, a.id_creator, a.total_bitcoins, a.price, a.opening_date, a.closing_date from auctions a join winners w  on a.id =w.auction_id where w.user_id = ?";
+		final var query = "select a.id, a.creator_id, a.total_bitcoins, a.price, a.opening_date, a.closing_date from auctions a join winners w  on a.id =w.auction_id where w.user_id = ?";
 		return jdbcTemplate.query(query, auctionRowMapper, userId); 
 	}
 

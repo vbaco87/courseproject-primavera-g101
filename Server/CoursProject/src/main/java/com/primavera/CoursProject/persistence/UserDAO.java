@@ -16,14 +16,14 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
 
         user.setId(resultSet.getString("id"));
         user.setName(resultSet.getString("name"));
-        user.setSecondName(resultSet.getString("secondname"));
+        user.setSecondName(resultSet.getString("second_name"));
         user.setEmail(resultSet.getString("email"));
         user.setPassword(resultSet.getString("password"));
-        user.setPhoneNumber(resultSet.getString("phoneNumber"));
+        user.setPhoneNumber(resultSet.getString("phone_number"));
         user.setBirthday(resultSet.getDate("birthday"));
         user.setCountry(resultSet.getString("country"));
         user.setCity(resultSet.getString("city"));
-        user.setHomeAddress(resultSet.getString("cityhomeAddress"));
+        user.setHomeAddress(resultSet.getString("city_home_address"));
 
         return user;
     };
@@ -34,7 +34,7 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
 
     @Override
     public UserDTO getUser(String id) {
-        final String queryUser = "SELECT id, name, secondName, email, password, phoneNumber, birthday, country, city, cityhomeAddress FROM users WHERE id = ?";
+        final String queryUser = "SELECT id, name, second_name, email, password, phone_number, birthday, country, city, city_home_address FROM users WHERE id = ?";
         try{
             return jdbcTemplate.queryForObject(queryUser, userRowMapper, id);
         }
@@ -45,13 +45,13 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
 
     @Override
     public void updateUser(UserDTO user) {
-        final String queryUpdateUser= "update users set name = ?, secondname = ?, phoneNumber = ?, city = ?, country = ?, cityhomeAddress = ? where id = ?";
+        final String queryUpdateUser= "update users set name = ?, second_name = ?, phone_number = ?, city = ?, country = ?, city_home_address = ? where id = ?";
         jdbcTemplate.update(queryUpdateUser, user.getName(), user.getSecondName(), user.getPhoneNumber(), user.getCity(), user.getCountry(), user.getHomeAddress(), user.getId());
     }
 
     @Override
     public UserDTO createUser(UserDTO user) {
-        final String insertUser = "INSERT INTO users (id, name, secondName, email, phoneNumber, country, city, cityhomeAddress, userType) " +
+        final String insertUser = "INSERT INTO users (id, name, second_name, email, phone_number, country, city, city_home_address, user_type) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(insertUser, user.getId(),user.getName(),user.getSecondName(),user.getEmail(),user.getPhoneNumber(), user.getCountry(), user.getCity(), user.getHomeAddress(), user.getUserType());
         return this.getUser(user.getId());

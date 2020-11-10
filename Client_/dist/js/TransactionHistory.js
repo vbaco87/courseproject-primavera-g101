@@ -1,15 +1,24 @@
-var date = "23/3/2020";
-var price = 18;
-var bitcoins = "2";
 
 $(document).ready(function () {
-    addHTML();
-    addHTML();
-    addHTML();
-    addHTML();
+    addHTML("23/3/2020", 18, "22");
+    addHTML("27/7/2008", 12, "24");
+    addHTML("23/3/2020", 7, "26");
+    addHTML("23/3/2020", 1, "2");
 });
 
-function addHTML() {
+function getAllTransactionHistory(){
+
+}
+
+function getPurchasedTransactionHistory(){
+    
+}
+
+function getSoldTransactionHistory(){
+    
+}
+
+function addHTML(date, bitcoins, price) {
     $("#mytable").append('<tr> <td>'+date+'</td> <td>'+bitcoins+'</td> <td>'+price+' euros</td> </tr>');
 }
 

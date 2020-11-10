@@ -14,19 +14,21 @@ var amountBid;
 $(document).ready(function () {
     $.ajax({
         headers: { 'Access-Control-Allow-Origin': '*' },
-        url: "http://localhost:8080/account/" + userId+"/available",
+        url: "http://localhost:8080/api/users/" + userId+"/available",
         async: false,
         type: 'GET',
         crossDomain: true,
         dataType: 'json',
         success: function (data) {
             euros = data;
+            euros =parseFloat(euros).toFixed(2);;
      
 
         },
         //error: function() { alert('Failed!'); },
 
     });
+
     addHTML();
     $("#Start").click(() => {
         $("#QuantityBid").show();

@@ -10,7 +10,7 @@ $(document).ready(function () {
     $.ajax({
 
         headers: { 'Access-Control-Allow-Origin': '*' },
-        url: "http://localhost:8080/account/" + accountId,
+        url: "http://localhost:8080/api/users/" + accountId+"/account",
         async: false,
         type: 'GET',
         crossDomain: true,

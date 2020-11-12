@@ -5,6 +5,7 @@ import com.primavera.CoursProject.application.UserController;
 import com.primavera.CoursProject.application.dto.UserDTO;
 import org.springframework.validation.annotation.Validated;
 
+import java.security.InvalidParameterException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -54,7 +55,6 @@ public class UserRestController {
     	userController.addBid(bid, userId, auctionId);
     }
     
-    // /users/id/auctions?status=false&onlyWon=false
     @GetMapping("/users/{userId}/auctions") 
     public List<AuctionDTO> getBidderParticipatedAuctions(@PathVariable String userId, @RequestParam(defaultValue ="all") String status, @RequestParam(defaultValue ="false") boolean onlyWon){
     	if(onlyWon) {
@@ -73,5 +73,22 @@ public class UserRestController {
     	  
     	return null;
     }
+    
+    @PostMapping("/users/{userId}/money")
+    public void updateMoney(@PathVariable String userId, @RequestParam(defaultValue = "-1") double quantity) {
+    	if (quantity < 0) {
+    		throw new InvalidParameterException();
+    	}
+    	userController.updateMoney(userId,quantity);
+    }
+    
+    @PostMapping("/users/{userId}/bitcoins")
+    public void updateBitcoin(@PathVariable String userId, @RequestParam(defaultValue = "-1") double quantity) {
+    	if (quantity < 0) {
+    		throw new InvalidParameterException();
+    	}
+    	userController.updateBitcoin(userId,quantity);
+    }
+    
 
 }

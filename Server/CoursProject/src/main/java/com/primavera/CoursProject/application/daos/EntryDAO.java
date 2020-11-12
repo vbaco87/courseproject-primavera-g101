@@ -5,4 +5,6 @@ import com.primavera.CoursProject.application.dto.EntryDTO;
 public interface EntryDAO {
 
 	public void insertEntry(String accountId, EntryDTO entry) ;
+
+	public void addEntry(String userId, double quantity, String type);
 }

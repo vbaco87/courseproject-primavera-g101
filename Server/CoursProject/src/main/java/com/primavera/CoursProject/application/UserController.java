@@ -1,7 +1,9 @@
 package com.primavera.CoursProject.application;
 
+import com.primavera.CoursProject.application.daos.AccountDAO;
 import com.primavera.CoursProject.application.daos.AuctionDAO;
 import com.primavera.CoursProject.application.daos.BidDAO;
+import com.primavera.CoursProject.application.daos.EntryDAO;
 import com.primavera.CoursProject.application.daos.UserDAO;
 import com.primavera.CoursProject.application.dto.AuctionDTO;
 import com.primavera.CoursProject.application.dto.BidDTO;
@@ -17,11 +19,15 @@ public class UserController {
     public UserDAO user;
     public AuctionDAO auction;
     public BidDAO bid;
-
-    public UserController(UserDAO user, AuctionDAO auction, BidDAO bid) {
+    public AccountDAO account;
+    public EntryDAO entry;
+    
+    public UserController(UserDAO user, AuctionDAO auction, BidDAO bid, AccountDAO account, EntryDAO entry) {
         this.user = user;
         this.auction = auction;
         this.bid = bid;
+        this.account = account;
+        this.entry = entry;
     }
 
     public UserDTO getUser(String id) {
@@ -60,6 +66,16 @@ public class UserController {
 
 	public List<AuctionDTO> getBidderInactiveAuctions(String userId) {
 		return auction.getBidderInactiveAuctions(userId);
+	}
+
+	public void updateBitcoin(String userId, double quantity) {
+		account.updateBitcoin(userId, quantity);
+		entry.addEntry(userId, quantity, "BTC");
+	}
+
+	public void updateMoney(String userId, double quantity) {
+		account.updateEuro(userId, quantity);
+		entry.addEntry(userId, quantity, "EUR");
 	}
 
 

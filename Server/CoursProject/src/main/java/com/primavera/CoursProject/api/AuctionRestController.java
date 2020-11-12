@@ -37,24 +37,4 @@ public class AuctionRestController {
     	return null; 
     }
 
-    // /users/id/auctions?status=false&onlyWon=false
-    @GetMapping("/auctions/{userId}") 
-    public List<AuctionDTO> getBidderParticipatedAuctions(@PathVariable String userId, @RequestParam(defaultValue ="all") String status, @RequestParam(defaultValue ="false") boolean onlyWon){
-    	if(onlyWon) {
-    		return auctionController.getBidderWonAuctions(userId);   
-    	}
-    	if(status.equals("all")) {
-    		return auctionController.getBidderAuctions(userId);
-    	}
-    	else if(status.equals("active")) {
-    		return auctionController.getBidderActiveAuctions(userId);
-    	}
-    	
-    	else if(status.equals("inactive")) { 
-    		return auctionController.getBidderInactiveAuctions(userId); 
-    	}
-    	  
-    	return null;
-    }
-
 }

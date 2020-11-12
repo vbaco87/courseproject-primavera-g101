@@ -27,21 +27,5 @@ public class AuctionController {
 	public List<AuctionDTO> getInactiveAuctions() {
 		return auction.getInactiveAuctions(); 
 	}
-
-	public List<AuctionDTO> getBidderWonAuctions(String userId) {
-		return auction.getWonAuctions(userId);
-	}
-
-	public List<AuctionDTO> getBidderAuctions(String userId) {
-		return auction.getBidderAuctions(userId);
-	}
-
-	public List<AuctionDTO> getBidderActiveAuctions(String userId) {
-		return auction.getBidderActiveAuctions(userId);
-	}
-
-	public List<AuctionDTO> getBidderInactiveAuctions(String userId) {
-		return auction.getBidderInactiveAuctions(userId);
-	}
 }
 

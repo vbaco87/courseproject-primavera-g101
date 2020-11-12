@@ -8,6 +8,7 @@ import com.primavera.CoursProject.application.dto.BidDTO;
 import com.primavera.CoursProject.application.dto.UserDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service // same as @Component
@@ -44,6 +45,22 @@ public class UserController {
     public void addBid(BidDTO bid, String userId, String auctionId) {
     	this.bid.addBid(bid, userId, auctionId);
     }
+
+	public List<AuctionDTO> getBidderWonAuctions(String userId) {
+		return auction.getWonAuctions(userId);
+	}
+
+	public List<AuctionDTO> getBidderAuctions(String userId) {
+		return auction.getBidderAuctions(userId);
+	}
+
+	public List<AuctionDTO> getBidderActiveAuctions(String userId) {
+		return auction.getBidderActiveAuctions(userId);
+	}
+
+	public List<AuctionDTO> getBidderInactiveAuctions(String userId) {
+		return auction.getBidderInactiveAuctions(userId);
+	}
 
 
 }

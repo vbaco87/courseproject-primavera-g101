@@ -4,6 +4,9 @@ package com.primavera.CoursProject.api;
 import com.primavera.CoursProject.application.UserController;
 import com.primavera.CoursProject.application.dto.UserDTO;
 import org.springframework.validation.annotation.Validated;
+
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
   import com.primavera.CoursProject.application.dto.AccountDTO;
@@ -49,6 +52,26 @@ public class UserRestController {
     @RequestMapping(value = "/users/{userId}/bids/auctions/{auctionId}", method = RequestMethod.POST)
     public void addBid(@RequestBody BidDTO bid, @PathVariable String userId,  @PathVariable String auctionId) {
     	userController.addBid(bid, userId, auctionId);
+    }
+    
+    // /users/id/auctions?status=false&onlyWon=false
+    @GetMapping("/users/{userId}/auctions") 
+    public List<AuctionDTO> getBidderParticipatedAuctions(@PathVariable String userId, @RequestParam(defaultValue ="all") String status, @RequestParam(defaultValue ="false") boolean onlyWon){
+    	if(onlyWon) {
+    		return userController.getBidderWonAuctions(userId);   
+    	}
+    	if(status.equals("all")) {
+    		return userController.getBidderAuctions(userId);
+    	}
+    	else if(status.equals("active")) {
+    		return userController.getBidderActiveAuctions(userId);
+    	}
+    	
+    	else if(status.equals("inactive")) { 
+    		return userController.getBidderInactiveAuctions(userId); 
+    	}
+    	  
+    	return null;
     }
 
 }

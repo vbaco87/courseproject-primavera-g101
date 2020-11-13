@@ -4,6 +4,9 @@ package com.primavera.CoursProject.api;
 import com.primavera.CoursProject.application.UserController;
 import com.primavera.CoursProject.application.dto.UserDTO;
 import org.springframework.validation.annotation.Validated;
+
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
   import com.primavera.CoursProject.application.dto.AccountDTO;
@@ -50,5 +53,16 @@ public class UserRestController {
     public void addBid(@RequestBody BidDTO bid, @PathVariable String userId,  @PathVariable String auctionId) {
     	userController.addBid(bid, userId, auctionId);
     }
+    
+    /* LOS DEJO POR SI HACEN FALTA PERO LOS HICE SOLO PARA PROBARLOS
+    @GetMapping("/users/winners/auctions/{auctionId}")
+    public List<UserDTO> getWinners(@PathVariable String auctionId){
+    	return userController.getWinners(auctionId);
+    }
+    
+    @GetMapping("/users/bids/auctions/{auctionId}")
+    public List<UserDTO> getBidders(@PathVariable String auctionId){
+    	return userController.getBidders(auctionId);
+    }*/
 
 }

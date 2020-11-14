@@ -63,6 +63,8 @@ CREATE TABLE bids(
 DROP TABLE if EXISTS winners;
 CREATE TABLE winners(
   id INT AUTO_INCREMENT PRIMARY KEY,
+  amount NUMBER,
+  price NUMBER,
   auction_id VARCHAR(256),
   user_id VARCHAR (256), 
   FOREIGN KEY (user_id) REFERENCES users(id),
@@ -75,9 +77,7 @@ CREATE TABLE purchases(
    amount NUMBER NOT NULL,
    price NUMBER NOT NULL,
    user_broker_id VARCHAR (256),
-   user_bidder_id VARCHAR (256),
-   FOREIGN KEY (user_broker_id) REFERENCES users(id),
-   FOREIGN KEY (user_bidder_id) REFERENCES users(id)
+   FOREIGN KEY (user_broker_id) REFERENCES users(id)
 );
 
 DROP TABLE if EXISTS transactions;

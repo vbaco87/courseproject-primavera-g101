@@ -1,12 +1,10 @@
 package com.primavera.CoursProject.api;
 
 
-import com.primavera.CoursProject.api.frontendException.IncorrectRESTParameter;
 import com.primavera.CoursProject.application.UserController;
+import com.primavera.CoursProject.application.dto.SoldDTO;
 import com.primavera.CoursProject.application.dto.*;
 import org.springframework.validation.annotation.Validated;
-import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -51,19 +49,14 @@ public class UserRestController {
     	userController.addBid(bid, userId, auctionId);
     }
 
-    @GetMapping("/users/{id}/transactions")
-    public List<PurchaseDTO> getTransactions (@PathVariable String id, @RequestParam(defaultValue ="all") String status){
-        if(status.equals("all")){
-            return userController.getAllTransactions(id);
-        }
-        else if (status.equals("sold")){
-            return userController.getSoldTransactions(id);
-        }
-        else if (status.equals("purchased")){
-            return userController.getPurchasedTransactions(id);
-        }
-        else{
-            throw new IncorrectRESTParameter("status", status);
-        }
+    @GetMapping("/users/{id}/purchasedBitcoins")
+    public List<PurchaseDTO> getPurchasedBitcoins(@PathVariable String id){
+        return userController.getPurchasedTransactions(id);
     }
+
+    @GetMapping("/users/{id}/soldBitcoins")
+    public List<SoldDTO> getSoldBitcoins(@PathVariable String id){
+        return userController.getSoldTransactions(id);
+    }
+
 }

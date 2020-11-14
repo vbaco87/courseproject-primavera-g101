@@ -8,7 +8,7 @@ public class PurchaseDTO {
     private String id;
     private double price;
     private Transaction transactionBroker;
-    private Transaction transactionPlatform;
+    //private Transaction transactionPlatform;
 
     public PurchaseDTO() {
     }
@@ -29,9 +29,9 @@ public class PurchaseDTO {
         return transactionBroker;
     }
 
-    public Transaction getTransactionPlatform() {
-        return transactionPlatform;
-    }
+//    public Transaction getTransactionPlatform() {
+//        return transactionPlatform;
+//    }
 
     public void setAmount(double amount) {
         this.amount = amount;
@@ -49,7 +49,7 @@ public class PurchaseDTO {
         this.transactionBroker = transactionBroker;
     }
 
-    public void setTransactionPlatform(Transaction transactionPlatform) {
-        this.transactionPlatform = transactionPlatform;
-    }
+//    public void setTransactionPlatform(Transaction transactionPlatform) {
+//        this.transactionPlatform = transactionPlatform;
+//    }
 }

@@ -6,14 +6,14 @@ public class Purchase {
 	private String id;
 	private double price;
 	private Transaction transactionBroker;
-	private Transaction transactionPlatform;
+//	private Transaction transactionPlatform;
 	
-	public Purchase(double amount, String id, double price, Transaction transactionBroker, Transaction transactionPlatform) {
+	public Purchase(double amount, String id, double price, Transaction transactionBroker /*, Transaction transactionPlatform*/) {
 		this.amount = amount;
 		this.id = id;
 		this.price = price;
 		this.transactionBroker = transactionBroker;
-		this.transactionPlatform = transactionPlatform;
+	//	this.transactionPlatform = transactionPlatform;
 	}
 
 	public Purchase() {
@@ -52,12 +52,12 @@ public class Purchase {
 		this.transactionBroker = transactionBroker;
 	}
 
-	public Transaction getTransactionPlatform() {
-		return transactionPlatform;
-	}
-
-	public void setTransactionPlatform(Transaction transactionPlatform) {
-		this.transactionPlatform = transactionPlatform;
-	}
+//	public Transaction getTransactionPlatform() {
+//		return transactionPlatform;
+//	}
+//
+//	public void setTransactionPlatform(Transaction transactionPlatform) {
+//		this.transactionPlatform = transactionPlatform;
+//	}
 
 }

@@ -1,13 +1,7 @@
 package com.primavera.CoursProject.application;
 
-import com.primavera.CoursProject.application.daos.AuctionDAO;
-import com.primavera.CoursProject.application.daos.BidDAO;
-import com.primavera.CoursProject.application.daos.PurchaseDAO;
-import com.primavera.CoursProject.application.daos.UserDAO;
-import com.primavera.CoursProject.application.dto.AuctionDTO;
-import com.primavera.CoursProject.application.dto.BidDTO;
-import com.primavera.CoursProject.application.dto.PurchaseDTO;
-import com.primavera.CoursProject.application.dto.UserDTO;
+import com.primavera.CoursProject.application.daos.*;
+import com.primavera.CoursProject.application.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,13 +13,15 @@ public class UserController {
     public UserDAO user;
     public AuctionDAO auction;
     public BidDAO bid;
-    public PurchaseDAO purhcase;
+    public PurchaseDAO purchase;
+    public SoldDAO sold;
 
-    public UserController(UserDAO user, AuctionDAO auction, BidDAO bid, PurchaseDAO purhcase) {
+    public UserController(UserDAO user, AuctionDAO auction, BidDAO bid, PurchaseDAO purchase, SoldDAO sold) {
         this.user = user;
         this.auction = auction;
         this.bid = bid;
-        this.purhcase = purhcase;
+        this.purchase = purchase;
+        this.sold = sold;
     }
 
     public UserDTO getUser(String id) {
@@ -50,15 +46,15 @@ public class UserController {
     	this.bid.addBid(bid, userId, auctionId);
     }
 
-    public List<PurchaseDTO> getAllTransactions(String userId) {
-        return purhcase.getAllTransactions(userId);
+    public List<PurchaseDTO> getAllTransactions(String userId) { //getAllBitcoinsPurchased
+        return purchase.getAllTransactions(userId);
     }
 
-    public List<PurchaseDTO> getSoldTransactions(String userId) {
-        return purhcase.getSoldTransactions(userId);
+    public List<SoldDTO> getSoldTransactions(String userId) {
+        return sold.getSoldTransactions(userId);
     }
 
     public List<PurchaseDTO> getPurchasedTransactions(String userId) {
-        return purhcase.getPurchasedTransactions(userId);
+        return purchase.getPurchasedTransactions(userId);
     }
 }

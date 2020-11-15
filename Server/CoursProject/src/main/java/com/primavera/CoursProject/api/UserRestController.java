@@ -59,4 +59,14 @@ public class UserRestController {
         return userController.getSoldTransactions(id);
     }
 
+    @GetMapping("/users/purchaseBitcoins")
+    public List<PurchaseDTO> getAllPurchaseBitcoins(){
+        return userController.getAllPurchaseBitcoins();
+    }
+
+    @GetMapping("/users/soldBitcoins")
+    public List<SoldDTO> getAllSoldBitcoins(){
+        return userController.getAllSoldBitcoins();
+    }
+
 }

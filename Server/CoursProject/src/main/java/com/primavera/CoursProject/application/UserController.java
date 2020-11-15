@@ -57,4 +57,12 @@ public class UserController {
     public List<PurchaseDTO> getPurchasedTransactions(String userId) {
         return purchase.getPurchasedTransactions(userId);
     }
+
+    public List<PurchaseDTO> getAllPurchaseBitcoins() {
+        return purchase.getAllPurchaseBitcoins();
+    }
+
+    public List<SoldDTO> getAllSoldBitcoins() {
+        return sold.getAllSoldBitcoins();
+    }
 }

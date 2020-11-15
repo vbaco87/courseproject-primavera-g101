@@ -1,6 +1,7 @@
 package com.primavera.CoursProject.persistence;
 
 import com.primavera.CoursProject.application.dto.PurchaseDTO;
+import com.primavera.CoursProject.application.dto.SoldDTO;
 import org.simpleflatmapper.jdbc.spring.JdbcTemplateMapperFactory;
 import org.simpleflatmapper.jdbc.spring.ResultSetExtractorImpl;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -31,6 +32,12 @@ public class PurchaseDAO implements com.primavera.CoursProject.application.daos.
     public List<PurchaseDTO> getPurchasedTransactions(String userId) {
         final String queryPurchasedTransactions = "SELECT p.id, p.amount, p.price, t.transaction_date FROM purchases p join transactions t on (p.id = t.purchases_id) where user_broker_id = ?";
         return jdbcTemplate.query(queryPurchasedTransactions, purchasesRowMapper, userId);
+    }
+
+    @Override
+    public List<PurchaseDTO> getAllPurchaseBitcoins() {
+        final String queryPurchasedTransactions = "SELECT p.id, p.amount, p.price, t.transaction_date FROM purchases p join transactions t on (p.id = t.purchases_id)";
+        return jdbcTemplate.query(queryPurchasedTransactions, purchasesRowMapper);
     }
 
 }

@@ -100,10 +100,10 @@ function addSoldHTML() {
 
 function addEstadistica() {
     if (totalSold-totalPurchased >= 0) {
-        $("#estadistica").append('<div class="alert alert-success" role="alert"> <h4 class="alert-heading">STATISTICS</h4> <hr><p class="mb-0">You have won ' + totalPurchased + ' euros with your auctions <br> You have paid ' + totalSold + ' euros with your purchases <br> You have won ' + (totalPurchased - totalSold) + ' euros with your auctions transactions </p> </div>')
+        $("#estadistica").append('<div class="alert alert-success" role="alert"> <h4 class="alert-heading">STATISTICS</h4> <hr><p class="mb-0">You have won ' + totalPurchased + ' euros with your auctions <br> You have paid ' + totalSold + ' euros with your purchases <br> You have won ' + (totalSold-totalPurchased) + ' euros with your auctions transactions </p> </div>')
     }
     else {
-        $("#estadistica").append('<div class="alert alert-danger" role="alert"> <h4 class="alert-heading">STATISTICS</h4> <hr><p class="mb-0">You have won ' + totalPurchased + ' euros with your auctions <br> You have paid ' + totalSold + ' euros with your purchases <br> You have won ' + (totalPurchased - totalSold) + ' euros with your auctions transactions </p> ')
+        $("#estadistica").append('<div class="alert alert-danger" role="alert"> <h4 class="alert-heading">STATISTICS</h4> <hr><p class="mb-0">You have won ' + totalPurchased + ' euros with your auctions <br> You have paid ' + totalSold + ' euros with your purchases <br> You have won ' + (totalSold-totalPurchased) + ' euros with your auctions transactions </p> ')
     }
 }
 

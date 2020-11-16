@@ -35,4 +35,48 @@ public class LoggerAdvice {
             throwable.printStackTrace();
         }
     }
+
+    @Pointcut("execution(public com.primavera.CoursProject.application.dto.UserDTO com.primavera.CoursProject.application.UserController.*(..))&& args(id)")
+    public void pointcutGetUser(String id) {}
+
+    @After("pointcutGetUser(id)")
+    public void beforePointcutUser(String id) {
+        logger.info("Working with user with id = " + id);
+    }
+
+    @Pointcut("execution(* com.primavera.CoursProject.application.UserController.getSoldTransactions(..))&& args(id)")
+    public void pointcutListUserSoldTransactions(String id) {}
+
+    //Before advice of a pointcut
+    @Before("pointcutListUserSoldTransactions(id)")
+    public void beforListUserSoldTransactions(String id) {
+        logger.info("Going to list all sold transactions of user with id " + id);
+    }
+
+    @Pointcut("execution(* com.primavera.CoursProject.application.UserController.getPurchasedTransactions(..))&& args(id)")
+    public void pointcutListUserPurchasedTransactions(String id) {}
+
+    //Before advice of a pointcut
+    @Before("pointcutListUserPurchasedTransactions(id)")
+    public void beforListUserPurchasedTransactions(String id) {
+        logger.info("Going to list all purchased transactions of user with id " + id);
+    }
+
+    @Pointcut("execution(* com.primavera.CoursProject.application.UserController.getAllPurchaseBitcoins(..))")
+    public void pointcutListAllPurchasedTransactions() {}
+
+    //Before advice of a pointcut
+    @Before("pointcutListAllPurchasedTransactions()")
+    public void beforAllUserPurchasedTransactions() {
+        logger.info("Going to list all purchased transactions");
+    }
+
+    @Pointcut("execution(* com.primavera.CoursProject.application.UserController.getAllSoldBitcoins(..))")
+    public void pointcutListAllSoldTransactions() {}
+
+    //Before advice of a pointcut
+    @Before("pointcutListAllSoldTransactions()")
+    public void beforListAllPurchasedTransactions() {
+        logger.info("Going to list all sold transactions");
+    }
 }

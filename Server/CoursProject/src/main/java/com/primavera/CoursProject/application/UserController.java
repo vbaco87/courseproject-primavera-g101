@@ -1,5 +1,6 @@
 package com.primavera.CoursProject.application;
 
+import com.primavera.CoursProject.application.daos.AccountDAO;
 import com.primavera.CoursProject.application.daos.AuctionDAO;
 import com.primavera.CoursProject.application.daos.BidDAO;
 import com.primavera.CoursProject.application.daos.UserDAO;
@@ -17,11 +18,13 @@ public class UserController {
     public UserDAO user;
     public AuctionDAO auction;
     public BidDAO bid;
+    public AccountDAO account;
 
-    public UserController(UserDAO user, AuctionDAO auction, BidDAO bid) {
+    public UserController(UserDAO user, AuctionDAO auction, BidDAO bid, AccountDAO account) {
         this.user = user;
         this.auction = auction;
         this.bid = bid;
+        this.account=account;
     }
 
     public UserDTO getUser(String id) {
@@ -52,6 +55,16 @@ public class UserController {
     
     public List<UserDTO> getWinners(String auctionId){
     	 return this.user.getWinners(auctionId);
+    }
+    
+    public void unlockMoney(List<UserDTO> bidders, String auctionId) throws Exception {
+    	Double amount;
+    	for (UserDTO bidder : bidders) {
+    		String userId= bidder.getId();
+    		amount = this.bid.getBidByUserId(userId, auctionId).getAmount();
+    		amount = this.account.getAccount(userId).getBlockedEuros() - amount;
+    		this.account.updateBlockedEuros(userId, amount);
+    	}
     }
 
 

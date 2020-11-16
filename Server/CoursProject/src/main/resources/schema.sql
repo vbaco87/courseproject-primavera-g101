@@ -66,6 +66,8 @@ CREATE TABLE bids(
 DROP TABLE if EXISTS winners;
 CREATE TABLE winners(
   id INT AUTO_INCREMENT PRIMARY KEY,
+  amount NUMBER,
+  price NUMBER,
   auction_id VARCHAR(256),
   user_id VARCHAR (256), 
   FOREIGN KEY (user_id) REFERENCES users(id),

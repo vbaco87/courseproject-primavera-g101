@@ -5,13 +5,11 @@ import com.primavera.CoursProject.application.UserController;
 import com.primavera.CoursProject.application.dto.SoldDTO;
 import com.primavera.CoursProject.application.dto.*;
 import org.springframework.validation.annotation.Validated;
-
 import java.security.InvalidParameterException;
 import java.util.List;
-
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
-  import com.primavera.CoursProject.application.dto.AccountDTO;
+import com.primavera.CoursProject.application.dto.AccountDTO;
 import com.primavera.CoursProject.application.dto.AuctionDTO;
 import com.primavera.CoursProject.application.dto.BidDTO;
 import com.primavera.CoursProject.application.dto.EntryDTO;
@@ -114,5 +112,6 @@ public class UserRestController {
     public List<SoldDTO> getAllSoldBitcoins(){
         return userController.getAllSoldBitcoins();
     }
+
 
 }

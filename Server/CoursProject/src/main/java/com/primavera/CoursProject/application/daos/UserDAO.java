@@ -1,5 +1,7 @@
 package com.primavera.CoursProject.application.daos;
 
+import java.util.List;
+
 import com.primavera.CoursProject.application.dto.UserDTO;
 
 public interface UserDAO {
@@ -10,4 +12,8 @@ public interface UserDAO {
 
     public UserDTO createUser(UserDTO user);
 
+    public List<UserDTO> getBidders(String auctionId);
+    
+    public List<UserDTO> getWinners(String auctionId);
+    
 }

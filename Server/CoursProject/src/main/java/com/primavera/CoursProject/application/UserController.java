@@ -25,6 +25,8 @@ public class UserController {
         this.bid = bid;
         this.purchase = purchase;
         this.sold = sold;
+        this.account=account;
+
     }
 
     public UserDTO getUser(String id) {
@@ -47,6 +49,24 @@ public class UserController {
     
     public void addBid(BidDTO bid, String userId, String auctionId) {
     	this.bid.addBid(bid, userId, auctionId);
+    }
+    
+    public List<UserDTO> getBidders(String auctionId){
+    	return this.user.getBidders(auctionId);
+    }
+    
+    public List<UserDTO> getWinners(String auctionId){
+    	 return this.user.getWinners(auctionId);
+    }
+    
+    public void unlockMoney(List<UserDTO> bidders, String auctionId) throws Exception {
+    	Double amount;
+    	for (UserDTO bidder : bidders) {
+    		String userId= bidder.getId();
+    		amount = this.bid.getBidByUserId(userId, auctionId).getAmount();
+    		amount = this.account.getAccount(userId).getBlockedEuros() - amount;
+    		this.account.updateBlockedEuros(userId, amount);
+    	}
     }
 
     public List<PurchaseDTO> getAllTransactions(String userId) { //getAllBitcoinsPurchased

@@ -2,18 +2,21 @@ package com.primavera.CoursProject.api;
 
 
 import com.primavera.CoursProject.application.UserController;
-import com.primavera.CoursProject.application.dto.UserDTO;
+import com.primavera.CoursProject.application.dto.SoldDTO;
+import com.primavera.CoursProject.application.dto.*;
 import org.springframework.validation.annotation.Validated;
-
+import java.security.InvalidParameterException;
 import java.util.List;
-
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
-  import com.primavera.CoursProject.application.dto.AccountDTO;
+import com.primavera.CoursProject.application.dto.AccountDTO;
 import com.primavera.CoursProject.application.dto.AuctionDTO;
 import com.primavera.CoursProject.application.dto.BidDTO;
 import com.primavera.CoursProject.application.dto.EntryDTO;
+
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -54,15 +57,61 @@ public class UserRestController {
     	userController.addBid(bid, userId, auctionId);
     }
     
-    /* LOS DEJO POR SI HACEN FALTA PERO LOS HICE SOLO PARA PROBARLOS
-    @GetMapping("/users/winners/auctions/{auctionId}")
-    public List<UserDTO> getWinners(@PathVariable String auctionId){
-    	return userController.getWinners(auctionId);
+    @GetMapping("/users/{userId}/auctions") 
+    public List<AuctionDTO> getBidderParticipatedAuctions(@PathVariable String userId, @RequestParam(defaultValue ="all") String status, @RequestParam(defaultValue ="false") boolean onlyWon){
+    	if(onlyWon) {
+    		return userController.getBidderWonAuctions(userId);   
+    	}
+    	if(status.equals("all")) {
+    		return userController.getBidderAuctions(userId);
+    	}
+    	else if(status.equals("active")) {
+    		return userController.getBidderActiveAuctions(userId);
+    	}
+    	
+    	else if(status.equals("inactive")) { 
+    		return userController.getBidderInactiveAuctions(userId); 
+    	}
+    	  
+    	return null;
     }
     
-    @GetMapping("/users/bids/auctions/{auctionId}")
-    public List<UserDTO> getBidders(@PathVariable String auctionId){
-    	return userController.getBidders(auctionId);
-    }*/
+    @PostMapping("/users/{userId}/money")
+    public void updateMoney(@PathVariable String userId, @RequestParam(defaultValue = "-1") double quantity) {
+    	if (quantity < 0) {
+    		throw new InvalidParameterException();
+    	}
+    	userController.updateMoney(userId,quantity);
+    }
+    
+    @PostMapping("/users/{userId}/bitcoins")
+    public void updateBitcoin(@PathVariable String userId, @RequestParam(defaultValue = "-1") double quantity) {
+    	if (quantity < 0) {
+    		throw new InvalidParameterException();
+    	}
+    	userController.updateBitcoin(userId,quantity);
+    }
+    
+
+    @GetMapping("/users/{id}/purchasedBitcoins")
+    public List<PurchaseDTO> getPurchasedBitcoins(@PathVariable String id){
+        return userController.getPurchasedTransactions(id);
+    }
+
+    @GetMapping("/users/{id}/soldBitcoins")
+    public List<SoldDTO> getSoldBitcoins(@PathVariable String id){
+        return userController.getSoldTransactions(id);
+    }
+
+    @GetMapping("/users/purchaseBitcoins")
+    public List<PurchaseDTO> getAllPurchaseBitcoins(){
+        return userController.getAllPurchaseBitcoins();
+    }
+
+    @GetMapping("/users/soldBitcoins")
+    public List<SoldDTO> getAllSoldBitcoins(){
+        return userController.getAllSoldBitcoins();
+    }
+
 
 }

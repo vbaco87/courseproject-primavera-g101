@@ -129,4 +129,21 @@ public class UserDTO {
     public void setUserType(int userType) {
         this.userType = userType;
     }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", birthday=" + birthday +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", homeAddress='" + homeAddress + '\'' +
+                ", userType=" + userType +
+                '}';
+    }
 }

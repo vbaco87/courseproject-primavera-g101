@@ -5,7 +5,7 @@ $(document).ready(function () {
 });
 
 function getWonAuctions() {
-    $.get("http://localhost:8080/api/auctions/"+userId+"/?onlyWon=true", (data) => {
+    $.get("http://localhost:8080/api/users/"+userId+"/auctions?onlyWon=true", (data) => {
 
         for (i = 0; i < data.length; i++) {
             console.log(data[i]);

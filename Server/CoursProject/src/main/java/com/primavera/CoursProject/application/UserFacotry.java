@@ -14,6 +14,5 @@ public class UserFacotry {
             case "BROKER": return new Broker();
             default: throw new IllegalArgumentException();
         }
-
     }
 }

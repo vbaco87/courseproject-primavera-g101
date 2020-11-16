@@ -24,7 +24,7 @@ public class AuctionDAO implements com.primavera.CoursProject.application.daos.A
         auction.setTotalBitcoins(resultSet.getDouble("total_bitcoins"));
         auction.setPrice(resultSet.getDouble("price"));
         auction.setOpeningDate(resultSet.getDate("opening_date"));
-        auction.setCloseDate(resultSet.getDate("close_date"));
+        auction.setCloseDate(resultSet.getDate("closing_date"));
         return auction;
     };
 
@@ -50,7 +50,7 @@ public class AuctionDAO implements com.primavera.CoursProject.application.daos.A
 	public List<AuctionDTO> getActiveAuctions() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime now = LocalDateTime.now();
-		final var query = "select * from auctions where ? between opening_date and close_date";
+		final var query = "select * from auctions where ? between opening_date and closing_date";
 		return jdbcTemplate.query(query, auctionRowMapper, now);
 	}
 
@@ -59,24 +59,24 @@ public class AuctionDAO implements com.primavera.CoursProject.application.daos.A
 	public List<AuctionDTO> getInactiveAuctions() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime now = LocalDateTime.now();
-		final var query = "select * from auctions where close_date < ?";
+		final var query = "select * from auctions where closing_date < ?";
 		return jdbcTemplate.query(query, auctionRowMapper, now);
 	}
 
  
 	@Override
 	public List<AuctionDTO> getWonAuctions(String userId) {
-		final var query = "select a.id, a.id_creator, a.total_bitcoins, a.price, a.opening_date, a.close_date from auctions a join winners w  on a.id =w.auction_id where w.user_id = ?";
+		final var query = "select a.id, a.creator_id, a.total_bitcoins, a.price, a.opening_date, a.closing_date from auctions a join winners w  on a.id =w.auction_id where w.user_id = ?";
 		return jdbcTemplate.query(query, auctionRowMapper, userId); 
 	}
 
 
 	@Override
 	public List<AuctionDTO> getBidderAuctions(String userId) {
-		final var query = "SELECT a.id, a.total_bitcoins, a.price, a.opening_date, a.close_date"
+		final var query = "SELECT a.id, a.total_bitcoins, a.price, a.opening_date, a.closing_date"
 				+ " FROM auctions a"
-				+ " JOIN bids b ON a.id = b.id_auction"
-				+ " where b.id_user = ?";
+				+ " JOIN bids b ON a.id = b.auction_id"
+				+ " where b.user_id = ?";
 		return jdbcTemplate.query(query, auctionRowMapper, userId); 
 
 	}
@@ -86,10 +86,10 @@ public class AuctionDAO implements com.primavera.CoursProject.application.daos.A
 	public List<AuctionDTO> getBidderActiveAuctions(String userId) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime now = LocalDateTime.now();
-		final var query = "SELECT a.id, a.total_bitcoins, a.price, a.opening_date, a.close_date"
+		final var query = "SELECT a.id, a.total_bitcoins, a.price, a.opening_date, a.closing_date"
 				+ " FROM auctions a"
-				+ " JOIN bids b ON a.id = b.id_auction"
-				+ " where b.id_user = ? and opening_date between ? and close_date";
+				+ " JOIN bids b ON a.id = b.auction_id"
+				+ " where b.user_id = ? and opening_date between ? and closing_date";
 		return jdbcTemplate.query(query, auctionRowMapper, userId, now); 
 	}
 
@@ -98,10 +98,10 @@ public class AuctionDAO implements com.primavera.CoursProject.application.daos.A
 	public List<AuctionDTO> getBidderInactiveAuctions(String userId) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime now = LocalDateTime.now();
-		final var query = "SELECT a.id, a.total_bitcoins, a.price, a.opening_date, a.close_date"
+		final var query = "SELECT a.id, a.total_bitcoins, a.price, a.opening_date, a.closing_date"
 				+ " FROM auctions a"
-				+ " JOIN bids b ON a.id = b.id_auction"
-				+ " where b.id_user = ? and close_date < ?";
+				+ " JOIN bids b ON a.id = b.auction_id"
+				+ " where b.user_id = ? and closing_date < ?";
 		return jdbcTemplate.query(query, auctionRowMapper, userId, now); 
 	}
 	

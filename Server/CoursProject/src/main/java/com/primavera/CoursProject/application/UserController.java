@@ -2,6 +2,7 @@ package com.primavera.CoursProject.application;
 
 import com.primavera.CoursProject.application.daos.*;
 import com.primavera.CoursProject.application.dto.*;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +14,12 @@ public class UserController {
     public UserDAO user;
     public AuctionDAO auction;
     public BidDAO bid;
+    public AccountDAO account;
+    public EntryDAO entry;
     public PurchaseDAO purchase;
     public SoldDAO sold;
 
-    public UserController(UserDAO user, AuctionDAO auction, BidDAO bid, PurchaseDAO purchase, SoldDAO sold) {
+    public UserController(UserDAO user, AuctionDAO auction, BidDAO bid, PurchaseDAO purchase, SoldDAO sold, AccountDAO account, EntryDAO entry) {
         this.user = user;
         this.auction = auction;
         this.bid = bid;
@@ -61,6 +64,32 @@ public class UserController {
     public List<PurchaseDTO> getAllPurchaseBitcoins() {
         return purchase.getAllPurchaseBitcoins();
     }
+  
+	public List<AuctionDTO> getBidderWonAuctions(String userId) {
+		return auction.getWonAuctions(userId);
+	}
+
+	public List<AuctionDTO> getBidderAuctions(String userId) {
+		return auction.getBidderAuctions(userId);
+	}
+
+	public List<AuctionDTO> getBidderActiveAuctions(String userId) {
+		return auction.getBidderActiveAuctions(userId);
+	}
+
+	public List<AuctionDTO> getBidderInactiveAuctions(String userId) {
+		return auction.getBidderInactiveAuctions(userId);
+	}
+
+	public void updateBitcoin(String userId, double quantity) {
+		account.updateBitcoin(userId, quantity);
+		entry.addEntry(userId, quantity, "BTC");
+	}
+
+	public void updateMoney(String userId, double quantity) {
+		account.updateEuro(userId, quantity);
+		entry.addEntry(userId, quantity, "EUR");
+	}
 
     public List<SoldDTO> getAllSoldBitcoins() {
         return sold.getAllSoldBitcoins();

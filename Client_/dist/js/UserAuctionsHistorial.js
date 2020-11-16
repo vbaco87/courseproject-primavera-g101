@@ -5,7 +5,7 @@ $(document).ready(function () {
 });
 
 function getAuctionHistory() {
-    $.get("http://localhost:8080/api/auctions/"+userId+"/?status=all", (data) => {
+    $.get("http://localhost:8080/api/users/"+userId+"/auctions?status=all", (data) => {
 
         for (i = 0; i < data.length; i++) {
             console.log(data[i]);

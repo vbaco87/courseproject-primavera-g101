@@ -6,6 +6,16 @@ import com.primavera.CoursProject.application.dto.SoldDTO;
 import com.primavera.CoursProject.application.dto.*;
 import org.springframework.validation.annotation.Validated;
 
+import java.security.InvalidParameterException;
+import java.util.List;
+
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+  import com.primavera.CoursProject.application.dto.AccountDTO;
+import com.primavera.CoursProject.application.dto.AuctionDTO;
+import com.primavera.CoursProject.application.dto.BidDTO;
+import com.primavera.CoursProject.application.dto.EntryDTO;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,6 +58,42 @@ public class UserRestController {
     public void addBid(@RequestBody BidDTO bid, @PathVariable String userId,  @PathVariable String auctionId) {
     	userController.addBid(bid, userId, auctionId);
     }
+    
+    @GetMapping("/users/{userId}/auctions") 
+    public List<AuctionDTO> getBidderParticipatedAuctions(@PathVariable String userId, @RequestParam(defaultValue ="all") String status, @RequestParam(defaultValue ="false") boolean onlyWon){
+    	if(onlyWon) {
+    		return userController.getBidderWonAuctions(userId);   
+    	}
+    	if(status.equals("all")) {
+    		return userController.getBidderAuctions(userId);
+    	}
+    	else if(status.equals("active")) {
+    		return userController.getBidderActiveAuctions(userId);
+    	}
+    	
+    	else if(status.equals("inactive")) { 
+    		return userController.getBidderInactiveAuctions(userId); 
+    	}
+    	  
+    	return null;
+    }
+    
+    @PostMapping("/users/{userId}/money")
+    public void updateMoney(@PathVariable String userId, @RequestParam(defaultValue = "-1") double quantity) {
+    	if (quantity < 0) {
+    		throw new InvalidParameterException();
+    	}
+    	userController.updateMoney(userId,quantity);
+    }
+    
+    @PostMapping("/users/{userId}/bitcoins")
+    public void updateBitcoin(@PathVariable String userId, @RequestParam(defaultValue = "-1") double quantity) {
+    	if (quantity < 0) {
+    		throw new InvalidParameterException();
+    	}
+    	userController.updateBitcoin(userId,quantity);
+    }
+    
 
     @GetMapping("/users/{id}/purchasedBitcoins")
     public List<PurchaseDTO> getPurchasedBitcoins(@PathVariable String id){

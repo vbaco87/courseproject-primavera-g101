@@ -67,16 +67,17 @@ public class UserController {
 	public List<AuctionDTO> getBidderInactiveAuctions(String userId) {
 		return auction.getBidderInactiveAuctions(userId);
 	}
+	
+	public void updateCurrency(String userId, double quantity, String currency) {
+		if(currency.equals("BTC")) {
+			account.updateBitcoin(userId, quantity);
+			entry.addEntry(userId, quantity, "BTC");
+		}
+		else if(currency.equals("EUR")) {
+			account.updateEuro(userId, quantity);
+			entry.addEntry(userId, quantity, "EUR");
+		}
 
-	public void updateBitcoin(String userId, double quantity) {
-		account.updateBitcoin(userId, quantity);
-		entry.addEntry(userId, quantity, "BTC");
 	}
-
-	public void updateMoney(String userId, double quantity) {
-		account.updateEuro(userId, quantity);
-		entry.addEntry(userId, quantity, "EUR");
-	}
-
 
 }

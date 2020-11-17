@@ -2,11 +2,8 @@ package com.primavera.CoursProject.application.aop;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -19,10 +16,10 @@ public class LoggerAdvice {
 	private static final Logger logger = LoggerFactory.getLogger(LoggerAdvice.class);
 
 	
-	@Pointcut("execution(public java.util.List<com.primavera.CourseProject.application.dto.AuctionDTO>  com.primavera.CourseProject.application.AuctionController.get*Auctions(..))")
-	public void pointcutGetAuctions( ) {
+	@Pointcut("execution(public java.util.List<com.primavera.CoursProject.application.dto.AuctionDTO>  com.primavera.CoursProject.application.AuctionController.get*Auctions(..))")
+	public void pointcutGetAuctions() {
 	}
-	@Around("pointcutGetBidderWonAuctions()")
+	@Around("pointcutGetAuctions()")
 	public List<AuctionDTO> getAuctions(ProceedingJoinPoint jp ) {
 
 		try {
@@ -37,11 +34,11 @@ public class LoggerAdvice {
 	}
 
 	
-	@Pointcut("execution(public java.util.List<com.primavera.CourseProject.application.dto.AuctionDTO>  com.primavera.CourseProject.application.UserController.get*Auctions(..) && args(userId)")
+	@Pointcut("execution(public java.util.List<com.primavera.CoursProject.application.dto.AuctionDTO>  com.primavera.CoursProject.application.UserController.get*Auctions(..)) && args(userId)")
 	public void pointcutGetBidderAuctions(String userId) {
 	}
 
-	@Around("pointcutGetBidderWonAuctions(userId)")
+	@Around("pointcutGetBidderAuctions(userId)")
 	public List<AuctionDTO> getBidderAuctions(ProceedingJoinPoint jp, String userId) {
 
 		try {
@@ -55,12 +52,12 @@ public class LoggerAdvice {
 		}
 	}
 
-	@Pointcut("execution(* com.primavera.CourseProject.application.UserController.updateBitcoin(..) && args(userId,quantity)")
-	public void pointcutUpdateBitcoin(String userId, double quantity) {
+	@Pointcut("execution(* com.primavera.CoursProject.application.UserController.updateCurrency(..)) && args(userId,quantity,currency)")
+	public void pointcutUpdateCurrency(String userId, double quantity, String currency) {
 	}
 
-	@Around("pointcutUpdateCurrency(userId,quantity)")
-	public void updateBitcoin(ProceedingJoinPoint jp, String userId, double quantity) {
+	@Around("pointcutUpdateCurrency(userId,quantity,currency)")
+	public void updateCurrency(ProceedingJoinPoint jp, String userId, double quantity, String currency) {
 		String status;
 		if(quantity>0) {
 			status = "Adding";
@@ -70,36 +67,14 @@ public class LoggerAdvice {
 		}
 		
 		try {
-			logger.info(status+" " +quantity + "BTC to user id " + userId);
+			logger.info(status+" " +quantity + " " + currency +"to user id " + userId);
 			jp.proceed();
 			logger.info(status + "operation completed without issues");
 		} catch (Throwable throwable) {
-			logger.info("Error while " + status + " "+quantity +"BTC to user id: " + userId);
+			logger.info("Error while " + status + " "+quantity + " " + currency + " to user id: " + userId);
 		}
 	}
 	
-	@Pointcut("execution(* com.primavera.CourseProject.application.UserController.updateMoney(..) && args(userId,quantity)")
-	public void pointcutUpdateMoney(String userId, double quantity) {
-	}
-
-	@Around("pointcutUpdateCurrency(userId,quantity)")
-	public void updateMoney(ProceedingJoinPoint jp, String userId, double quantity) {
-		String status;
-		if(quantity>0) {
-			status = "Adding";
-		}
-		else {
-			status = "Removing";
-		}
-		
-		try {
-			logger.info(status+" " +quantity + "EUR to user id " + userId);
-			jp.proceed();
-			logger.info(status + "operation completed without issues");
-		} catch (Throwable throwable) {
-			logger.info("Error while " + status + " "+quantity +"EUR to user id: " + userId);
-		}
-	}
 
 
 }

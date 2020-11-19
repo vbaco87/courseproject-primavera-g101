@@ -7,6 +7,7 @@ import com.primavera.CoursProject.application.daos.EntryDAO;
 import com.primavera.CoursProject.application.daos.UserDAO;
 import com.primavera.CoursProject.application.dto.AuctionDTO;
 import com.primavera.CoursProject.application.dto.BidDTO;
+import com.primavera.CoursProject.application.dto.EntryDTO;
 import com.primavera.CoursProject.application.dto.UserDTO;
 import org.springframework.stereotype.Service;
 
@@ -71,13 +72,17 @@ public class UserController {
 	public void updateCurrency(String userId, double quantity, String currency) {
 		if(currency.equals("BTC")) {
 			account.updateBitcoin(userId, quantity);
-			entry.addEntry(userId, quantity, "BTC");
+			entry.insertEntry(userId, new EntryDTO(quantity, "BTC"));
 		}
 		else if(currency.equals("EUR")) {
 			account.updateEuro(userId, quantity);
-			entry.addEntry(userId, quantity, "EUR");
+			entry.insertEntry(userId, new EntryDTO(quantity, "EUR"));
 		}
 
+	}
+
+	public List<BidDTO> getUserBids(String userId) throws Exception {
+		return bid.getUserBids(userId);
 	}
 
 }

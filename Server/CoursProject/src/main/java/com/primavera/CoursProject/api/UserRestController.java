@@ -80,6 +80,13 @@ public class UserRestController {
     	userController.updateCurrency(userId, quantity, currency.toUpperCase());
     }
     
+    
+    // /users/id/bids
+    @GetMapping("/user/{userId}/bids")
+    public List<BidDTO> getUserBids(@PathVariable String userId) throws Exception{
+    	return userController.getUserBids(userId);
+    }
+    
 
     
 

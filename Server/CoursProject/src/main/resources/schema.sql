@@ -26,16 +26,16 @@ CREATE TABLE accounts
 	FOREIGN KEY (user_id ) REFERENCES users(id)
 );
 
--- id primary key
 DROP TABLE if EXISTS entries;
 CREATE TABLE entries
-( 
-  account_id VARCHAR (256) PRIMARY KEY,
-  id INT AUTO_INCREMENT,
-  quantity DOUBLE,
-  type VARCHAR2(7),
-  FOREIGN KEY (account_id) REFERENCES accounts(user_id)
-  
+(
+account_id VARCHAR (256),
+id INT AUTO_INCREMENT,
+quantity DOUBLE,
+type VARCHAR2(7),
+PRIMARY KEY (id),
+
+FOREIGN KEY (account_id) REFERENCES accounts(user_id)
 
 );
 

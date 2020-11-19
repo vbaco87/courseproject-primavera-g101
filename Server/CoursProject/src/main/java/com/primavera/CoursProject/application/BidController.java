@@ -22,8 +22,5 @@ public class BidController {
 		return bid.getBid(bidId);
 	}
 
-	public List<BidDTO> getUserBids(String userId) throws Exception {
-		return bid.getUserBids(userId);
-	}
 }
 

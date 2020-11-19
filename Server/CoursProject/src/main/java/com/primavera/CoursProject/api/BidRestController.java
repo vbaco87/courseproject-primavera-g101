@@ -25,9 +25,4 @@ public class BidRestController {
     	return bidController.getBid(bidId);
     }
 
-    // /users/id/bids
-    @GetMapping("/bids/{userId}")
-    public List<BidDTO> getUserBids(@PathVariable String userId) throws Exception{
-    	return bidController.getUserBids(userId);
-    }
 }

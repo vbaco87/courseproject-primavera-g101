@@ -27,7 +27,7 @@ public class EntryDAO implements com.primavera.CoursProject.application.daos.Ent
 
 		final var query = "INSERT INTO entries (quantity, type, account_id) VALUES (?,?,?)";
 		
-			 jdbcTemplate.update(query,entry.getQuantity(),entry.getType() , id);
+			 jdbcTemplate.update(query, entry.getQuantity(), entry.getType(), id);
 		
 
 	}
@@ -37,7 +37,7 @@ public class EntryDAO implements com.primavera.CoursProject.application.daos.Ent
 	@Override
 	public void addEntry(String accountId, String currency, double quantity) {
 		final var query = "INSERT INTO entries (quantity, type, account_id) VALUES (?,?,?)";
-		 jdbcTemplate.update(query,currency, quantity , accountId);
+		 jdbcTemplate.update(query,quantity, currency , accountId);
 	}
 
 

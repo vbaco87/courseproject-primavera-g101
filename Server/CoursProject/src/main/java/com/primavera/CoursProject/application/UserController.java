@@ -18,7 +18,7 @@ public class UserController {
     public EntryDAO entry;
     public PurchaseDAO purchase;
     public SoldDAO sold;
-
+    
     public UserController(UserDAO user, AuctionDAO auction, BidDAO bid, PurchaseDAO purchase, SoldDAO sold, AccountDAO account, EntryDAO entry) {
         this.user = user;
         this.auction = auction;
@@ -26,6 +26,7 @@ public class UserController {
         this.purchase = purchase;
         this.sold = sold;
         this.account=account;
+        this.entry = entry;
 
     }
 
@@ -108,12 +109,11 @@ public class UserController {
     public void updateCurrency(String userId, double quantity, String currency) {
 		if(currency.equals("BTC")) {
 			account.updateBitcoin(userId, quantity);
-			entry.insertEntry(userId, new EntryDTO(quantity, "BTC"));
 		}
 		else if(currency.equals("EUR")) {
 			account.updateEuro(userId, quantity);
-			entry.insertEntry(userId, new EntryDTO(quantity, "EUR"));
 		}
+		entry.insertEntry(userId, new EntryDTO(quantity, currency));
 
 	}
 

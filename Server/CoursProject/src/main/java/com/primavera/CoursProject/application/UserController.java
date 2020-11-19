@@ -114,4 +114,15 @@ public class UserController {
     public List<SoldDTO> getAllSoldBitcoins() {
         return sold.getAllSoldBitcoins();
     }
+
+	public void updateMoney(String userId, double quantity, String currency) {
+		if(currency.equals("BTC")) {
+			account.updateBitcoin(userId, quantity);
+			entry.addEntry(userId, quantity, "BTC");
+		}
+		else if (currency.equals("EUR")) {
+			account.updateEuro(userId, quantity);
+			entry.addEntry(userId, quantity, "EUR");
+		}
+	}
 }

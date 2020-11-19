@@ -76,21 +76,12 @@ public class UserRestController {
     	return null;
     }
     
-    @PostMapping("/users/{userId}/money")
-    public void updateMoney(@PathVariable String userId, @RequestParam(defaultValue = "-1") double quantity) {
-    	if (quantity < 0) {
-    		throw new InvalidParameterException();
-    	}
-    	userController.updateMoney(userId,quantity);
+    @PostMapping("/users/{userId}/currency/{currency}")
+    public void updateCurrency(@PathVariable String userId, @PathVariable String currency,@RequestParam double quantity) {
+    	
+    	userController.updateMoney(userId,quantity,currency.toUpperCase());
     }
-    
-    @PostMapping("/users/{userId}/bitcoins")
-    public void updateBitcoin(@PathVariable String userId, @RequestParam(defaultValue = "-1") double quantity) {
-    	if (quantity < 0) {
-    		throw new InvalidParameterException();
-    	}
-    	userController.updateBitcoin(userId,quantity);
-    }
+   
     
 
     @GetMapping("/users/{id}/purchasedBitcoins")

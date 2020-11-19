@@ -57,7 +57,7 @@ public class LoggerAdvice {
 	}
 
 	@Around("pointcutUpdateCurrency(userId,quantity,currency)")
-	public void updateCurrency(ProceedingJoinPoint jp, String userId, double quantity, String currency) {
+	public void updateCurrency(ProceedingJoinPoint jp, String userId, double quantity, String currency) throws Throwable {
 		String status;
 		if(quantity>0) {
 			status = "Adding";
@@ -67,9 +67,9 @@ public class LoggerAdvice {
 		}
 		
 		try {
-			logger.info(status+" " +quantity + " " + currency +"to user id " + userId);
+			logger.info(status+" " +quantity + " " + currency +" to user id " + userId);
 			jp.proceed();
-			logger.info(status + "operation completed without issues");
+			logger.info(status + " operation completed without issues");
 		} catch (Throwable throwable) {
 			logger.info("Error while " + status + " "+quantity + " " + currency + " to user id: " + userId);
 		}

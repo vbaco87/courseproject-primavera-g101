@@ -140,7 +140,7 @@ public class LoggerAdvice {
 		}
 	}
 
-	
+	 
 	@Pointcut("execution(* com.primavera.CoursProject.application.UserController.updateCurrency(..)) && args(userId,quantity,currency)")
 	public void pointcutUpdateCurrency(String userId, double quantity, String currency) {
 	}

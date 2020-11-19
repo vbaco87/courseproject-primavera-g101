@@ -102,8 +102,7 @@ public class UserRestController {
     }
     
     @PostMapping("/users/{userId}/account/{currency}")
-    public void updateCurrency(@PathVariable String userId, @RequestParam double quantity, @PathVariable String currency) {
-    	userController.updateCurrency(userId,quantity, currency);
+    public void updateCurrency(@PathVariable String userId, @PathVariable String currency, @RequestParam double quantity) {
+    	userController.updateCurrency(userId, quantity, currency.toUpperCase());
     }
-
 }

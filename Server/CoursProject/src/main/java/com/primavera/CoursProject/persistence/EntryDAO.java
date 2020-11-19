@@ -5,7 +5,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
 import com.primavera.CoursProject.application.dto.AccountDTO;
 import com.primavera.CoursProject.application.dto.EntryDTO;
 
@@ -24,7 +23,6 @@ public class EntryDAO implements com.primavera.CoursProject.application.daos.Ent
 	}
 
 	
-
 	public void insertEntry(String id, EntryDTO entry)  {
 
 		final var query = "INSERT INTO entries (quantity, type, account_id) VALUES (?,?,?)";
@@ -33,7 +31,7 @@ public class EntryDAO implements com.primavera.CoursProject.application.daos.Ent
 		
 
 	}
-
+  
 
 
 	@Override

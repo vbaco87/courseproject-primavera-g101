@@ -29,11 +29,10 @@ CREATE TABLE accounts
 DROP TABLE if EXISTS entries;
 CREATE TABLE entries
 (
+id INT AUTO_INCREMENT PRIMARY KEY,
 account_id VARCHAR (256),
-id INT AUTO_INCREMENT,
 quantity DOUBLE,
 type VARCHAR2(7),
-PRIMARY KEY (id),
 
 FOREIGN KEY (account_id) REFERENCES accounts(user_id)
 

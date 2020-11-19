@@ -103,7 +103,7 @@ public class LoggerAdvice {
 
 	}
 
-	@Pointcut("execution(public java.util.List<com.primavera.CoursProject.application.dto.AuctionDTO>  com.primavera.CoursProject.application.AuctionController.get*Auctions(..))")
+	/*@Pointcut("execution(public java.util.List<com.primavera.CoursProject.application.dto.AuctionDTO>  com.primavera.CoursProject.application.AuctionController.get*Auctions(..))")
 	public void pointcutGetAuctions() {
 	}
 	
@@ -161,5 +161,5 @@ public class LoggerAdvice {
 		} catch (Throwable throwable) {
 			logger.info("Error while " + status + " "+quantity + " " + currency + " to user id: " + userId);
 		}
-	}
+	}*/
 }

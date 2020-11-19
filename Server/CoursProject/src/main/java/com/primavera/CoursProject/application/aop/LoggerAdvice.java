@@ -50,7 +50,7 @@ public class LoggerAdvice {
     //Before advice of a pointcut
     @Before("pointcutListUserSoldTransactions(id)")
     public void beforListUserSoldTransactions(String id) {
-        logger.info("Going to list all sold transactions of user with id " + id);
+        logger.info("Going to list all sold transactions of user with id " + id);   
     }
 
     @Pointcut("execution(* com.primavera.CoursProject.application.UserController.getPurchasedTransactions(..))&& args(id)")
@@ -78,5 +78,14 @@ public class LoggerAdvice {
     @Before("pointcutListAllSoldTransactions()")
     public void beforListAllPurchasedTransactions() {
         logger.info("Going to list all sold transactions");
+    }
+    
+    @Pointcut("execution(* com.primavera.CoursProject.application.UserController.getUserBids(..)) && args(userId,auctionId)")
+    public void pointcutListAlBidsFromUser(String userId, String auctionId) {}
+
+    //Before advice of a pointcut
+    @Before("pointcutListAlBidsFromUser(userId,auctionId)")
+    public void beforeListingAllBidsFromUser(String userId, String auctionId) {
+        logger.info("Going to get the bid for userId ' "+userId+"' for auction '" + auctionId+"'");
     }
 }

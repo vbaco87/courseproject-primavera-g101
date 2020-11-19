@@ -14,6 +14,11 @@ public class EntryDTO {
 
 	}
 
+	public EntryDTO(double quantity, String type) {
+		this.quantity = quantity;
+		this.type = type;
+	}
+
 	public double getQuantity() {
 		return quantity;
 	}

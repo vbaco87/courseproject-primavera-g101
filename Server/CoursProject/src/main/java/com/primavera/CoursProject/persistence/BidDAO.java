@@ -73,7 +73,7 @@ public class BidDAO implements com.primavera.CoursProject.application.daos.BidDA
 		}
 		 
 	}
-	
+
 	
     
 }

@@ -101,28 +101,28 @@ public class UserController {
 		return auction.getBidderInactiveAuctions(userId);
 	}
 
-	public void updateBitcoin(String userId, double quantity) {
-		account.updateBitcoin(userId, quantity);
-		entry.addEntry(userId, quantity, "BTC");
-	}
-
-	public void updateMoney(String userId, double quantity) {
-		account.updateEuro(userId, quantity);
-		entry.addEntry(userId, quantity, "EUR");
-	}
-
     public List<SoldDTO> getAllSoldBitcoins() {
         return sold.getAllSoldBitcoins();
     }
 
 	public void updateMoney(String userId, double quantity, String currency) {
-		if(currency.equals("BTC")) {
+		if(currency.toUpperCase().equals("BTC")) {
 			account.updateBitcoin(userId, quantity);
-			entry.addEntry(userId, quantity, "BTC");
+			//entry.insertEntry(userId,new EntryDTO(quantity, currency));
 		}
-		else if (currency.equals("EUR")) {
+		else if (currency.toUpperCase().equals("EUR")) {
 			account.updateEuro(userId, quantity);
-			entry.addEntry(userId, quantity, "EUR");
+			
 		}
+		entry.insertEntry(userId, new EntryDTO(quantity, currency));
+		//entry.addEntry(userId, currency, quantity);
+	}
+
+	public List<BidDTO> getUserBids(String userId) throws Exception {
+		return bid.getUserBids(userId);
+	}
+
+	public BidDTO getUserBidsInAuction(String userId, String auctionId) throws Exception {
+		return bid.getBidByUserId(userId, auctionId);
 	}
 }

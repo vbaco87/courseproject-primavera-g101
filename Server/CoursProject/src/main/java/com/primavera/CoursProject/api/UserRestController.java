@@ -76,10 +76,10 @@ public class UserRestController {
     	return null;
     }
     
-    @PostMapping("/users/{userId}/currency/{currency}")
+    @PostMapping("/users/{userId}/account/{currency}")
     public void updateCurrency(@PathVariable String userId, @PathVariable String currency,@RequestParam double quantity) {
     	
-    	userController.updateMoney(userId,quantity,currency.toUpperCase());
+    	userController.updateMoney(userId,quantity,currency);
     }
    
     
@@ -104,5 +104,9 @@ public class UserRestController {
         return userController.getAllSoldBitcoins();
     }
 
+    @GetMapping("/user/{userId}/auction/{auctionId}/bid")
+    public BidDTO getUserBids(@PathVariable String userId, @PathVariable String auctionId) throws Exception{
+    	return userController.getUserBidsInAuction(userId,auctionId);
+    }
 
 }

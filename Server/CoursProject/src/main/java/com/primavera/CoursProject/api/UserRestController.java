@@ -75,14 +75,6 @@ public class UserRestController {
     	  
     	return null;
     }
-    
-    @PostMapping("/users/{userId}/account/{currency}")
-    public void updateCurrency(@PathVariable String userId, @PathVariable String currency,@RequestParam double quantity) {
-    	
-    	userController.updateMoney(userId,quantity,currency);
-    }
-   
-    
 
     @GetMapping("/users/{id}/purchasedBitcoins")
     public List<PurchaseDTO> getPurchasedBitcoins(@PathVariable String id){
@@ -107,6 +99,11 @@ public class UserRestController {
     @GetMapping("/user/{userId}/auction/{auctionId}/bid")
     public BidDTO getUserBids(@PathVariable String userId, @PathVariable String auctionId) throws Exception{
     	return userController.getUserBidsInAuction(userId,auctionId);
+    }
+    
+    @PostMapping("/users/{userId}/account/{currency}")
+    public void updateCurrency(@PathVariable String userId, @RequestParam double quantity, @PathVariable String currency) {
+    	userController.updateCurrency(userId,quantity, currency);
     }
 
 }

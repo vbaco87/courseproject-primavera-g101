@@ -104,8 +104,18 @@ public class UserController {
     public List<SoldDTO> getAllSoldBitcoins() {
         return sold.getAllSoldBitcoins();
     }
-
-	public void updateMoney(String userId, double quantity, String currency) {
+    public void updateCurrency(String userId, double quantity, String currency) {
+		if(currency.equals("BTC")) {
+			account.updateBitcoin(userId, quantity);
+			
+		}
+		else if(currency.equals("EUR")) {
+			account.updateEuro(userId, quantity);
+		}
+		entry.insertEntry(userId, new EntryDTO(quantity, currency));
+		//entry.addEntry(userId, currency, quantity);
+    }
+	/*public void updateMoney(String userId, double quantity, String currency) {
 		if(currency.toUpperCase().equals("BTC")) {
 			account.updateBitcoin(userId, quantity);
 			//entry.insertEntry(userId,new EntryDTO(quantity, currency));
@@ -114,9 +124,9 @@ public class UserController {
 			account.updateEuro(userId, quantity);
 			
 		}
-		entry.insertEntry(userId, new EntryDTO(quantity, currency));
+		
 		//entry.addEntry(userId, currency, quantity);
-	}
+	}*/
 
 	public List<BidDTO> getUserBids(String userId) throws Exception {
 		return bid.getUserBids(userId);

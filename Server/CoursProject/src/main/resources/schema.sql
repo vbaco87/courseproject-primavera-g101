@@ -22,12 +22,12 @@ CREATE TABLE accounts
  	bitcoin_balance DOUBLE,
 	euro_balance DOUBLE,
 	blocked_euros DOUBLE,
-	
 	FOREIGN KEY (user_id ) REFERENCES users(id)
 );
 
 DROP TABLE if EXISTS entries;
 CREATE TABLE entries
+
 (
 account_id VARCHAR (256),
 id INT AUTO_INCREMENT,
@@ -66,8 +66,27 @@ CREATE TABLE bids(
 DROP TABLE if EXISTS winners;
 CREATE TABLE winners(
   id INT AUTO_INCREMENT PRIMARY KEY,
+  amount NUMBER,
+  price NUMBER,
   auction_id VARCHAR(256),
   user_id VARCHAR (256), 
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (auction_id) REFERENCES auctions(id)
+);
+
+DROP TABLE if EXISTS purchases;
+CREATE TABLE purchases(
+   id VARCHAR (256) PRIMARY KEY,
+   amount NUMBER NOT NULL,
+   price NUMBER NOT NULL,
+   user_broker_id VARCHAR (256),
+   FOREIGN KEY (user_broker_id) REFERENCES users(id)
+);
+
+DROP TABLE if EXISTS transactions;
+CREATE TABLE transactions(
+   id VARCHAR (256) PRIMARY KEY,
+   transaction_date DATE,
+   purchases_id VARCHAR (256),
+   FOREIGN KEY (purchases_id) REFERENCES purchases(id)
 );

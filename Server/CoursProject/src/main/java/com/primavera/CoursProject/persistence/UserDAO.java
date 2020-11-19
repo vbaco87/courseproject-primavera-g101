@@ -1,7 +1,12 @@
 package com.primavera.CoursProject.persistence;
 
+import com.primavera.CoursProject.application.dto.BidDTO;
 import com.primavera.CoursProject.application.dto.UserDTO;
+import com.primavera.CoursProject.application.exceptions.AuctionDoesNotExistException;
 import com.primavera.CoursProject.application.exceptions.UserDoesNotExistException;
+
+import java.util.List;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -56,4 +61,22 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
         jdbcTemplate.update(insertUser, user.getId(),user.getName(),user.getSecondName(),user.getEmail(),user.getPhoneNumber(), user.getCountry(), user.getCity(), user.getHomeAddress(), user.getUserType());
         return this.getUser(user.getId());
     }
+    
+    public List<UserDTO> getBidders(String auctionId) {
+		final var query = "SELECT u.id, u.name, u.second_name, u.email, u.password, u.phone_number, u.birthday, u.country, u.city, u.city_home_address FROM users u JOIN bids b ON(u.id = b.user_id) WHERE b.auction_id = ?";
+		try {
+			return jdbcTemplate.query(query, userRowMapper, auctionId);
+		} catch (EmptyResultDataAccessException e) {
+			throw new AuctionDoesNotExistException(auctionId);
+		}
+	}
+    
+    public List<UserDTO> getWinners(String auctionId) {
+		final var query = "SELECT u.id, u.name, u.second_name, u.email, u.password, u.phone_number, u.birthday, u.country, u.city, u.city_home_address FROM users u JOIN winners w ON(u.id = w.user_id) WHERE w.auction_id = ?";
+		try {
+			return jdbcTemplate.query(query, userRowMapper, auctionId);
+		} catch (EmptyResultDataAccessException e) {
+			throw new AuctionDoesNotExistException(auctionId);
+		}
+	}
 }

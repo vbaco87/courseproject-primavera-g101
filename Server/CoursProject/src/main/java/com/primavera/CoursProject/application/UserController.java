@@ -9,6 +9,11 @@ import com.primavera.CoursProject.application.dto.AuctionDTO;
 import com.primavera.CoursProject.application.dto.BidDTO;
 import com.primavera.CoursProject.application.dto.EntryDTO;
 import com.primavera.CoursProject.application.dto.UserDTO;
+
+import com.primavera.CoursProject.application.daos.*;
+import com.primavera.CoursProject.application.dto.*;
+
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,13 +27,17 @@ public class UserController {
     public BidDAO bid;
     public AccountDAO account;
     public EntryDAO entry;
-    
-    public UserController(UserDAO user, AuctionDAO auction, BidDAO bid, AccountDAO account, EntryDAO entry) {
+    public PurchaseDAO purchase;
+    public SoldDAO sold;
+
+    public UserController(UserDAO user, AuctionDAO auction, BidDAO bid, PurchaseDAO purchase, SoldDAO sold, AccountDAO account, EntryDAO entry) {
         this.user = user;
         this.auction = auction;
         this.bid = bid;
-        this.account = account;
-        this.entry = entry;
+        this.purchase = purchase;
+        this.sold = sold;
+        this.account=account;
+
     }
 
     public UserDTO getUser(String id) {
@@ -52,7 +61,41 @@ public class UserController {
     public void addBid(BidDTO bid, String userId, String auctionId) {
     	this.bid.addBid(bid, userId, auctionId);
     }
+    
+    public List<UserDTO> getBidders(String auctionId){
+    	return this.user.getBidders(auctionId);
+    }
+    
+    public List<UserDTO> getWinners(String auctionId){
+    	 return this.user.getWinners(auctionId);
+    }
+    
+    public void unlockMoney(List<UserDTO> bidders, String auctionId) throws Exception {
+    	Double amount;
+    	for (UserDTO bidder : bidders) {
+    		String userId= bidder.getId();
+    		amount = this.bid.getBidByUserId(userId, auctionId).getAmount();
+    		amount = this.account.getAccount(userId).getBlockedEuros() - amount;
+    		this.account.updateBlockedEuros(userId, amount);
+    	}
+    }
 
+    public List<PurchaseDTO> getAllTransactions(String userId) { //getAllBitcoinsPurchased
+        return purchase.getAllTransactions(userId);
+    }
+
+    public List<SoldDTO> getSoldTransactions(String userId) {
+        return sold.getSoldTransactions(userId);
+    }
+
+    public List<PurchaseDTO> getPurchasedTransactions(String userId) {
+        return purchase.getPurchasedTransactions(userId);
+    }
+
+    public List<PurchaseDTO> getAllPurchaseBitcoins() {
+        return purchase.getAllPurchaseBitcoins();
+    }
+  
 	public List<AuctionDTO> getBidderWonAuctions(String userId) {
 		return auction.getWonAuctions(userId);
 	}
@@ -84,5 +127,8 @@ public class UserController {
 	public List<BidDTO> getUserBids(String userId) throws Exception {
 		return bid.getUserBids(userId);
 	}
+    public List<SoldDTO> getAllSoldBitcoins() {
+        return sold.getAllSoldBitcoins();
+    }
 
 }

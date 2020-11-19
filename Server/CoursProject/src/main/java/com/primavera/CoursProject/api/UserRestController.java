@@ -2,19 +2,21 @@ package com.primavera.CoursProject.api;
 
 
 import com.primavera.CoursProject.application.UserController;
-import com.primavera.CoursProject.application.dto.UserDTO;
+import com.primavera.CoursProject.application.dto.SoldDTO;
+import com.primavera.CoursProject.application.dto.*;
 import org.springframework.validation.annotation.Validated;
-
 import java.security.InvalidParameterException;
 import java.util.List;
-
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
-  import com.primavera.CoursProject.application.dto.AccountDTO;
+import com.primavera.CoursProject.application.dto.AccountDTO;
 import com.primavera.CoursProject.application.dto.AuctionDTO;
 import com.primavera.CoursProject.application.dto.BidDTO;
 import com.primavera.CoursProject.application.dto.EntryDTO;
+
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -86,8 +88,24 @@ public class UserRestController {
     public List<BidDTO> getUserBids(@PathVariable String userId) throws Exception{
     	return userController.getUserBids(userId);
     }
-    
+        @GetMapping("/users/{id}/purchasedBitcoins")
+    public List<PurchaseDTO> getPurchasedBitcoins(@PathVariable String id){
+        return userController.getPurchasedTransactions(id);
+    }
 
-    
+    @GetMapping("/users/{id}/soldBitcoins")
+    public List<SoldDTO> getSoldBitcoins(@PathVariable String id){
+        return userController.getSoldTransactions(id);
+    }
+
+    @GetMapping("/users/purchaseBitcoins")
+    public List<PurchaseDTO> getAllPurchaseBitcoins(){
+        return userController.getAllPurchaseBitcoins();
+    }
+
+    @GetMapping("/users/soldBitcoins")
+    public List<SoldDTO> getAllSoldBitcoins(){
+        return userController.getAllSoldBitcoins();
+    }
 
 }

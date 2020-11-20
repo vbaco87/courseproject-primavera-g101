@@ -1,13 +1,11 @@
-
-
-var bitcoins = 2;
-var user = "user123"
-var date = "25 January 2021";
+var bitcoins = getParameterByName('bitcoins');
+var user = getParameterByName('creator')
+var date = getParameterByName('closeDate');
 var active = true;
 var euros;
 
 var userId= "963963963";
-var auctionId="1";
+var auctionId=getParameterByName('id');
 var bitcoinsBid;
 var amountBid;
 
@@ -79,3 +77,11 @@ function addBid(){
     })
 }
 
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}

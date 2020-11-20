@@ -26,10 +26,6 @@ function getBid(user, auction){
 
 }
 
-// Proposta... No se si és necessari ensenyar la informació de auction (qui la va crear, qtt de bitcoins que es van subastar, qtt euros inicials...)
-// Si creus que s'ha d'afegir cosa al front avisa... se que ha quedat ultra soso but no sé que més posar i he seguit el model del Pau :)
-
-
 function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),

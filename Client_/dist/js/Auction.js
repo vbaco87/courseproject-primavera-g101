@@ -5,7 +5,7 @@ var active = true;
 var euros;
 
 var userId= "963963963";
-var auctionId=getParameterByName('id');
+var auctionId = getParameterByName('auction');
 var bitcoinsBid;
 var amountBid;
 

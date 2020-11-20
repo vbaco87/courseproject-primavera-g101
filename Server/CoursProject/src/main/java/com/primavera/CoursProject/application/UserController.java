@@ -121,7 +121,7 @@ public class UserController {
 		return bid.getUserBids(userId);
 	}
 
-	public BidDTO getUserBidsInAuction(String userId, String auctionId) throws Exception {
+	public BidDTO getUserBidInAuction(String userId, String auctionId) throws Exception {
 		return bid.getBidByUserId(userId, auctionId);
 	}
 }

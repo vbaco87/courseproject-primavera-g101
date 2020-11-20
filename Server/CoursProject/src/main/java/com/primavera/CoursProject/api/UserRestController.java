@@ -97,8 +97,8 @@ public class UserRestController {
     }
 
     @GetMapping("/user/{userId}/auction/{auctionId}/bid")
-    public BidDTO getUserBids(@PathVariable String userId, @PathVariable String auctionId) throws Exception{
-    	return userController.getUserBidsInAuction(userId,auctionId);
+    public BidDTO getUserBid(@PathVariable String userId, @PathVariable String auctionId) throws Exception{
+    	return userController.getUserBidInAuction(userId,auctionId);
     }
     
     @PostMapping("/users/{userId}/account/{currency}")

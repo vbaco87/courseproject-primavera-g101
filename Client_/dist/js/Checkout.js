@@ -1,44 +1,83 @@
-var bitcoins ;
-var price ;
+var bitcoins;
+var price;
 
 var accountId = 123123123;
 
 
 $(document).ready(function () {
-    bitcoins = sessionStorage.getItem("AmountOfBitcoins");
-    price = sessionStorage.getItem("AmountToPay");
-    setValuesPrice();
+   bitcoins = sessionStorage.getItem("AmountOfBitcoins");
+  getBitcoinPrice();
+
     $("#payButton").click(function () {
-        //Comprovació dades tarjeta
-        //si dades son correctes --> postTransaction
+
         postTransaction();
         makeEntry();
     });
 });
+function getBitcoinPrice() {
 
-function setValuesPrice() {
-    $("#amounts").append(" <p>Bitcoins = " + bitcoins + ",  price = " + price + "</p>");
+    $.ajax({
+  
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      url:  "https://stockmarkettrading.azurewebsites.net/stocks/bitcoins/primavera" ,
+      async: false,
+      type: "get",
+  
+      dataType: 'json',
+      contentType: 'application/json',
+  
+      success: function (data) {
+        price = data.unitPriceInEur;
+        console.log(price);
+        $("#amounts").append(" <p>Bitcoins = " + bitcoins + ",  price = " + price + "</p>");
+
+      },
+      //error: function() { alert('Failed!'); },
+  
+  });
+}
+function buyBitcoins() {
+    var dataSend = {
+        "groupId": "primavera",
+        "amount": bitcoins
+    };
+    $.ajax({
+  
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      url:  "https://stockmarkettrading.azurewebsites.net/stocks/bitcoins/" ,
+      async: false,
+      type: "post",
+  
+      dataType: 'json',
+      contentType: 'application/json',
+      data: dataSend,
+      success: function (dataReply) {
+        price = dataReply.unitPriceInEur;
+        console.log(price);
+        
+       
+      },
+      //error: function() { alert('Failed!'); },
+  
+  });
 }
 
+
 function postTransaction() {
-    var comisio = ((price * 0.01) * 100 / 100);
-    var data = {
-        "bitcoins":bitcoins,
-        "price": price+comisio
-        };
-        var url = "http://localhost:8080/api/users/" + accountId + "/buyBitcoins";
+    var comisio = (price * 0.01) / 100 ;
+   price= (price + comisio)
     $.ajax({
 
-        headers: { 'Access-Control-Allow-Origin': '*'},
-        url: url,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        url:  "http://localhost:8080/api/users/" + accountId + "/buyBitcoins?bitcoins=" + bitcoins + "&price=" +price ,
         async: false,
-        type:"POST",
+        type: "POST",
 
         dataType: 'json',
         contentType: 'application/json',
-        data: data,
+
         success: function () {
-          
+
         },
         //error: function() { alert('Failed!'); },
 
@@ -48,12 +87,12 @@ function postTransaction() {
 function makeEntry() {
 
     var data = {
-        "quantity": bitcoins ,
+        "quantity": bitcoins,
         "type": "bitcoin"
     };
     $.ajax({
 
-        headers: { 'Access-Control-Allow-Origin': '*'},
+        headers: { 'Access-Control-Allow-Origin': '*' },
         url: "http://localhost:8080/api/users/" + accountId + "/account",
         async: false,
         type: 'post',
@@ -68,3 +107,4 @@ function makeEntry() {
     });
     $("#TransactionSuccess").show();
 }
+

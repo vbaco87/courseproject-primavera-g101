@@ -61,7 +61,7 @@ public class LoggerAdvice {
 		}
 	}
 
-	@Pointcut("execution(* com.primavera.CoursProject.application.TransactionController.buyBitcoins(..))&& args(brokerId, bitcoins, price)")
+	@Pointcut("execution(* com.primavera.CoursProject.application.UserController.buyBitcoins(..))&& args(brokerId, bitcoins, price)")
 	public void pointcutBuyBitcoins(String brokerId, double bitcoins, double price) {
 	}
 
@@ -118,7 +118,7 @@ public class LoggerAdvice {
 	public void pointcutListUserSoldTransactions(String id) {
 	}
 
-	// Before advice of a pointcut
+
 	@Before("pointcutListUserSoldTransactions(id)")
 	public void beforListUserSoldTransactions(String id) {
 		logger.info("Going to list all sold transactions of user with id " + id);
@@ -128,7 +128,7 @@ public class LoggerAdvice {
 	public void pointcutListUserPurchasedTransactions(String id) {
 	}
 
-	// Before advice of a pointcut
+
 	@Before("pointcutListUserPurchasedTransactions(id)")
 	public void beforListUserPurchasedTransactions(String id) {
 		logger.info("Going to list all purchased transactions of user with id " + id);

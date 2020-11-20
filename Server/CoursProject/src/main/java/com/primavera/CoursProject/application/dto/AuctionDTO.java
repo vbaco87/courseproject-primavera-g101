@@ -3,15 +3,28 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Range;
 import com.primavera.CoursProject.domain.Bid;
 
 public class AuctionDTO {
 	
 	private String id;
+	
+	@Range(min=1)
+	@NotNull(message = "TotalBitcoins cannot be null")
 	private double totalBitcoins;
+	
+	@Range(min=1)
+	@NotNull(message = "Price cannot be null")
 	private double price;
+	
+	@NotNull(message = "OpeningDate cannot be null")
 	private Date openingDate;
+		
+	@NotNull(message = "CloseDate cannot be null")
 	private Date closeDate;
+	
 	Set<Bid> bids = new HashSet<Bid>();
 	
 	public AuctionDTO() {

@@ -2,12 +2,22 @@ package com.primavera.CoursProject.application.dto;
 
 import java.util.UUID;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Range;
+
 import com.primavera.CoursProject.domain.Transaction;
 
 public class BidDTO {
 	
 	private String id;
+
+	@Range(min=1)
+	@NotNull(message = "Bitcoins cannot be null")
 	private double bitcoins;
+	
+	@Range(min=1)
+	@NotNull(message = "Amount cannot be null")
 	private double amount;
 	/*
 	private Transaction transactionBroker;

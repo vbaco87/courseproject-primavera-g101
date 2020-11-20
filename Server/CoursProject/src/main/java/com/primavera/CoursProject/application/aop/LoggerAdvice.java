@@ -43,7 +43,7 @@ public class LoggerAdvice {
 	}
 
 	@Around("pointcutUpdateWallet(accountId,entry)")
-	public void dealRequestParam(ProceedingJoinPoint jp, String accountId, EntryDTO entry) throws Throwable {
+	public void arroundUpdateWallet(ProceedingJoinPoint jp, String accountId, EntryDTO entry) throws Throwable {
 		String action;
 		if (entry.getQuantity() < 0) {
 			action = "Removing ";
@@ -61,12 +61,12 @@ public class LoggerAdvice {
 		}
 	}
 
-	@Pointcut("execution(* com.primavera.CoursProject.application.TransacrionController.buyBitcoins(..))&& args(brokerId, bitcoins, price)")
-	public void pointcutUpdateWallet(String brokerId, double bitcoins, double price) {
+	@Pointcut("execution(* com.primavera.CoursProject.application.TransactionController.buyBitcoins(..))&& args(brokerId, bitcoins, price)")
+	public void pointcutBuyBitcoins(String brokerId, double bitcoins, double price) {
 	}
 
-	@Around("pointcutUpdateWallet(brokerId, bitcoins, price)")
-	public void dealRequestParam(ProceedingJoinPoint jp, String brokerId, double bitcoins, double price)
+	@Around("pointcutBuyBitcoins(brokerId, bitcoins, price)")
+	public void arroundBuyBitcoins(ProceedingJoinPoint jp, String brokerId, double bitcoins, double price)
 			throws Throwable {
 		try {
 			logger.info("Broker with id " + brokerId + " is buying " + bitcoins + " bitcoins for " + price);

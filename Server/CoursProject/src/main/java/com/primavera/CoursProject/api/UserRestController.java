@@ -48,12 +48,12 @@ public class UserRestController {
     }
 
     @RequestMapping(value = "/users/{userId}/auctions", method = RequestMethod.POST)
-    public void addAuction(@RequestBody AuctionDTO auction, @PathVariable String userId) {
+    public void addAuction(@RequestBody @Valid AuctionDTO auction, @PathVariable String userId) {
     	userController.addAuction(auction, userId);
     }
     
     @RequestMapping(value = "/users/{userId}/bids/auctions/{auctionId}", method = RequestMethod.POST)
-    public void addBid(@RequestBody BidDTO bid, @PathVariable String userId,  @PathVariable String auctionId) {
+    public void addBid(@RequestBody @Valid BidDTO bid, @PathVariable String userId,  @PathVariable String auctionId) {
     	userController.addBid(bid, userId, auctionId);
     }
     

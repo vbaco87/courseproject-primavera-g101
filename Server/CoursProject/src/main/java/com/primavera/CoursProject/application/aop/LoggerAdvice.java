@@ -1,6 +1,7 @@
 package com.primavera.CoursProject.application.aop;
 
 import com.primavera.CoursProject.application.dto.AuctionDTO;
+import com.primavera.CoursProject.application.dto.BidDTO;
 import com.primavera.CoursProject.application.dto.UserDTO;
 
 import java.util.ArrayList;
@@ -161,5 +162,24 @@ public class LoggerAdvice {
 		} catch (Throwable throwable) {
 			logger.info("Error while " + status + " "+quantity + " " + currency + " to user id: " + userId);
 		}
+	}
+	
+	@Pointcut("execution(* com.primavera.CoursProject.application.UserController.addAuction(..)) && args(auction,userId)")
+	public void pointcutAddAuction(AuctionDTO auction, String userId) {
+	}
+
+	@After("pointcutAddAuction(auction,userId)")
+	public void afterPointcutAddAuction(AuctionDTO auction, String userId) {
+		logger.info("New auction created by user '"+userId+"'");
+	}
+	
+	@Pointcut("execution(* com.primavera.CoursProject.application.UserController.addBid(..)) && args(bid,userId,auctionId)")
+	public void pointcutAddBid(BidDTO bid, String userId, String auctionId) {
+	}
+
+	@After("pointcutAddBid(bid,userId,auctionId)")
+	public void afterPointcutAddBid(BidDTO bid, String userId, String auctionId) {
+		logger.info("New bid of user '" + userId + "' for auction '" + auctionId + "'");
+
 	}
 }

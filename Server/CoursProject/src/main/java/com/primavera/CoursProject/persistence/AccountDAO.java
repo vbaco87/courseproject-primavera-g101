@@ -37,13 +37,12 @@ public class AccountDAO implements com.primavera.CoursProject.application.daos.A
 	}
 
 	public void updateBitcoin(String userId, double quantity){
-		final var query = "UPDATE accounts SET bitcoin_balance =? WHERE user_id=?";
-
+		final var query = "UPDATE accounts SET bitcoin_balance = bitcoin_balance + ? WHERE user_id=?";
 		 jdbcTemplate.update(query,quantity , userId);
 	}
 	
-	public void updateEuros(String userId, double quantity){
-		final var query = "UPDATE accounts SET euro_balance =? WHERE user_id=?";
+	public void updateEuro(String userId, double quantity){
+		final var query = "UPDATE accounts SET euro_balance = euro_balance + ? WHERE user_id=?";
 
 		 jdbcTemplate.update(query,quantity , userId);
 	}
@@ -51,5 +50,11 @@ public class AccountDAO implements com.primavera.CoursProject.application.daos.A
 	public void updateAccount(String userId, AccountDTO updatedAccount) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void updateBlockedEuros(String userId, double quantity){
+		final var query = "UPDATE accounts SET blocked_euros =? WHERE user_id=?";
+
+		 jdbcTemplate.update(query,quantity , userId);
 	}
 }

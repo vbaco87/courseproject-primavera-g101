@@ -4,19 +4,18 @@ public class Purchase {
 	
 	private double amount;
 	private String id;
-	private double price; //este no está en la bbdd pero creo que es enecesario(?)
-	private Transaction transactionBroker;//le quita dinero al broker
-	private Transaction transactionPlatform;//la comision para la plataforma
+	private double price;
+	private Transaction transactionBroker;
+//	private Transaction transactionPlatform;
 	
-	public Purchase(double amount, String id, double price, Transaction transactionBroker, Transaction transactionPlatform) {
+	public Purchase(double amount, String id, double price, Transaction transactionBroker /*, Transaction transactionPlatform*/) {
 		this.amount = amount;
 		this.id = id;
 		this.price = price;
 		this.transactionBroker = transactionBroker;
-		this.transactionPlatform = transactionPlatform;
+	//	this.transactionPlatform = transactionPlatform;
 	}
 
-	//redefinir equals
 	public Purchase() {
 
 	}
@@ -53,12 +52,12 @@ public class Purchase {
 		this.transactionBroker = transactionBroker;
 	}
 
-	public Transaction getTransactionPlatform() {
-		return transactionPlatform;
-	}
-
-	public void setTransactionPlatform(Transaction transactionPlatform) {
-		this.transactionPlatform = transactionPlatform;
-	}
+//	public Transaction getTransactionPlatform() {
+//		return transactionPlatform;
+//	}
+//
+//	public void setTransactionPlatform(Transaction transactionPlatform) {
+//		this.transactionPlatform = transactionPlatform;
+//	}
 
 }

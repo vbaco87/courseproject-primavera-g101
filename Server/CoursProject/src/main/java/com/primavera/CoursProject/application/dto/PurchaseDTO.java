@@ -3,54 +3,54 @@ package com.primavera.CoursProject.application.dto;
 import com.primavera.CoursProject.domain.Transaction;
 
 public class PurchaseDTO {
-	private double amount;
-	private String id;
-	private double price;
-	private Transaction transactionBroker;
-	private Transaction transactionPlatform;
-	
-	public PurchaseDTO() {
 
-	}
+    private double amount;
+    private String id;
+    private double price;
+    private Transaction transactionBroker;
+    //private Transaction transactionPlatform;
 
-	public double getAmount() {
-		return amount;
-	}
+    public PurchaseDTO() {
+    }
 
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
+    public double getAmount() {
+        return amount;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public double getPrice() {
+        return price;
+    }
 
-	public double getPrice() {
-		return price;
-	}
+    public Transaction getTransactionBroker() {
+        return transactionBroker;
+    }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
+//    public Transaction getTransactionPlatform() {
+//        return transactionPlatform;
+//    }
 
-	public Transaction getTransactionBroker() {
-		return transactionBroker;
-	}
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
 
-	public void setTransactionBroker(Transaction transactionBroker) {
-		this.transactionBroker = transactionBroker;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public Transaction getTransactionPlatform() {
-		return transactionPlatform;
-	}
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
-	public void setTransactionPlatform(Transaction transactionPlatform) {
-		this.transactionPlatform = transactionPlatform;
-	}
-	
+    public void setTransactionBroker(Transaction transactionBroker) {
+        this.transactionBroker = transactionBroker;
+    }
+
+//    public void setTransactionPlatform(Transaction transactionPlatform) {
+//        this.transactionPlatform = transactionPlatform;
+//    }
+
 }

@@ -9,5 +9,11 @@ public interface AccountDAO {
 
 	public void updateBitcoin(String userId, double quantity);
 
-	public void updateEuros(String userId, double quantity);
+	public void updateEuro(String userId, double quantity);
+  
+    public void updateBlockedEuros(String userId, double quantity);
+  
 }
+
+
+

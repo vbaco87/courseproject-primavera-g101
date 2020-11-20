@@ -33,7 +33,7 @@ public class AccountController {
                 accountDAO.updateBitcoin(accountId, account.getBitcoinBalance() + entry.getQuantity());
                 break;
             case "euros":
-                accountDAO.updateEuros(accountId, account.getEuroBalance() + entry.getQuantity());
+                accountDAO.updateEuro(accountId, account.getEuroBalance() + entry.getQuantity());
                 break;
         }
 

@@ -64,5 +64,16 @@ public class BidDAO implements com.primavera.CoursProject.application.daos.BidDA
 		}
 	}
 	
+	public BidDTO getBidByUserId(String userId, String auctionId) throws Exception {
+		final var query = "select * from bids where user_id = ? and auction_id =?";
+		try {
+			return jdbcTemplate.queryForObject(query, bidRowMapper, userId, auctionId);
+		} catch (EmptyResultDataAccessException e) {
+			throw new Exception(e);
+		}
+		 
+	}
+
+	
     
 }

@@ -2,8 +2,11 @@ package com.primavera.CoursProject.persistence;
 
 import java.util.Date;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.primavera.CoursProject.application.exceptions.UserDoesNotExistException;
 @Repository
 public class TransactionDAO implements com.primavera.CoursProject.application.daos.TransactionDAO {
 	private JdbcTemplate jdbcTemplate;
@@ -13,12 +16,17 @@ public class TransactionDAO implements com.primavera.CoursProject.application.da
 	}
 	
 	
-	public String buyBitcoins(String brokerId, int bitcoins, int money) {
+	public String buyBitcoins(String brokerId, double bitcoins, double money) {
 		String id = "idpurchase"+ Integer.toString(transactionCounter);
 		
 		final var query = "INSERT INTO purchases VALUES(?,?,?,?) ";
-		jdbcTemplate.update(query,id,money, bitcoins, brokerId);
+		try {
+		jdbcTemplate.update(query,id, bitcoins,money, brokerId);
 		return id;
+		}
+		catch( EmptyResultDataAccessException e) {
+			throw new UserDoesNotExistException(brokerId);
+		}
 	}
 	public void addTransaction(String purchaseId, String brokerId) {
 		String id= "idtransaction"+transactionCounter;

@@ -4,6 +4,11 @@ $(document).ready(function () {
     getBitcoinPrice();
     updateAmountToPay();
   }, 200);
+  $("#buyButton").click(function(){
+    sessionStorage.setItem("AmountToPay",price);
+    sessionStorage.setItem("AmountOfBitcoins",$("#btp").val());
+    window.location.href = "Checkout.html";
+  });
 });
 
 function getBitcoinPrice() {

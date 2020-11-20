@@ -10,7 +10,7 @@ public TransactionController(TransactionDAO transactionDAO) {
 	this.transactionDAO = transactionDAO;
 }
 
-	public void buyBitcoins(String brokerId, int bitcoins, int price) {	//broker compra
+	public void buyBitcoins(String brokerId, double bitcoins, double price) {	//broker compra
 	 String purchaseId = transactionDAO.buyBitcoins(brokerId, bitcoins, price);
 	 transactionDAO.addTransaction(purchaseId, brokerId);
 	}

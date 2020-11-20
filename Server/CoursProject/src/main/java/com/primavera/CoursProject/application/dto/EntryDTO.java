@@ -3,11 +3,14 @@ package com.primavera.CoursProject.application.dto;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.Pattern;
+
 import com.primavera.CoursProject.domain.IAsset;
 
 public class EntryDTO {
 
 	private double quantity;
+	@Pattern(regexp = "^(bitcoin|euros)$", message= "Tipus incorrecte. Valors acceptats: 'bitcoin', 'euros'.") 
 	private String type;
 
 	public EntryDTO() {

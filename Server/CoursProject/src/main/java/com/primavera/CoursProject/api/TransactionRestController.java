@@ -6,11 +6,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
 import com.primavera.CoursProject.application.TransactionController;
+import com.primavera.CoursProject.application.dto.PurchaseDTO;
 
 
 
@@ -24,15 +27,13 @@ public class TransactionRestController {
 	public TransactionRestController(TransactionController transactionController) {
 		this.transactionController = transactionController;
 	}
-	@PostMapping("/users/{brokerId}/buyBitcoins") 
-	public void buyBitcoins(@PathVariable String brokerId, @RequestParam String bitcoins,@RequestParam String price) { //broker compra
-		transactionController.buyBitcoins(brokerId,Integer.parseInt(bitcoins), Integer.parseInt(price));
+
+	@RequestMapping(value = "/users/{brokerId}/buyBitcoins", method = RequestMethod.POST)
+	@ResponseBody
+	public void buyBitcoins(@PathVariable String brokerId,  PurchaseDTO purchase) { //broker compra
+		transactionController.buyBitcoins(brokerId,purchase.getAmount(), purchase.getPrice() );
 	}
-/*	@PostMapping("/asd")
-	public void addTransaction(String userId, int bitcoins, int money){
-		transactionController.addTransaction(userId, bitcoins, money);
-	}
-*/
+
 
 
 }

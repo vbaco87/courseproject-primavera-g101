@@ -27,14 +27,18 @@ function getBitcoinPrice() {
       contentType: 'application/json',
   
       success: function (data) {
-        price = data.unitPriceInEur;
-        console.log(price);
-        $("#amounts").append(" <p>Bitcoins = " + bitcoins + ",  price = " + price + "</p>");
+        price = data.unitPriceInEur * bitcoins;
+        price = parseFloat(price).toFixed(2);
+        addHTML();
 
       },
       //error: function() { alert('Failed!'); },
   
   });
+}
+function addHTML(){
+    $("#Bitcoins").append(bitcoins+'₿');
+    $("#Total").append(price+'€');
 }
 function buyBitcoins() {
     var dataSend = {
@@ -53,7 +57,8 @@ function buyBitcoins() {
       data: dataSend,
       success: function (dataReply) {
         price = dataReply.unitPriceInEur;
-        console.log(price);
+
+
         
        
       },

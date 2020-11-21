@@ -26,7 +26,7 @@
         crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
         crossorigin="anonymous"></script>
-        
+
     <script src="js/Checkout.js"></script>
 </head>
 
@@ -140,10 +140,20 @@
         </div>
         <div id="layoutSidenav_content">
             <div class="container">
+                <h1 class="my-4">Buy Bitcoins</h1>
+                <h5 class="my-4">Checkout</h5>
                 <div>
-                    <div  id="amounts">
-                       
-                        <p>Placeholder per saber quantitats</p>
+                    <div id="amounts">
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">Bitcoins</h6> <small class="text-muted">Bitcoins to
+                                        purchase</small>
+                                </div> <span class="text-muted" id="Bitcoins" placeholder = "-₿"></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between"> <span>Total (EUR)</span>
+                                <strong id="Total" placeholder = "-€"> </strong> </li>
+                        </ul>
                     </div>
 
                     <article class="card" id="paymentForm">
@@ -164,7 +174,55 @@
 
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="nav-tab-card">
-                                    <p id="TransactionSuccess"; class="alert alert-success" style="display: none;">Transaction Accepted. Bitcoins added to your account.</p>
+                                   
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Choose payment method
+                                    </label>
+                                    <p>-Use existing Card: </p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="exampleRadios"
+                                            id="exampleRadios1" value="option1" checked>
+                                        <label class="form-check-label" for="exampleRadios1">
+
+                                            <div class="card text-white bg-primary mb-3" style="width: 29rem;height: 13rem;">
+                                                <div class="card-header">Card1</div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title"> <i class="fab fa-cc-visa"></i> Visa - Bill Gates</h5>
+                                                    <!-- <p class="card-text"> </p>  -->
+
+                                                    <p class="card-text">XXXX-XXXX-XXXX-1234 </p>
+                                                    <p class="card-text"> Exp. Date. 1/21 </p>
+                                                </div>
+                                            </div>
+
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline ">
+                                        <input class="form-check-input" type="radio" name="exampleRadios"
+                                            id="exampleRadios2" value="option2">
+                                        <label class="form-check-label" for="exampleRadios2">
+
+                                            <div class="card text-white bg-primary mb-3"  style="width: 28.5rem;height: 13rem;">
+                                                <div class="card-header">Card2</div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title"> <i class="fab fa-cc-mastercard"></i>
+                                                        MasterCard - Alberto Manuel Fernandez Sanchez</h5>
+                                                    <!-- <p class="card-text"> </p>  -->
+
+                                                    <p class="card-text">XXXX-XXXX-XXXX-9876 </p>
+                                                    <p class="card-text"> Exp. Date. 3/22 </p>
+                                                </div>
+                                            </div>
+
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadios"
+                                            id="exampleRadios3">
+                                        <label class="form-check-label" for="exampleRadios3"> Use new card.
+
+                                    </div>
+                                    <p>Enter new card details:</p>
                                     <form role="form">
                                         <div class="form-group">
                                             <label for="username">Full name
@@ -185,7 +243,7 @@
                                                     <span class="input-group-text
                                                 text-muted">
                                                         <i class="fab
-                                                    fa-cc-visa"></i>
+                                                fa-cc-visa"></i>
                                                         <i class="fab
                                                     fa-cc-amex"></i>
                                                         <i class="fab
@@ -220,6 +278,8 @@
                                                 </div> <!-- form-group.// -->
                                             </div>
                                         </div> <!-- row.// -->
+                                        <p id="TransactionSuccess" ; class="alert alert-success" style="display: none;">
+                                            Transaction Accepted. Bitcoins added to your account.</p>
                                         <button id="payButton" class="subscribe btn
                                     btn-primary
                                     btn-block" type="button">

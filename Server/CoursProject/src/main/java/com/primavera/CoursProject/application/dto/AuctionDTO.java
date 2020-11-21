@@ -11,11 +11,11 @@ public class AuctionDTO {
 	
 	private String id;
 	
-	@Range(min=1)
+	@Range(min=0)
 	@NotNull(message = "TotalBitcoins cannot be null")
 	private double totalBitcoins;
 	
-	@Range(min=1)
+	@Range(min=0)
 	@NotNull(message = "Price cannot be null")
 	private double price;
 	

@@ -21,6 +21,8 @@ public interface AuctionDAO {
 	public List<AuctionDTO> getBidderActiveAuctions(String userId);
 
 	public List<AuctionDTO> getBidderInactiveAuctions(String userId);
+
+	public List<AuctionDTO> getFinishedAuctions();
 	
 }
 

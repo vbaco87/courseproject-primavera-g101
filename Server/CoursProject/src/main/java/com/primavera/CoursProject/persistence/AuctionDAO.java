@@ -105,5 +105,11 @@ public class AuctionDAO implements com.primavera.CoursProject.application.daos.A
 		return jdbcTemplate.query(query, auctionRowMapper, userId, now); 
 	}
 	
-    
+	@Override
+    public List<AuctionDTO> getFinishedAuctions() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        final var query = "select * from auctions where closing_date < ? and status = '1'";
+        return jdbcTemplate.query(query, auctionRowMapper, now);
+    }
 }

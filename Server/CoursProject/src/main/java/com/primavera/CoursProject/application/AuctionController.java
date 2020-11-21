@@ -27,5 +27,10 @@ public class AuctionController {
 	public List<AuctionDTO> getInactiveAuctions() {
 		return auction.getInactiveAuctions(); 
 	}
+	
+	public List<AuctionDTO> getFinishedAuctions() {
+		return auction.getFinishedAuctions(); 
+	}
+	
 }
 

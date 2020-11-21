@@ -49,6 +49,7 @@ CREATE TABLE auctions(
   price NUMBER NOT NULL,
   opening_date DATE NOT NULL,
   closing_date DATE NOT NULL,
+  status VARCHAR(256) NULL DEFAULT '1',
   FOREIGN KEY (creator_id) REFERENCES users(id)
 );
 

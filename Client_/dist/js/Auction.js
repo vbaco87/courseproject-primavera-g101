@@ -11,7 +11,7 @@ var amountBid;
 $(document).ready(function () {
     $.ajax({
         headers: { 'Access-Control-Allow-Origin': '*' },
-        url: "http://localhost:8080/api/users/" + userId+"/available",
+        url: "http://localhost:8080/api/users/" + userId+"/account/available",
         async: false,
         type: 'GET',
         crossDomain: true,

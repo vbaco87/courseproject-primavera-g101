@@ -1,8 +1,23 @@
 var creatorId=963963963;
 var price;
 var totalBitcoins;
+var bitcoinsBroker;
 
 $(document).ready(function() {
+    $.ajax({
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        url: "http://localhost:8080/api/users/" + creatorId+"/account",
+        async: false,
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'json',
+        success: function (data) {
+            bitcoinsBroker = data["bitcoinBalance"];
+            $("#nBitcoins").append('<th scope="col" id="nBitcoins">nBitcoins: '+bitcoinsBroker+'</th>');
+        },
+    });
+
+
     minDate();
     $("#closingDate").click(function(){
         updateClosingDate()

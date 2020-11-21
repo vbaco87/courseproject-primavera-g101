@@ -9,7 +9,7 @@ $(document).ready(function () {
   getBitcoinPrice();
 
     $("#payButton").click(function () {
-
+        buyBitcoins() ;
         postTransaction();
         makeEntry();
     });

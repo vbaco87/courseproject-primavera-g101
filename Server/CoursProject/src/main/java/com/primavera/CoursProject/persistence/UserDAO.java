@@ -59,7 +59,13 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
         final String insertUser = "INSERT INTO users (id, name, second_name, email, phone_number, country, city, city_home_address, user_type) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(insertUser, user.getId(),user.getName(),user.getSecondName(),user.getEmail(),user.getPhoneNumber(), user.getCountry(), user.getCity(), user.getHomeAddress(), user.getUserType());
+        createAccount(user.getId());
         return this.getUser(user.getId());
+    }
+
+    public void createAccount(String userId){
+        final String createUserAccount = "INSERT INTO accounts (user_id, bitcoin_balance, euro_balance, blocked_euros) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(createUserAccount, userId, 50, 50, 0);
     }
     
     public List<UserDTO> getBidders(String auctionId) {

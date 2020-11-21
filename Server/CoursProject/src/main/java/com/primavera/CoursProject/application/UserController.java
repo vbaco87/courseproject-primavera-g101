@@ -18,8 +18,9 @@ public class UserController {
     public EntryDAO entry;
     public PurchaseDAO purchase;
     public SoldDAO sold;
+	public TransactionDAO transaction;
     
-    public UserController(UserDAO user, AuctionDAO auction, BidDAO bid, PurchaseDAO purchase, SoldDAO sold, AccountDAO account, EntryDAO entry) {
+    public UserController(UserDAO user, AuctionDAO auction, BidDAO bid, PurchaseDAO purchase, SoldDAO sold, AccountDAO account, EntryDAO entry, TransactionDAO transaction) {
         this.user = user;
         this.auction = auction;
         this.bid = bid;
@@ -27,6 +28,7 @@ public class UserController {
         this.sold = sold;
         this.account=account;
         this.entry = entry;
+    	this.transaction = transaction;
 
     }
 
@@ -124,4 +126,10 @@ public class UserController {
 	public BidDTO getUserBidInAuction(String userId, String auctionId) throws Exception {
 		return bid.getBidByUserId(userId, auctionId);
 	}
+	public void buyBitcoins(String brokerId, double bitcoins, double price) {	
+		 String purchaseId = transaction.buyBitcoins(brokerId, bitcoins, price);
+		 transaction.addTransaction(purchaseId, brokerId);
+		}
+
+
 }

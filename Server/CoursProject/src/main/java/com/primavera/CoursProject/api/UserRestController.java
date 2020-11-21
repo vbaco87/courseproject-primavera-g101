@@ -13,7 +13,6 @@ import com.primavera.CoursProject.application.dto.AccountDTO;
 import com.primavera.CoursProject.application.dto.AuctionDTO;
 import com.primavera.CoursProject.application.dto.BidDTO;
 import com.primavera.CoursProject.application.dto.EntryDTO;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -105,4 +104,9 @@ public class UserRestController {
     public void updateCurrency(@PathVariable String userId, @PathVariable String currency, @RequestParam double quantity) {
     	userController.updateCurrency(userId, quantity, currency.toUpperCase());
     }
+    @PostMapping( "/users/{brokerId}/buyBitcoins")
+	public void buyBitcoins(@PathVariable String brokerId, @RequestParam double bitcoins, @RequestParam double price) { 
+		userController.buyBitcoins(brokerId,bitcoins, price );
+	}
+
 }

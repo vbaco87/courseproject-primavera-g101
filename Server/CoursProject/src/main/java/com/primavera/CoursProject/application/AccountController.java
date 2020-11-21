@@ -26,8 +26,8 @@ public class AccountController {
     }
 
     public void updateWallet(String accountId, EntryDTO entry) throws Exception {
-        entryDAO.insertEntry(accountId, entry);
         AccountDTO account = accountDAO.getAccount(accountId);
+        entryDAO.insertEntry(accountId, entry);
         switch (entry.getType().toLowerCase()) {
             case "bitcoin":
                 accountDAO.updateBitcoin(accountId, account.getBitcoinBalance() + entry.getQuantity());
@@ -36,5 +36,6 @@ public class AccountController {
                 accountDAO.updateEuro(accountId, account.getEuroBalance() + entry.getQuantity());
                 break;
         }
+
     }
 }

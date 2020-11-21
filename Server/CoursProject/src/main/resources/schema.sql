@@ -28,6 +28,7 @@ CREATE TABLE accounts
 -- id primary key
 DROP TABLE if EXISTS entries;
 CREATE TABLE entries
+
 (
 id INT AUTO_INCREMENT PRIMARY KEY,
 account_id VARCHAR (256),
@@ -35,6 +36,7 @@ quantity DOUBLE,
 type VARCHAR2(7),
 
 FOREIGN KEY (account_id) REFERENCES accounts(user_id)
+
 
 );
 
@@ -88,4 +90,7 @@ CREATE TABLE transactions(
    transaction_date DATE,
    purchases_id VARCHAR (256),
    FOREIGN KEY (purchases_id) REFERENCES purchases(id)
+
+
 );
+

@@ -52,4 +52,5 @@ public class PurchaseDTO {
 //    public void setTransactionPlatform(Transaction transactionPlatform) {
 //        this.transactionPlatform = transactionPlatform;
 //    }
+
 }

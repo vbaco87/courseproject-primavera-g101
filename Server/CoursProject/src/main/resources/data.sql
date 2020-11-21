@@ -19,6 +19,9 @@ INSERT INTO auctions VALUES(6, '123123123', 1,110,'2020-11-07','2020-11-08');
 INSERT INTO auctions VALUES(7, '123123123', 1,110,'2020-10-07','2020-12-08');
 INSERT INTO auctions VALUES(8, '123123123', 1,110,'2020-01-07','2020-12-10');
 
+INSERT INTO entries VALUES (1,'123123123',2,'bitcoin');
+INSERT INTO entries VALUES (2,'123123123',4,'euros');
+
 INSERT INTO bids VALUES ('1','456456456','1','1','4');
 INSERT INTO bids VALUES ('2','456456456','2','3','5');
 INSERT INTO bids VALUES ('3','456456456','3','6','4');
@@ -32,6 +35,8 @@ INSERT INTO purchases VALUES ('idpurchase1', 3, 115, '123123123');
 INSERT INTO purchases VALUES ('idpurchase2', 3, 115, '123123123');
 INSERT INTO purchases VALUES ('idpurchase3', 3, 115, '123123123');
 
+
 INSERT INTO transactions VALUES ('idtransaction1', '2000-01-10', 'idpurchase1');
 INSERT INTO transactions VALUES ('idtransaction2', '2010-05-07', 'idpurchase2');
 INSERT INTO transactions VALUES ('idtransaction3', '2020-08-02', 'idpurchase3');
+

@@ -11,12 +11,74 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import com.primavera.CoursProject.application.dto.EntryDTO;
+
 import org.aspectj.lang.annotation.*;
 
 @Aspect
 @Component
 public class LoggerAdvice {
 	private static final Logger logger = LoggerFactory.getLogger(LoggerAdvice.class);
+
+	@Pointcut("execution(* com.primavera.CoursProject.application.AccountController.getAccount(..))&& args(userId)")
+	public void pointcutGetAccount(String userId) {
+	}
+
+	@Before("pointcutGetAccount(userId)")
+	public void beforeGetAccount(String userId) {
+		logger.info("Getting full account of user: " + userId);
+	}
+
+	@Pointcut("execution(* com.primavera.CoursProject.application.AccountController.getAvailableMoney(..))&& args(userId)")
+	public void pointcutGetAvailable(String userId) {
+	}
+
+	@Before("pointcutGetAccount(userId)")
+	public void beforeGetAvailable(String userId) {
+		logger.info("Getting available money of user: " + userId);
+	}
+
+	@Pointcut("execution(* com.primavera.CoursProject.application.AccountController.updateWallet(..))&& args(accountId,entry)")
+	public void pointcutUpdateWallet(String accountId, EntryDTO entry) {
+	}
+
+	@Around("pointcutUpdateWallet(accountId,entry)")
+	public void arroundUpdateWallet(ProceedingJoinPoint jp, String accountId, EntryDTO entry) throws Throwable {
+		String action;
+		if (entry.getQuantity() < 0) {
+			action = "Removing ";
+		} else
+			action = "Adding ";
+
+		try {
+			logger.info(action + entry.getType() + " to account: " + accountId);
+			jp.proceed();
+			logger.info("Update for account " + accountId + " successful");
+
+		} catch (Throwable e) {
+			logger.info("Something went wrong when uppdating account of user " + accountId);
+			throw e;
+		}
+	}
+
+	@Pointcut("execution(* com.primavera.CoursProject.application.UserController.buyBitcoins(..))&& args(brokerId, bitcoins, price)")
+	public void pointcutBuyBitcoins(String brokerId, double bitcoins, double price) {
+	}
+
+	@Around("pointcutBuyBitcoins(brokerId, bitcoins, price)")
+	public void arroundBuyBitcoins(ProceedingJoinPoint jp, String brokerId, double bitcoins, double price)
+			throws Throwable {
+		try {
+			logger.info("Broker with id " + brokerId + " is buying " + bitcoins + " bitcoins for " + price);
+			jp.proceed();
+			logger.info("Purchase for broker " + brokerId + " successful");
+
+		} catch (Throwable e) {
+			logger.info("Something went wrong when purchasing bitcoins of broker " + brokerId);
+			throw e;
+		}
+	}
 
 	@Pointcut("execution(* com.primavera.CoursProject.application.UserController.*(com.primavera.CoursProject.application.dto.UserDTO))")
 	public void pointcutUser() {
@@ -57,7 +119,7 @@ public class LoggerAdvice {
 	public void pointcutListUserSoldTransactions(String id) {
 	}
 
-	// Before advice of a pointcut
+
 	@Before("pointcutListUserSoldTransactions(id)")
 	public void beforListUserSoldTransactions(String id) {
 		logger.info("Going to list all sold transactions of user with id " + id);
@@ -67,7 +129,7 @@ public class LoggerAdvice {
 	public void pointcutListUserPurchasedTransactions(String id) {
 	}
 
-	// Before advice of a pointcut
+
 	@Before("pointcutListUserPurchasedTransactions(id)")
 	public void beforListUserPurchasedTransactions(String id) {
 		logger.info("Going to list all purchased transactions of user with id " + id);
@@ -107,10 +169,9 @@ public class LoggerAdvice {
 	@Pointcut("execution(public java.util.List<com.primavera.CoursProject.application.dto.AuctionDTO>  com.primavera.CoursProject.application.AuctionController.get*Auctions(..))")
 	public void pointcutGetAuctions() {
 	}
-	
 
 	@Around("pointcutGetAuctions()")
-	public List<AuctionDTO> getAuctions(ProceedingJoinPoint jp ) {
+	public List<AuctionDTO> getAuctions(ProceedingJoinPoint jp) {
 
 		try {
 			logger.info("Going to list auctions");
@@ -141,7 +202,6 @@ public class LoggerAdvice {
 		}
 	}
 
-	 
 	@Pointcut("execution(* com.primavera.CoursProject.application.UserController.updateCurrency(..)) && args(userId,quantity,currency)")
 	public void pointcutUpdateCurrency(String userId, double quantity, String currency) {
 	}
@@ -156,11 +216,12 @@ public class LoggerAdvice {
 		}
 
 		try {
-			logger.info(status+" " +quantity + " " + currency +"to user id " + userId);
+			logger.info(status + " " + quantity + " " + currency + "to user id " + userId);
 			jp.proceed();
 			logger.info(status + "operation completed without issues");
 		} catch (Throwable throwable) {
-			logger.info("Error while " + status + " "+quantity + " " + currency + " to user id: " + userId);
+			logger.info("Error while " + status + " " + quantity + " " + currency + " to user id: " + userId);
+
 		}
 	}
 	

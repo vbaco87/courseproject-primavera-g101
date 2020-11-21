@@ -15,7 +15,7 @@ $(document).ready(function() {
      $("#submit").click(function(){
         price= $("#basePrice").val();
         totalBitcoins= $("#numberOfBitcoins").val();
-        if(price >0.0 && totalBitcoins > 0.0 ){
+        if(price >=0 && totalBitcoins >=0 ){
             if($("#exampleCheck1").prop('checked')){
                 addAuction();
                 $("#SubmitOk").show();

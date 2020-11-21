@@ -12,11 +12,11 @@ public class BidDTO {
 	
 	private String id;
 
-	@Range(min=1)
+	@Range(min=0)
 	@NotNull(message = "Bitcoins cannot be null")
 	private double bitcoins;
 	
-	@Range(min=1)
+	@Range(min=0)
 	@NotNull(message = "Amount cannot be null")
 	private double amount;
 	/*

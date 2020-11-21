@@ -49,6 +49,7 @@ CREATE TABLE auctions(
   price NUMBER NOT NULL,
   opening_date DATE NOT NULL,
   closing_date DATE NOT NULL,
+  active BOOLEAN NOT NULL,
   FOREIGN KEY (creator_id) REFERENCES users(id)
 );
 
@@ -70,7 +71,7 @@ CREATE TABLE winners(
   amount NUMBER,
   price NUMBER,
   auction_id VARCHAR(256),
-  user_id VARCHAR (256), 
+  user_id VARCHAR (256),
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (auction_id) REFERENCES auctions(id)
 );
@@ -90,7 +91,5 @@ CREATE TABLE transactions(
    transaction_date DATE,
    purchases_id VARCHAR (256),
    FOREIGN KEY (purchases_id) REFERENCES purchases(id)
-
-
 );
 

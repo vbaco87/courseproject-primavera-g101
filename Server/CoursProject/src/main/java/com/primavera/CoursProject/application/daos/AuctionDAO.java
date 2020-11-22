@@ -23,7 +23,8 @@ public interface AuctionDAO {
 	public List<AuctionDTO> getBidderInactiveAuctions(String userId);
 	
 	public List<AuctionDTO> getNewFinishedAuctions();
-	
+
+    public void setActiveState(AuctionDTO a);
 }
 
 

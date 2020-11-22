@@ -31,8 +31,9 @@ public class Scheduler {
     public void updateNewFinishedAuctions(){
         List<AuctionDTO> auctions = auctionDAO.getNewFinishedAuctions();
         if(!auctions.isEmpty()){
-            auctionDAO.setActiveState(auctions);
+
             for(AuctionDTO a : auctions){
+                auctionDAO.setActiveState(a);
                 updateWinners(a);
             }
         }

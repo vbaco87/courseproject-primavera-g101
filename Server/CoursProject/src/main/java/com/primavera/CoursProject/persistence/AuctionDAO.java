@@ -112,6 +112,12 @@ public class AuctionDAO implements com.primavera.CoursProject.application.daos.A
         final var query = "select * from auctions where closing_date < ? and active = true";
         return jdbcTemplate.query(query, auctionRowMapper, now);
     }
-	
-    
+
+	@Override
+	public void setActiveState(AuctionDTO a) {
+		final String query = "UPDATE auctions SET active = ? WHERE id = ?";
+		jdbcTemplate.update(query, false, a.getId());
+	}
+
+
 }

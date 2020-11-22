@@ -14,6 +14,5 @@ public interface UserDAO {
 
     public List<UserDTO> getBidders(String auctionId);
     
-    public List<UserDTO> getWinners(String auctionId);
     
 }

@@ -36,4 +36,8 @@ public class TransactionDAO implements com.primavera.CoursProject.application.da
 		jdbcTemplate.update(query,id,date, purchaseId);
 	}
 
+	public void addTransactionBid(String bidId, String bidderId) {
+
+	}
+
 }

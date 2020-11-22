@@ -89,5 +89,17 @@ public class AuctionDTO {
 		this.bids = bids;
 	}
 
+	@Override
+	public String toString() {
+		return "AuctionDTO{" +
+				"id='" + id + '\'' +
+				", totalBitcoins=" + totalBitcoins +
+				", price=" + price +
+				", openingDate=" + openingDate +
+				", closeDate=" + closeDate +
+				", brokerId='" + brokerId + '\'' +
+				", bids=" + bids +
+				'}';
+	}
 }
 

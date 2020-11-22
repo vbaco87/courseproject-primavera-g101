@@ -1,9 +1,6 @@
 package com.primavera.CoursProject.application.sheduler;
 
-import com.primavera.CoursProject.application.daos.AccountDAO;
-import com.primavera.CoursProject.application.daos.AuctionDAO;
-import com.primavera.CoursProject.application.daos.BidDAO;
-import com.primavera.CoursProject.application.daos.UserDAO;
+import com.primavera.CoursProject.application.daos.*;
 import com.primavera.CoursProject.application.dto.AuctionDTO;
 import com.primavera.CoursProject.application.dto.BidDTO;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -19,16 +16,19 @@ public class Scheduler {
     UserDAO userDAO;
     AccountDAO accountDAO;
     BidDAO bidDAO;
+    TransactionDAO transaction;
 
-    public Scheduler(AuctionDAO auctionDAO, UserDAO userDAO, AccountDAO accountDAO, BidDAO bidDAO) {
+    public Scheduler(AuctionDAO auctionDAO, UserDAO userDAO, AccountDAO accountDAO, BidDAO bidDAO, TransactionDAO transaction) {
         this.auctionDAO = auctionDAO;
         this.userDAO = userDAO;
         this.accountDAO = accountDAO;
-        this.bidDAO =bidDAO;
+        this.bidDAO = bidDAO;
+        this.transaction = transaction;
     }
 
     @Scheduled(cron="*/5 * * * * *")
     public void doSomething() {
+        System.out.println("5 SECONDS");
         updateNewFinishedAuctions();
     }
 
@@ -36,6 +36,7 @@ public class Scheduler {
         List<AuctionDTO> auctions = auctionDAO.getNewFinishedAuctions();
         if(!auctions.isEmpty()){
             for(AuctionDTO a : auctions){
+                System.out.println(a.toString());
                 auctionDAO.setActiveState(a);
                 updateWinners(a);
             }
@@ -49,21 +50,22 @@ public class Scheduler {
         double euros = 0.0;
 
         for (BidDTO p : participants){
-            if(qttBitcoins==0){
+            if(qttBitcoins<=0){
                 break;
             }
             else{
-                userDAO.saveWinners(p, auction.getId());
-                if(qttBitcoins - p.getBitcoins()>=0){
+                if(qttBitcoins - p.getBitcoins()>0){
                     euros += p.getAmount();
                     accountDAO.updateBitcoin(p.getUserId(), p.getBitcoins());
-                    qttBitcoins -= p.getAmount();
-                    accountDAO.updateBlockedEuros(p.getUserId(), -p.getAmount());
+                    qttBitcoins -= p.getBitcoins();
+                    accountDAO.updateBlockedEuros(p.getUserId(), -(p.getAmount()+p.getAmount()*0.01));
+                    userDAO.saveWinners(p, auction.getId(), p.getBitcoins());
                 }
                 else{
                     euros += p.getAmount();
                     accountDAO.updateBitcoin(p.getUserId(), qttBitcoins);
-                    accountDAO.updateBlockedEuros(p.getUserId(), -p.getAmount());
+                    accountDAO.updateBlockedEuros(p.getUserId(), -(p.getAmount()+p.getAmount()*0.01));
+                    userDAO.saveWinners(p, auction.getId(), qttBitcoins);
                     qttBitcoins = 0;
                 }
             }

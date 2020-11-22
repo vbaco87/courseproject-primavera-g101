@@ -90,6 +90,8 @@ CREATE TABLE transactions(
    id VARCHAR (256) PRIMARY KEY,
    transaction_date DATE,
    purchases_id VARCHAR (256),
-   FOREIGN KEY (purchases_id) REFERENCES purchases(id)
+   bid_id VARCHAR (256),
+   FOREIGN KEY (purchases_id) REFERENCES purchases(id),
+   FOREIGN KEY (bid_id) REFERENCES bids(user_id)
 );
 

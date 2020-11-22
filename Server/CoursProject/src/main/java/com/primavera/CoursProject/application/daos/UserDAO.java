@@ -15,5 +15,5 @@ public interface UserDAO {
 
     public List<UserDTO> getBidders(String auctionId);
     
-    public void saveWinners(BidDTO bid, String auctionId);
+    public void saveWinners(BidDTO bid, String auctionId, double qttBitcoins);
 }

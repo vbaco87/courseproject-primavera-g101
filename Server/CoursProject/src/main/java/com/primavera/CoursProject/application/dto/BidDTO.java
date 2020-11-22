@@ -19,7 +19,7 @@ public class BidDTO {
 	
 	@Range(min=0)
 	@NotNull(message = "Amount cannot be null")
-	private double amount;
+	private double amount; // euros
 	/*
 	private Transaction transactionBroker;
 	private Transaction transactionPlatform;

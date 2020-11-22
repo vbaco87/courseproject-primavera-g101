@@ -84,7 +84,7 @@ public class BidDAO implements com.primavera.CoursProject.application.daos.BidDA
 		}
 		 
 	}
-	 public List<BidDTO> getWinners(String auctionId) {
+	 public List<BidDTO> getParticipants(String auctionId) {
 			final var query = "SELECT id, user_id, auction_id, bitcoins, amount from bids WHERE auction_id = ? ORDER BY amount DESC;";
 			try {
 				return jdbcTemplate.query(query, bidRowMapperWithUser, auctionId);

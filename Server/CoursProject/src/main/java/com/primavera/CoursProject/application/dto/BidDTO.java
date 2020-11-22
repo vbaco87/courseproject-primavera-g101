@@ -11,6 +11,7 @@ import com.primavera.CoursProject.domain.Transaction;
 public class BidDTO {
 	
 	private String id;
+	private String userId;
 
 	@Range(min=0)
 	@NotNull(message = "Bitcoins cannot be null")
@@ -51,6 +52,16 @@ public class BidDTO {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	
+	
 
 /*
 

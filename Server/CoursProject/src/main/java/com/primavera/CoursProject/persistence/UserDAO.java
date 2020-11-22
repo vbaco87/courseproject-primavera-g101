@@ -77,5 +77,18 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
 		}
 	}
     
-   
+
+    public List<UserDTO> getWinners(String auctionId) {
+		final var query = "SELECT u.id, u.name, u.second_name, u.email, u.password, u.phone_number, u.birthday, u.country, u.city, u.city_home_address FROM users u JOIN winners w ON(u.id = w.user_id) WHERE w.auction_id = ?";
+		try {
+			return jdbcTemplate.query(query, userRowMapper, auctionId);
+		} catch (EmptyResultDataAccessException e) {
+			throw new AuctionDoesNotExistException(auctionId);
+		}
+	}
+    public void saveWinners(BidDTO bid, String auctionId){
+        final String query = "INSERT INTO winners (amount, price, auction_id, winner_id) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(query, bid.getBitcoins(), bid.getAmount(), auctionId, bid.getUserId());
+    }
+
 }

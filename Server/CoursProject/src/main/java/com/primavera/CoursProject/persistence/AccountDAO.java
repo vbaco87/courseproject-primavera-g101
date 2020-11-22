@@ -53,7 +53,7 @@ public class AccountDAO implements com.primavera.CoursProject.application.daos.A
 	}
 	
 	public void updateBlockedEuros(String userId, double quantity){
-		final var query = "UPDATE accounts SET blocked_euros =? WHERE user_id=?";
+		final var query = "UPDATE accounts SET blocked_euros = blocked_euros + ? WHERE user_id=?";
 
 		 jdbcTemplate.update(query,quantity , userId);
 	}

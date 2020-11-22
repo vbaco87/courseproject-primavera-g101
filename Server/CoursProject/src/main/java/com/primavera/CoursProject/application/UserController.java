@@ -58,10 +58,6 @@ public class UserController {
     	return this.user.getBidders(auctionId);
     }
     
-    public List<UserDTO> getWinners(String auctionId){
-    	 return this.user.getWinners(auctionId);
-    }
-    
     public void unlockMoney(List<UserDTO> bidders, String auctionId) throws Exception {
     	Double amount;
     	for (UserDTO bidder : bidders) {

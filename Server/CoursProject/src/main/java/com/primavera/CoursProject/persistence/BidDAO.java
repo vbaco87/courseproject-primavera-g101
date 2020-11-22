@@ -1,7 +1,7 @@
 package com.primavera.CoursProject.persistence;
 
 import com.primavera.CoursProject.application.dto.BidDTO;
-
+import com.primavera.CoursProject.application.exceptions.AuctionDoesNotExistException;
 
 import java.util.List;
 
@@ -22,6 +22,17 @@ public class BidDAO implements com.primavera.CoursProject.application.daos.BidDA
         bid.setId(resultSet.getString("id"));
         bid.setBitcoins(resultSet.getDouble("bitcoins"));
         bid.setAmount(resultSet.getDouble("amount"));
+
+        return bid;
+    };
+    
+    private final RowMapper<BidDTO> bidRowMapperWithUser = (resultSet, i) -> {
+        BidDTO bid = new BidDTO();
+
+        bid.setId(resultSet.getString("id"));
+        bid.setBitcoins(resultSet.getDouble("bitcoins"));
+        bid.setAmount(resultSet.getDouble("amount"));
+        bid.setUserId(resultSet.getString("user_id"));
 
         return bid;
     };
@@ -73,6 +84,14 @@ public class BidDAO implements com.primavera.CoursProject.application.daos.BidDA
 		}
 		 
 	}
+	 public List<BidDTO> getParticipants(String auctionId) {
+			final var query = "SELECT id, user_id, auction_id, bitcoins, amount from bids WHERE auction_id = ? ORDER BY amount DESC;";
+			try {
+				return jdbcTemplate.query(query, bidRowMapperWithUser, auctionId);
+			} catch (EmptyResultDataAccessException e) {
+				throw new AuctionDoesNotExistException(auctionId);
+			}
+		}
 
 	
     

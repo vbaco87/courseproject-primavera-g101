@@ -24,7 +24,17 @@ public class AuctionDTO {
 		
 	@NotNull(message = "CloseDate cannot be null")
 	private Date closeDate;
-	
+
+	private String brokerId;
+
+	public void setBrokerId(String brokerId) {
+		this.brokerId = brokerId;
+	}
+
+	public String getBrokerId() {
+		return brokerId;
+	}
+
 	Set<Bid> bids = new HashSet<Bid>();
 	
 	public AuctionDTO() {
@@ -79,5 +89,17 @@ public class AuctionDTO {
 		this.bids = bids;
 	}
 
+	@Override
+	public String toString() {
+		return "AuctionDTO{" +
+				"id='" + id + '\'' +
+				", totalBitcoins=" + totalBitcoins +
+				", price=" + price +
+				", openingDate=" + openingDate +
+				", closeDate=" + closeDate +
+				", brokerId='" + brokerId + '\'' +
+				", bids=" + bids +
+				'}';
+	}
 }
 

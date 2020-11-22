@@ -53,7 +53,7 @@ public class Scheduler {
                 break;
             }
             else{
-                userDAO.saveWinner(p, auction.getId());
+                userDAO.saveWinners(p, auction.getId());
                 if(qttBitcoins - p.getBitcoins()>=0){
                     euros += p.getAmount();
                     accountDAO.updateBitcoin(p.getUserId(), p.getBitcoins());

@@ -2,6 +2,7 @@ package com.primavera.CoursProject.application.daos;
 
 import java.util.List;
 
+import com.primavera.CoursProject.application.dto.BidDTO;
 import com.primavera.CoursProject.application.dto.UserDTO;
 
 public interface UserDAO {
@@ -14,5 +15,5 @@ public interface UserDAO {
 
     public List<UserDTO> getBidders(String auctionId);
     
-    
+    public void saveWinners(BidDTO bid, String auctionId);
 }

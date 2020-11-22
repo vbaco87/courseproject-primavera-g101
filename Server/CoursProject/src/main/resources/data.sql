@@ -6,8 +6,8 @@ INSERT INTO users VALUES ('789456113', 'Rodolfo', 'Vidal', 'rvidal@edu.tecnocamp
 INSERT INTO users VALUES ('789456123', 'Lorena', 'Gutierrez', 'lguiti@edu.tecnocampus.cat', '852147', '95123647', '2000-02-20', 'Spain', 'No se', 'c/preguntaliAella',0);
 
 INSERT INTO accounts VALUES ('123123123', 2.35,1123.21,30);
-INSERT INTO accounts VALUES ('456456456',5.02,131.53,28);
-INSERT INTO accounts VALUES ('963963963',18.4,915.23,60.5);
+INSERT INTO accounts VALUES ('456456456',5.02,1311.53,0);
+INSERT INTO accounts VALUES ('963963963',18.4,9115.23,60.5);
 INSERT INTO accounts VALUES ('789456163', 31.74,6160.34,80.25);
 
 INSERT INTO auctions VALUES(1, '123123123', 80,90,'2020-08-21','2020-12-25', true);

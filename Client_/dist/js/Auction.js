@@ -2,6 +2,7 @@ var bitcoins = getParameterByName('bitcoins');
 var date = getParameterByName('closeDate');
 var active = true;
 var euros;
+var basePrice = getParameterByName('price');
 
 var userId= "963963963";
 var auctionId = getParameterByName('auction');
@@ -30,6 +31,7 @@ $(document).ready(function () {
     $("#Start").click(() => {
         $("#QuantityBid").show();
         $("#Euro").show();
+        $("#Price").show();
         $("#Start").hide();
     });
 
@@ -37,12 +39,17 @@ $(document).ready(function () {
         $("#SubmitOk").css("display", "none");
         $("#SubmitNotOk").css("display", "none");
         $("#SubmitNotMoney").css("display", "none");
+        $("#SubmitNotPrice").css("display", "none");
         bitcoinsBid= $("#bitcoins").val();
         amountBid = $("#euros").val()
         if(bitcoinsBid >=0 && amountBid>=0){
             if(euros>=amountBid){
-                addBid();
-                $("#SubmitOk").show();
+                if(basePrice<=amountBid){
+                    addBid();
+                    $("#SubmitOk").show();
+                }else {
+                    $("#SubmitNotPrice").show();
+                }
             }else {
                 $("#SubmitNotMoney").show();
             }
@@ -59,7 +66,7 @@ $(document).ready(function () {
 
 function addHTML() {
 
-    $("#info").append('  <h3 class="display-4">Available Bitcoins:' + bitcoins + '₿</h3> <p class="lead">There are '+bitcoins+'₿ bitcoins available to bid. Click "Start Bidding" to make your bid.</p>    <hr class="my-4">    <p>This auction ends on <u>' + date + '</u></p>    <p id="Euro" style="display:none;">The amount of usable money you have in your account is <u>' + euros + '€.</u>   </p>   <a class="btn btn-primary btn-lg" href="#" role="button" id="Start">Start bidding</a>');
+    $("#info").append('  <h3 class="display-4">Available Bitcoins:' + bitcoins + '₿</h3> <p class="lead">There are '+bitcoins+'₿ bitcoins available to bid. Click "Start Bidding" to make your bid.</p>    <hr class="my-4">    <p>This auction ends on <u>' + date + '</u></p>   <p id="Price" style="display:none;">The base price of the auction is <u>' + basePrice + '€.</u>   </p> <p id="Euro" style="display:none;">The amount of usable money you have in your account is <u>' + euros + '€.</u>   </p>   <a class="btn btn-primary btn-lg" href="#" role="button" id="Start">Start bidding</a>');
 
 }
 

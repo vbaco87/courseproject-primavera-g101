@@ -26,6 +26,8 @@ public class AuctionDTO {
 	private Date closeDate;
 
 	private String brokerId;
+	
+	private boolean active;
 
 	public void setBrokerId(String brokerId) {
 		this.brokerId = brokerId;
@@ -87,6 +89,14 @@ public class AuctionDTO {
 
 	public void setBids(Set<Bid> bids) {
 		this.bids = bids;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	@Override

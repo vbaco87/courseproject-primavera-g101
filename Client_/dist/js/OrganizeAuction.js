@@ -105,7 +105,9 @@ function addAuction(){
         "totalBitcoins": parseFloat(totalBitcoins),
         "price": parseFloat(price),
         "openingDate": $("#openingDate").val(),
-        "closeDate": $("#closingDate").val()
+        "closeDate": $("#closingDate").val(),
+        "brokerId:" : creatorId,
+        "active" : true
     };
     $.ajax({
         async: false,

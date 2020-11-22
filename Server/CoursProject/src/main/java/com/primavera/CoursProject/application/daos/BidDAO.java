@@ -10,4 +10,5 @@ public interface BidDAO {
     public BidDTO getBid(String bidId) throws Exception;
     public List<BidDTO> getUserBids(String userId) throws Exception;
     public BidDTO getBidByUserId(String userId, String auctionId) throws Exception;
+    public List<BidDTO> getWinners(String auctionId);
 }

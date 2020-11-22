@@ -4,6 +4,7 @@ var totalBitcoins;
 var bitcoinsBroker;
 
 $(document).ready(function() {
+    noDisplay();
     $.ajax({
         headers: { 'Access-Control-Allow-Origin': '*' },
         url: "http://localhost:8080/api/users/" + creatorId+"/account",
@@ -13,7 +14,7 @@ $(document).ready(function() {
         dataType: 'json',
         success: function (data) {
             bitcoinsBroker = data["bitcoinBalance"];
-            $("#nBitcoins").append('<th scope="col" id="nBitcoins">nBitcoins: '+bitcoinsBroker+'</th>');
+            $("#nBitcoins").append('<th scope="col" id="nBitcoins">nBitcoins: '+parseFloat(bitcoinsBroker).toFixed(2)+'</th>');
         },
     });
 
@@ -28,12 +29,17 @@ $(document).ready(function() {
       });
 
      $("#submit").click(function(){
+         noDisplay();
         price= $("#basePrice").val();
         totalBitcoins= $("#numberOfBitcoins").val();
         if(price >=0 && totalBitcoins >=0 ){
             if($("#exampleCheck1").prop('checked')){
-                addAuction();
-                $("#SubmitOk").show();
+                if(bitcoinsBroker>= totalBitcoins){
+                    addAuction();
+                    $("#SubmitOk").show();
+                }else{
+                    $("#SubmitNoBitcoins").show();
+                }
             }else{
                 $("#SubmitNotOkT").show();
             }
@@ -45,6 +51,12 @@ $(document).ready(function() {
 
 });
 
+function noDisplay(){
+    $("#SubmitOk").css("display", "none");
+    $("#SubmitNoBitcoins").css("display", "none");
+    $("#SubmitNotOk").css("display", "none");
+    $("#SubmitNotOkT").css("display", "none");
+}
 
 function validate()  {
 
@@ -103,6 +115,19 @@ function addAuction(){
         contentType: 'application/json',
         dataType: 'json',
         data:JSON.stringify(datos)
+    })
+
+    $.ajax({
+        async: false,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type:"POST",
+        url:"http://localhost:8080/api/users/"+ creatorId+"/account",
+        contentType: 'application/json',
+        dataType: 'json',
+        data:JSON.stringify({
+            "quantity": parseFloat(-totalBitcoins),
+            "type":"bitcoin"
+        })
     })
 }
 

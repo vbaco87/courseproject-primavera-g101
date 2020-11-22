@@ -18,7 +18,7 @@ $(document).ready(function () {
         dataType: 'json',
         success: function (data) {
             euros = data;
-            euros =parseFloat(euros).toFixed(2);;
+            euros =parseFloat(euros).toFixed(2);
      
 
         },
@@ -36,11 +36,16 @@ $(document).ready(function () {
     $("#Submit").click(() => {
         $("#SubmitOk").css("display", "none");
         $("#SubmitNotOk").css("display", "none");
+        $("#SubmitNotMoney").css("display", "none");
         bitcoinsBid= $("#bitcoins").val();
         amountBid = $("#euros").val()
         if(bitcoinsBid >=0 && amountBid>=0){
-            addBid();
-            $("#SubmitOk").show();
+            if(euros>=amountBid){
+                addBid();
+                $("#SubmitOk").show();
+            }else {
+                $("#SubmitNotMoney").show();
+            }
         }else{
             $("#SubmitNotOk").show();
         }
@@ -74,6 +79,21 @@ function addBid(){
         dataType: 'json',
         data:JSON.stringify(datos)
     })
+
+    $.ajax({
+        async: false,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type:"POST",
+        url:"http://localhost:8080/api/users/"+userId+"/account/blocked",
+        contentType: 'application/json',
+        dataType: 'json',
+        data:JSON.stringify({
+            "quantity": parseFloat(amountBid),
+            "type":"euros"
+        })
+    })
+
+
 }
 
 function getParameterByName(name, url = window.location.href) {

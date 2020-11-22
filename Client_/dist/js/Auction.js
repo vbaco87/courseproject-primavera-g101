@@ -2,6 +2,7 @@ var bitcoins = getParameterByName('bitcoins');
 var date = getParameterByName('closeDate');
 var active = true;
 var euros;
+var basePrice = getParameterByName('price');
 
 var userId= "963963963";
 var auctionId = getParameterByName('auction');
@@ -18,7 +19,7 @@ $(document).ready(function () {
         dataType: 'json',
         success: function (data) {
             euros = data;
-            euros =parseFloat(euros).toFixed(2);;
+            euros =parseFloat(euros).toFixed(2);
      
 
         },
@@ -30,17 +31,28 @@ $(document).ready(function () {
     $("#Start").click(() => {
         $("#QuantityBid").show();
         $("#Euro").show();
+        $("#Price").show();
         $("#Start").hide();
     });
 
     $("#Submit").click(() => {
         $("#SubmitOk").css("display", "none");
         $("#SubmitNotOk").css("display", "none");
+        $("#SubmitNotMoney").css("display", "none");
+        $("#SubmitNotPrice").css("display", "none");
         bitcoinsBid= $("#bitcoins").val();
         amountBid = $("#euros").val()
         if(bitcoinsBid >=0 && amountBid>=0){
-            addBid();
-            $("#SubmitOk").show();
+            if(euros>=amountBid){
+                if(basePrice<=amountBid){
+                    addBid();
+                    $("#SubmitOk").show();
+                }else {
+                    $("#SubmitNotPrice").show();
+                }
+            }else {
+                $("#SubmitNotMoney").show();
+            }
         }else{
             $("#SubmitNotOk").show();
         }
@@ -54,7 +66,7 @@ $(document).ready(function () {
 
 function addHTML() {
 
-    $("#info").append('  <h3 class="display-4">Available Bitcoins:' + bitcoins + '₿</h3> <p class="lead">There are '+bitcoins+'₿ bitcoins available to bid. Click "Start Bidding" to make your bid.</p>    <hr class="my-4">    <p>This auction ends on <u>' + date + '</u></p>    <p id="Euro" style="display:none;">The amount of usable money you have in your account is <u>' + euros + '€.</u>   </p>   <a class="btn btn-primary btn-lg" href="#" role="button" id="Start">Start bidding</a>');
+    $("#info").append('  <h3 class="display-4">Available Bitcoins:' + bitcoins + '₿</h3> <p class="lead">There are '+bitcoins+'₿ bitcoins available to bid. Click "Start Bidding" to make your bid.</p>    <hr class="my-4">    <p>This auction ends on <u>' + date + '</u></p>   <p id="Price" style="display:none;">The base price of the auction is <u>' + basePrice + '€.</u>   </p> <p id="Euro" style="display:none;">The amount of usable money you have in your account is <u>' + euros + '€.</u>   </p>   <a class="btn btn-primary btn-lg" href="#" role="button" id="Start">Start bidding</a>');
 
 }
 
@@ -74,6 +86,21 @@ function addBid(){
         dataType: 'json',
         data:JSON.stringify(datos)
     })
+
+    $.ajax({
+        async: false,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type:"POST",
+        url:"http://localhost:8080/api/users/"+userId+"/account/blocked",
+        contentType: 'application/json',
+        dataType: 'json',
+        data:JSON.stringify({
+            "quantity": parseFloat(amountBid),
+            "type":"euros"
+        })
+    })
+
+
 }
 
 function getParameterByName(name, url = window.location.href) {

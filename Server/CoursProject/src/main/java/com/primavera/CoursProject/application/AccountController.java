@@ -25,17 +25,23 @@ public class AccountController {
         return accountDAO.getAccount(userId);
     }
 
-    public void updateWallet(String accountId, EntryDTO entry) throws Exception {
-        AccountDTO account = accountDAO.getAccount(accountId);
-        entryDAO.insertEntry(accountId, entry);
+    public void updateWallet(String userId, EntryDTO entry) throws Exception {
+        AccountDTO account = accountDAO.getAccount(userId);
+        entryDAO.insertEntry(userId, entry);
         switch (entry.getType().toLowerCase()) {
             case "bitcoin":
-                accountDAO.updateBitcoin(accountId, account.getBitcoinBalance() + entry.getQuantity());
+                accountDAO.updateBitcoin(userId, account.getBitcoinBalance() + entry.getQuantity());
                 break;
             case "euros":
-                accountDAO.updateEuro(accountId, account.getEuroBalance() + entry.getQuantity());
+                accountDAO.updateEuro(userId, account.getEuroBalance() + entry.getQuantity());
                 break;
         }
 
     }
+    
+    public void updateBlockedEuros(String userId, double quantity) {
+    	accountDAO.updateBlockedEuros(userId, quantity);
+    }
+    
+ 
 }

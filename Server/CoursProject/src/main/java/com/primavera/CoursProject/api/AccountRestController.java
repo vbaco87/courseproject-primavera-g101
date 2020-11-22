@@ -47,7 +47,12 @@ public class AccountRestController {
 
 	 @RequestMapping(value = "/users/{id}/account", method = RequestMethod.POST)
 	 @ResponseBody
-	public void updateWallet(@PathVariable String id,  @Valid EntryDTO entry) throws Exception {
+	 public void updateWallet(@PathVariable String id, @RequestBody @Valid EntryDTO entry) throws Exception {
 		accountController.updateWallet(id, entry);
-    }
+	 }
+	 
+	 @RequestMapping(value = "/users/{id}/account/blocked", method = RequestMethod.POST)
+	 public void updateBlockedEuros(@PathVariable String id, @RequestBody @Valid EntryDTO entry) {
+		 accountController.updateBlockedEuros(id, entry.getQuantity());
+	 }
 }

@@ -34,8 +34,8 @@ public class AuctionDAO implements com.primavera.CoursProject.application.daos.A
 
 	@Override
 	public void addAuction(AuctionDTO auction, String creatorId) {
-		final String insertAllocation = "INSERT INTO auctions VALUES (?, ?, ?, ?, ?, ?)";
-		jdbcTemplate.update(insertAllocation, auction.getId(), creatorId, auction.getTotalBitcoins(), auction.getPrice(), auction.getOpeningDate(), auction.getCloseDate());
+		final String insertAllocation = "INSERT INTO auctions VALUES (?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(insertAllocation, auction.getId(), creatorId, auction.getTotalBitcoins(), auction.getPrice(), auction.getOpeningDate(), auction.getCloseDate(), auction.isActive());
 	}
 
 

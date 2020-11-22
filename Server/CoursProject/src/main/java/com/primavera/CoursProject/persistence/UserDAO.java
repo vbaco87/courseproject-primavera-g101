@@ -85,4 +85,8 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
 			throw new AuctionDoesNotExistException(auctionId);
 		}
 	}
+    public void saveWinners(BidDTO bid, String auctionId){
+        final String query = "INSERT INTO winners (amount, price, auction_id, winner_id) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(query, bid.getBitcoins(), bid.getAmount(), auctionId, bid.getUserId());
+    }
 }

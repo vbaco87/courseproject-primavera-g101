@@ -19,6 +19,7 @@ public class BidDTO {
 	@Range(min=0)
 	@NotNull(message = "Amount cannot be null")
 	private double amount;
+	private String userId;
 	/*
 	private Transaction transactionBroker;
 	private Transaction transactionPlatform;
@@ -50,6 +51,14 @@ public class BidDTO {
 
 	public void setAmount(double amount) {
 		this.amount = amount;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 /*

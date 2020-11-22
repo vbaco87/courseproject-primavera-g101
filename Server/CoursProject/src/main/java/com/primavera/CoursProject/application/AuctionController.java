@@ -27,5 +27,9 @@ public class AuctionController {
 	public List<AuctionDTO> getInactiveAuctions() {
 		return auction.getInactiveAuctions(); 
 	}
+
+	public void setActiveState(AuctionDTO a){
+		auction.setActiveState(a);
+	}
 }
 

@@ -32,7 +32,7 @@ public class TransactionDAO implements com.primavera.CoursProject.application.da
 		String id= "idtransaction"+transactionCounter;
 		transactionCounter ++;
 		Date date = new Date();
-		final var query = "INSERT INTO transactions VALUES(?, ?,?) ";
+		final var query = "INSERT INTO transactions VALUES(?, ?,?,null) ";
 		jdbcTemplate.update(query,id,date, purchaseId);
 	}
 

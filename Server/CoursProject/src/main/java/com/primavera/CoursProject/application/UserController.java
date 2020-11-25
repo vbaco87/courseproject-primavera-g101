@@ -125,6 +125,7 @@ public class UserController {
 	public void buyBitcoins(String brokerId, double bitcoins, double price) {	
 		 String purchaseId = transaction.buyBitcoins(brokerId, bitcoins, price);
 		 transaction.addTransaction(purchaseId, brokerId);
+		entry.insertEntry(brokerId, new EntryDTO(bitcoins, "bitcoin"));
 		}
 
 

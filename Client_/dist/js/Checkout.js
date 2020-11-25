@@ -10,8 +10,7 @@ $(document).ready(function () {
 
     $("#payButton").click(function () {
         buyBitcoins() ;
-        postTransaction();
-        makeEntry();
+        
     });
 });
 function getBitcoinPrice() {
@@ -43,12 +42,12 @@ function addHTML(){
 function buyBitcoins() {
     var dataSend = {
         "groupId": "primavera",
-        "amount": bitcoins
+        "amount": 1.0
     };
     $.ajax({
   
       headers: { 'Access-Control-Allow-Origin': '*' },
-      url:  "https://stockmarkettrading.azurewebsites.net/stocks/bitcoins/" ,
+      url:  "https://stockmarkettrading.azurewebsites.net/stocks/bitcoins" ,
       async: false,
       type: "post",
   
@@ -57,12 +56,16 @@ function buyBitcoins() {
       data: dataSend,
       success: function (dataReply) {
         price = dataReply.unitPriceInEur;
-
-
+        console.log("Success");
+        postTransaction();
+    
         
        
       },
-      //error: function() { alert('Failed!'); },
+      error: function() {
+          console.log("fail"); 
+          $("#TransactionError").show();
+       },
   
   });
 }
@@ -70,7 +73,7 @@ function buyBitcoins() {
 
 function postTransaction() {
     var comisio = (price * 0.01) / 100 ;
-   price= (price + comisio)
+   // price= (price +  (price * 0.01) / 100).toFixed(2);
     $.ajax({
 
         headers: { 'Access-Control-Allow-Origin': '*' },
@@ -82,13 +85,14 @@ function postTransaction() {
         contentType: 'application/json',
 
         success: function () {
-
+            $("#TransactionSuccess").show();
+            //makeEntry();
         },
         //error: function() { alert('Failed!'); },
 
     });
 
-}
+}/*
 function makeEntry() {
 
     var data = {
@@ -110,6 +114,6 @@ function makeEntry() {
         },
         //error: function() { alert('Failed!'); },
     });
-    $("#TransactionSuccess").show();
-}
+  
+}*/
 

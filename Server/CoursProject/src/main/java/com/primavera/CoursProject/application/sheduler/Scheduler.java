@@ -27,12 +27,12 @@ public class Scheduler {
     }
 
     @Scheduled(cron="*/5 * * * * *")
-    public void doSomething() {
+    public void doSomething() throws Exception {
         System.out.println("5 SECONDS");
         updateNewFinishedAuctions();
     }
 
-    public void updateNewFinishedAuctions(){
+    public void updateNewFinishedAuctions() throws Exception{
         List<AuctionDTO> auctions = auctionDAO.getNewFinishedAuctions();
         if(!auctions.isEmpty()){
             for(AuctionDTO a : auctions){
@@ -43,7 +43,7 @@ public class Scheduler {
         }
     }
 
-    public void updateWinners (AuctionDTO auction){
+    public void updateWinners (AuctionDTO auction) throws Exception{
         List<BidDTO> participants = bidDAO.getParticipants(auction.getId());
         double qttBitcoins = auction.getTotalBitcoins();
         List<BidDTO> winners = new LinkedList<>();
@@ -59,6 +59,7 @@ public class Scheduler {
                     accountDAO.updateBitcoin(p.getUserId(), p.getBitcoins());
                     qttBitcoins -= p.getBitcoins();
                     accountDAO.updateBlockedEuros(p.getUserId(), -(p.getAmount()+p.getAmount()*0.01));
+                  
                     userDAO.saveWinners(p, auction.getId(), p.getBitcoins());
                 }
                 else{

@@ -1,9 +1,9 @@
-INSERT INTO users VALUES ('123123123', 'Judith', 'Barberan', 'jbarberan@edu.tecnocampus.cat', '147147', '125874', '2000-05-21', 'Spain', 'Barcelona', 'c/corunya',0);
-INSERT INTO users VALUES ('456456456', 'Victorius', 'Colominus', 'vcolominus@edu.tecnocampus.cat', '98741236', '369258', '2000-09-05', 'Spain', 'Barcelona', 'c/canyet',1);
-INSERT INTO users VALUES ('963963963', 'Patrica', 'Camacho', 'pcamacho@edu.tecnocampus.cat', '951951', '145236987', '1999-01-10', 'Spain', 'Barcelona', 'c/bac de roda',0);
-INSERT INTO users VALUES ('789456163', 'Ramon', 'Llop', 'rllop@edu.tecnocampus.cat', '123123', '123123', '2003-12-12', 'Spain', 'Arenys de Mar', 'c/casaSeva',0);
-INSERT INTO users VALUES ('789456113', 'Rodolfo', 'Vidal', 'rvidal@edu.tecnocampus.cat', '321321', '35795132', '2000-11-14', 'Spain', 'No se', 'c/preguntaliAell',2);
-INSERT INTO users VALUES ('789456123', 'Lorena', 'Gutierrez', 'lguiti@edu.tecnocampus.cat', '852147', '95123647', '2000-02-20', 'Spain', 'No se', 'c/preguntaliAella',0);
+INSERT INTO users VALUES ('123123123', 'Judith', 'Barberan', 'jbarberan@edu.tecnocampus.cat', '{bcrypt}$2a$10$fVKfcc47q6lrNbeXangjYeY000dmjdjkdBxEOilqhapuTO5ZH0co2', '125874', '2000-05-21', 'Spain', 'Barcelona', 'c/corunya',1);
+INSERT INTO users VALUES ('456456456', 'Victorius', 'Colominus', 'vcolominus@edu.tecnocampus.cat', '{bcrypt}$2a$10$fVKfcc47q6lrNbeXangjYeY000dmjdjkdBxEOilqhapuTO5ZH0co2', '369258', '2000-09-05', 'Spain', 'Barcelona', 'c/canyet',1);
+INSERT INTO users VALUES ('963963963', 'Patrica', 'Camacho', 'pcamacho@edu.tecnocampus.cat', '{bcrypt}$2a$10$fVKfcc47q6lrNbeXangjYeY000dmjdjkdBxEOilqhapuTO5ZH0co2', '145236987', '1999-01-10', 'Spain', 'Barcelona', 'c/bac de roda',1);
+INSERT INTO users VALUES ('789456163', 'Ramon', 'Llop', 'rllop@edu.tecnocampus.cat', '{bcrypt}$2a$10$fVKfcc47q6lrNbeXangjYeY000dmjdjkdBxEOilqhapuTO5ZH0co2', '123123', '2003-12-12', 'Spain', 'Arenys de Mar', 'c/casaSeva',1);
+INSERT INTO users VALUES ('789456113', 'Rodolfo', 'Vidal', 'rvidal@edu.tecnocampus.cat', '{bcrypt}$2a$10$fVKfcc47q6lrNbeXangjYeY000dmjdjkdBxEOilqhapuTO5ZH0co2', '35795132', '2000-11-14', 'Spain', 'No se', 'c/preguntaliAell',1);
+INSERT INTO users VALUES ('789456123', 'Lorena', 'Gutierrez', 'lguiti@edu.tecnocampus.cat', '{bcrypt}$2a$10$fVKfcc47q6lrNbeXangjYeY000dmjdjkdBxEOilqhapuTO5ZH0co2', '95123647', '2000-02-20', 'Spain', 'No se', 'c/preguntaliAella',1);
 
 INSERT INTO accounts VALUES ('123123123', 2.35,1123.21,30);
 INSERT INTO accounts VALUES ('456456456',5.02,1311.53,0);
@@ -38,4 +38,8 @@ INSERT INTO purchases VALUES ('idpurchase3', 3, 115, '123123123');
 INSERT INTO transactions VALUES ('idtransaction1', '2000-01-10', 'idpurchase1', null);
 INSERT INTO transactions VALUES ('idtransaction2', '2010-05-07', 'idpurchase2', null);
 INSERT INTO transactions VALUES ('idtransaction3', '2020-08-02', 'idpurchase3', null);
+
+INSERT INTO authorities (email, role) VALUES ('jbarberan@edu.tecnocampus.cat', 'ROLE_ADMIN');
+INSERT INTO authorities (email, role) VALUES ('lguiti@edu.tecnocampus.cat', 'ROLE_BROKER');
+INSERT INTO authorities (email, role) VALUES ('rvidal@edu.tecnocampus.cat', 'ROLE_BIDDER');
 

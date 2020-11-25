@@ -12,7 +12,7 @@ CREATE TABLE users
   country VARCHAR (20),
   city VARCHAR (20),
   city_home_address VARCHAR (255),
-  user_type NUMBER (2)
+  enabled TINYINT NOT NULL DEFAULT 1
 );
 
 DROP TABLE if EXISTS accounts;
@@ -94,4 +94,13 @@ CREATE TABLE transactions(
    FOREIGN KEY (purchases_id) REFERENCES purchases(id),
    FOREIGN KEY (bid_id) REFERENCES bids(user_id)
 );
+
+DROP TABLE if EXISTS authorities;
+CREATE TABLE authorities (
+    authority_id int(11) NOT NULL AUTO_INCREMENT,
+    email varchar(255) NOT NULL,
+    role varchar(45) NOT NULL,
+    PRIMARY KEY (authority_id),
+    UNIQUE KEY uni_email_role (role,email),
+    CONSTRAINT fk_email FOREIGN KEY (email) REFERENCES users (email));
 

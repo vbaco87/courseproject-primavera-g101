@@ -42,7 +42,7 @@ function addHTML(){
 function buyBitcoins() {
     var dataSend = {
         "groupId": "primavera",
-        "amount": 1.0
+        "amount": bitcoins
     };
     $.ajax({
   

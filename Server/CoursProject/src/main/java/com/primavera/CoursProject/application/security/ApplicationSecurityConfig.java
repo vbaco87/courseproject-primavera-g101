@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.primavera.CoursProject.application.security.jwt.JwtConfig;
+import com.primavera.CoursProject.application.security.jwt.JwtTokenVerifierFilter;
+import com.primavera.CoursProject.application.security.jwt.JwtUsernamePasswordAuthenticationFilter;
 import javax.sql.DataSource;
 
 @EnableWebSecurity
@@ -19,32 +21,32 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private DataSource dataSource;
 
-    //private final JwtConfig jwtConfig;
+    private final JwtConfig jwtConfig;
 
-    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder, DataSource dataSource/*, JwtConfig jwtConfig*/) {
+    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder, DataSource dataSource, JwtConfig jwtConfig) {
         this.passwordEncoder = passwordEncoder;
         this.dataSource = dataSource;
-        //this.jwtConfig = jwtConfig;
+        this.jwtConfig = jwtConfig;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-               
+		        .csrf().disable()
+		        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		        .and()
+		        .addFilter(new JwtUsernamePasswordAuthenticationFilter(authenticationManager(), jwtConfig))
+		        .addFilterAfter(new JwtTokenVerifierFilter(jwtConfig),JwtUsernamePasswordAuthenticationFilter.class)
 
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
-                .antMatchers("/api/auctions", "api/users/*/auctions").hasRole("BIDDER")
-                .antMatchers("api/users/*/buyBitcoins", "api/users/*/auctions", "api/users/*/purchasedBitcoins", "api/users/*/soldBitcoins").hasRole("BROKER")
+                .antMatchers("/api/auctions", "/api/users/*/auctions").hasRole("BIDDER")
+                .antMatchers("/api/users/*/buyBitcoins", "/api/users/*/auctions", "/api/users/*/purchasedBitcoins", "/api/users/*/soldBitcoins").hasRole("BROKER")
                 .antMatchers("/api/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
+                .anyRequest()
+                .authenticated();
                 
-		        .and()
-		        .httpBasic()
-		
-		        .and()
-		        .csrf().disable()
-		        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		        
     }
 
     // users/me

@@ -40,8 +40,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
-                .antMatchers("/api/auctions", "/api/users/*/auctions").hasRole("BIDDER")
-                .antMatchers("/api/users/*/buyBitcoins", "/api/users/*/auctions", "/api/users/*/purchasedBitcoins", "/api/users/*/soldBitcoins").hasRole("BROKER")
+                .antMatchers("/api/auctions", "/api/users/me/auctions", "/api/users/me/bids/auctions/*").hasRole("BIDDER")
+                .antMatchers("/api/users/me/buyBitcoins", "/api/users/me/auctions", "/api/users/me/purchasedBitcoins", "/api/users/me/soldBitcoins").hasRole("BROKER")
                 .antMatchers("/api/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated();

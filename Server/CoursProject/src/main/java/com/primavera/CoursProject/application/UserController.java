@@ -35,6 +35,10 @@ public class UserController {
     public UserDTO getUser(String id) {
         return user.getUser(id);
     }
+    
+    public UserDTO getUserByEmail(String email) {
+        return user.getUserByEmail(email);
+    }
 
     public void updateUser(String id, UserDTO user) {
         user.setId(id);

@@ -47,6 +47,17 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
             throw new UserDoesNotExistException(id);
         }
     }
+    
+    @Override
+    public UserDTO getUserByEmail(String email) {
+        final String queryUser = "SELECT id, name, second_name, email, password, phone_number, birthday, country, city, city_home_address FROM users WHERE email = ?";
+        try{
+            return jdbcTemplate.queryForObject(queryUser, userRowMapper, email);
+        }
+        catch (EmptyResultDataAccessException e){
+            throw new UserDoesNotExistException(email);
+        }
+    }
 
     @Override
     public void updateUser(UserDTO user) {

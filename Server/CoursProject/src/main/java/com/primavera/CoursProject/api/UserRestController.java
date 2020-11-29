@@ -109,10 +109,8 @@ public class UserRestController {
     }
     @PostMapping( "/users/{brokerId}/buyBitcoins")
 	public void buyBitcoins(@PathVariable String brokerId, @RequestParam double bitcoins) throws Exception { 
-    	throw new Exception ("asd");
-    	/*
     	double price =  bitcoinController.buyBitcoins(bitcoins);
-		userController.buyBitcoins(brokerId,bitcoins, price );*/
+		userController.buyBitcoins(brokerId,bitcoins, price );
 	}
 
 }

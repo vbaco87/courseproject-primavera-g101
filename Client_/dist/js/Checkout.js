@@ -9,7 +9,7 @@ $(document).ready(function () {
   getBitcoinPrice();
 
     $("#payButton").click(function () {
-        buyBitcoins() ;
+        postTransaction();
         
     });
 });
@@ -39,11 +39,9 @@ function addHTML(){
     $("#Bitcoins").append(bitcoins+'₿');
     $("#Total").append(price+'€');
 }
+/*
 function buyBitcoins() {
-    var dataSend = {
-        "groupId": "primavera",
-        "amount": bitcoins
-    };
+
     $.ajax({
   
       headers: { 'Access-Control-Allow-Origin': '*' },
@@ -68,27 +66,35 @@ function buyBitcoins() {
        },
   
   });
-}
+}*/
 
 
 function postTransaction() {
-    var comisio = (price * 0.01) / 100 ;
+   // var price = price + (price * 0.01) / 100 ;
    // price= (price +  (price * 0.01) / 100).toFixed(2);
+       var dataSend = {
+        "groupId": "primavera",
+        "amount": bitcoins
+    };
     $.ajax({
 
         headers: { 'Access-Control-Allow-Origin': '*' },
-        url:  "http://localhost:8080/api/users/" + accountId + "/buyBitcoins?bitcoins=" + bitcoins + "&price=" +price ,
+        url:  "http://localhost:8080/api/users/" + accountId + "/buyBitcoins?bitcoins=" + bitcoins,
         async: false,
         type: "POST",
 
-        dataType: 'json',
+        //dataType: 'json',
         contentType: 'application/json',
 
         success: function () {
             $("#TransactionSuccess").show();
             //makeEntry();
         },
-        //error: function() { alert('Failed!'); },
+        error: function() {
+            console.log("fail" ); 
+            $("#TransactionError").show();
+         },
+    
 
     });
 

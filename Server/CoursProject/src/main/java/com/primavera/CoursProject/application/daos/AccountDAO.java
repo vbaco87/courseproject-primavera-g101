@@ -7,7 +7,7 @@ public interface AccountDAO {
 
 	public AccountDTO getAccount(String userId)throws Exception ;
 
-	public void updateBitcoin(String userId, double quantity);
+	public void updateBitcoin(String userId, double quantity) throws Exception;
 
 	public void updateEuro(String userId, double quantity);
   

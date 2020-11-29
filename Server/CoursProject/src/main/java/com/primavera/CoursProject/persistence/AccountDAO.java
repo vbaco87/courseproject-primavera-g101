@@ -37,12 +37,19 @@ public class AccountDAO implements com.primavera.CoursProject.application.daos.A
 
 	}
 
-	public void updateBitcoin(String userId, double quantity){
+	public void updateBitcoin(String userId, double quantity) throws Exception{
+		if(userId==null)
+			return;
+		AccountDTO account;
+
+		account = getAccount(userId);
+		double bitcoins = quantity+account.getBitcoinBalance();
 		final var query = "UPDATE accounts SET bitcoin_balance =  ? WHERE user_id=?";
-		 jdbcTemplate.update(query,quantity , userId);
+		 jdbcTemplate.update(query,bitcoins , userId);
 	}
 	
 	public void updateEuro(String userId, double quantity){
+
 		final var query = "UPDATE accounts SET euro_balance = euro_balance + ? WHERE user_id=?";
 
 		 jdbcTemplate.update(query,quantity , userId);

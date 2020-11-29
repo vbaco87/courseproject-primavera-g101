@@ -1,6 +1,7 @@
 package com.primavera.CoursProject.api;
 
 
+import com.primavera.CoursProject.application.BitcoinController;
 import com.primavera.CoursProject.application.UserController;
 import com.primavera.CoursProject.application.dto.SoldDTO;
 import com.primavera.CoursProject.application.dto.*;
@@ -24,9 +25,11 @@ import java.util.List;
 public class UserRestController {
 
     UserController userController;
+    BitcoinController bitcoinController;
 
-    public UserRestController(UserController userController) {
+    public UserRestController(UserController userController, BitcoinController bitcoinController) {
         this.userController = userController;
+        this.bitcoinController= bitcoinController;
     }
 
     @GetMapping("/users/{id}")
@@ -101,12 +104,15 @@ public class UserRestController {
     }
     
     @PostMapping("/users/{userId}/account/{currency}")
-    public void updateCurrency(@PathVariable String userId, @PathVariable String currency, @RequestParam double quantity) {
+    public void updateCurrency(@PathVariable String userId, @PathVariable String currency, @RequestParam double quantity) throws Exception {
     	userController.updateCurrency(userId, quantity, currency.toUpperCase());
     }
     @PostMapping( "/users/{brokerId}/buyBitcoins")
-	public void buyBitcoins(@PathVariable String brokerId, @RequestParam double bitcoins, @RequestParam double price) { 
-		userController.buyBitcoins(brokerId,bitcoins, price );
+	public void buyBitcoins(@PathVariable String brokerId, @RequestParam double bitcoins) throws Exception { 
+    	throw new Exception ("asd");
+    	/*
+    	double price =  bitcoinController.buyBitcoins(bitcoins);
+		userController.buyBitcoins(brokerId,bitcoins, price );*/
 	}
 
 }

@@ -6,7 +6,7 @@ INSERT INTO users VALUES ('789456113', 'Rodolfo', 'Vidal', 'rvidal@edu.tecnocamp
 INSERT INTO users VALUES ('789456123', 'Lorena', 'Gutierrez', 'lguiti@edu.tecnocampus.cat', '{bcrypt}$2a$10$fVKfcc47q6lrNbeXangjYeY000dmjdjkdBxEOilqhapuTO5ZH0co2', '95123647', '2000-02-20', 'Spain', 'No se', 'c/preguntaliAella',1);
 
 INSERT INTO accounts VALUES ('123123123', 2.35,1123.21,30);
-INSERT INTO accounts VALUES ('456456456',5.02,1311.53,0);
+INSERT INTO accounts VALUES ('456456456',5.02,2550.53,200.12);
 INSERT INTO accounts VALUES ('963963963',18.4,9115.23,60.5);
 INSERT INTO accounts VALUES ('789456163', 31.74,6160.34,80.25);
 

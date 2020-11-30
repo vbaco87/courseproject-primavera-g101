@@ -4,12 +4,12 @@ var bitcoins;
 var locked;
 var usable;
 var accountId = 456456456;
-
+var token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYmFyYmVyYW5AZWR1LnRlY25vY2FtcHVzLmNhdCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE2MDY3MzAzNjksImV4cCI6MTYwNzU1NDgwMH0.L7Kr5w9jM-uBifzSXGLWf4kwP-iwQjiRAfdOsUySnLZvfq76glwwpyZedyp-mNG5Xgk8VeT1Ijizs8QK91472w';
 
 $(document).ready(function () {
     $.ajax({
 
-        headers: { 'Access-Control-Allow-Origin': '*' },
+        headers: {'Authorization': token},
         url: "http://localhost:8080/api/users/" + accountId+"/account",
         async: false,
         type: 'GET',

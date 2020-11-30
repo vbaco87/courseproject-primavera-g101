@@ -8,10 +8,11 @@ var userId= "963963963";
 var auctionId = getParameterByName('auction');
 var bitcoinsBid;
 var amountBid;
+var token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYmFyYmVyYW5AZWR1LnRlY25vY2FtcHVzLmNhdCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE2MDY3MzAzNjksImV4cCI6MTYwNzU1NDgwMH0.L7Kr5w9jM-uBifzSXGLWf4kwP-iwQjiRAfdOsUySnLZvfq76glwwpyZedyp-mNG5Xgk8VeT1Ijizs8QK91472w';
 
 $(document).ready(function () {
     $.ajax({
-        headers: { 'Access-Control-Allow-Origin': '*' },
+        headers: {'Authorization': token },
         url: "http://localhost:8080/api/users/" + userId+"/account/available",
         async: false,
         type: 'GET',
@@ -79,7 +80,7 @@ function addBid(){
 
     $.ajax({
         async: false,
-        headers: {'Access-Control-Allow-Origin': '*'},
+        headers: {'Authorization': token},
         type:"POST",
         url:url,
         contentType: 'application/json',
@@ -87,9 +88,10 @@ function addBid(){
         data:JSON.stringify(datos)
     })
 
+    //pasar esto al back-end
     $.ajax({
         async: false,
-        headers: {'Access-Control-Allow-Origin': '*'},
+        headers: {'Authorization':'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYmFyYmVyYW5AZWR1LnRlY25vY2FtcHVzLmNhdCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE2MDY3MzAzNjksImV4cCI6MTYwNzU1NDgwMH0.L7Kr5w9jM-uBifzSXGLWf4kwP-iwQjiRAfdOsUySnLZvfq76glwwpyZedyp-mNG5Xgk8VeT1Ijizs8QK91472w'},
         type:"POST",
         url:"http://localhost:8080/api/users/"+userId+"/account/blocked",
         contentType: 'application/json',

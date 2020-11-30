@@ -1,6 +1,6 @@
 var bitcoins;
 var price;
-
+var token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYmFyYmVyYW5AZWR1LnRlY25vY2FtcHVzLmNhdCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE2MDY3MzAzNjksImV4cCI6MTYwNzU1NDgwMH0.L7Kr5w9jM-uBifzSXGLWf4kwP-iwQjiRAfdOsUySnLZvfq76glwwpyZedyp-mNG5Xgk8VeT1Ijizs8QK91472w';
 var accountId = 123123123;
 
 
@@ -73,7 +73,7 @@ function postTransaction() {
    price= (price + comisio)
     $.ajax({
 
-        headers: { 'Access-Control-Allow-Origin': '*' },
+        headers: {'Authorization': token},
         url:  "http://localhost:8080/api/users/" + accountId + "/buyBitcoins?bitcoins=" + bitcoins + "&price=" +price ,
         async: false,
         type: "POST",
@@ -97,7 +97,7 @@ function makeEntry() {
     };
     $.ajax({
 
-        headers: { 'Access-Control-Allow-Origin': '*' },
+        headers: {'Authorization': token},
         url: "http://localhost:8080/api/users/" + accountId + "/account",
         async: false,
         type: 'post',

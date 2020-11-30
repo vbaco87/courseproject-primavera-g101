@@ -28,6 +28,7 @@
         crossorigin="anonymous"></script>
 
     <script src="js/Checkout.js"></script>
+    <script src="js/Menu.js"></script>
 </head>
 
 <body class="sb-nav-fixed">
@@ -69,72 +70,52 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="index.html">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-tachometer-alt"></i>
-                            </div>
-                            Home
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Bidder</div>
-                        <a class="nav-link" href="ActualAuctions.html">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-chart-area"></i>
-                            </div>
-                            Current Auctions
-                        </a>
-                        <a class="nav-link" href="UserAuctionsHistorial.html">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-chart-area"></i>
-                            </div>
-                            Auction History
-                        </a>
-                        <a class="nav-link" href="WonAuction.html">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-chart-area"></i>
-                            </div>
-                            My won auctions
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Broker</div>
-                        <a class="nav-link" href="BuyBitcoins.html">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-chart-area"></i>
-                            </div>
-                            Buy Bitcoins
-                        </a>
-                        <a class="nav-link" href="OrganizeAuction.html">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-chart-area"></i>
-                            </div>
-                            Organize an auction
-                        </a>
-                        <a class="nav-link" href="TransactionHistory.html">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-chart-area"></i>
-                            </div>
-                            Transaction History
-                        </a>
+                        <div id="menuHome">
+                            
+                        </div>
+                        <hr class="my-1">
+                        <!-- <div class="sb-sidenav-menu-heading">Bidder</div> -->
+                        <div id="menuCurrentAuctions">
 
-                        <div class="sb-sidenav-menu-heading">Admin</div>
-                        <a class="nav-link" href="Commissions.html">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-chart-area"></i>
-                            </div>
-                            Comissions
-                        </a>
+                        </div>
 
-                        <div class="sb-sidenav-menu-heading">Account</div>
-                        <a class="nav-link" href="wallet.html">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-chart-area"></i>
-                            </div>
-                            Wallet
-                        </a>
+                        <div id="menuAuctionHistory">
+
+                        </div>
+
+                        <div id="menuUserWonAuctions">
+
+                        </div>
+                        <hr class="my-1">
+                        <!-- <div class="sb-sidenav-menu-heading">Broker</div> -->
+                        <div id="menuBuyBitcoins">
+
+                        </div>
+                        
+                        <div id="menuOrganizeAuction">
+
+                        </div>
+
+                        <div id="menuTransactionHistory">
+
+                        </div>
+
+                        <hr class="my-1">
+                        <!-- <div class="sb-sidenav-menu-heading">Admin</div> -->
+
+                        <div id="menuComissions">
+
+                        </div>
+
+                        <div id="menuWallet">
+
+                        </div>
+
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Logged in as:</div>
-                    <a style="color: rgba(0, 255, 255, 0.658)">Admin</a>
+                    <a style="color:rgba(0, 255, 255, 0.658);"><span id="menuUserType"></span></a>
                 </div>
             </nav>
         </div>

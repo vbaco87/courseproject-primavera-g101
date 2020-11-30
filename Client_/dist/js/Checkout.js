@@ -78,7 +78,7 @@ function postTransaction() {
     };
     $.ajax({
         headers: {'Authorization': token},
-        url:  "http://localhost:8080/api/users/" + accountId + "/buyBitcoins?bitcoins=" + bitcoins,
+        url:  "http://localhost:8080/api/users/me/buyBitcoins?bitcoins=" + bitcoins,
 
         async: false,
         type: "POST",

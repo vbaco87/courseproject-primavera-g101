@@ -13,7 +13,7 @@ var token = localStorage.getItem('token');
 $(document).ready(function () {
     $.ajax({
         headers: {'Authorization': token },
-        url: "http://localhost:8080/api/users/" + userId+"/account/available",
+        url: "http://localhost:8080/api/users/me/account/available",
         async: false,
         type: 'GET',
         crossDomain: true,

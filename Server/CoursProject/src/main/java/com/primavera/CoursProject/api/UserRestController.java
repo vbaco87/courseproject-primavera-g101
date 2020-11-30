@@ -166,7 +166,7 @@ public class UserRestController {
     }
     
     @PostMapping("/users/me/account/{currency}")
-    public void updateMyCurrency(@PathVariable String currency, @RequestParam double quantity, Principal principal) {
+    public void updateMyCurrency(@PathVariable String currency, @RequestParam double quantity, Principal principal) throws Exception {
     	String userId = userController.getUserByEmail(principal.getName()).getId();
     	userController.updateCurrency(userId, quantity, currency.toUpperCase());
     }
@@ -178,7 +178,7 @@ public class UserRestController {
 	}
     
     @PostMapping( "/users/me/buyBitcoins")
-	public void buyMyBitcoins(@RequestParam double bitcoins, @RequestParam double price, Principal principal) { 
+	public void buyMyBitcoins(@RequestParam double bitcoins, @RequestParam double price, Principal principal) throws Exception { 
     	String brokerId = userController.getUserByEmail(principal.getName()).getId();
 		userController.buyBitcoins(brokerId,bitcoins, price );
 	}

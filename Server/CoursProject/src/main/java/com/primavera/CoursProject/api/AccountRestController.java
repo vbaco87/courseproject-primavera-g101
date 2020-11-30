@@ -81,7 +81,7 @@ public class AccountRestController {
 	 }
 	 
 	 @RequestMapping(value = "/users/me/account/blocked", method = RequestMethod.POST)
-	 public void updateMyBlockedEuros(@RequestBody @Valid EntryDTO entry,Principal principal) {
+	 public void updateMyBlockedEuros(@RequestBody @Valid EntryDTO entry,Principal principal) throws Exception {
 		 String id = userController.getUserByEmail(principal.getName()).getId();
 		 accountController.updateBlockedEuros(id, entry.getQuantity());
 	 }

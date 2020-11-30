@@ -1,4 +1,4 @@
-
+var token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYmFyYmVyYW5AZWR1LnRlY25vY2FtcHVzLmNhdCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE2MDY3MzAzNjksImV4cCI6MTYwNzU1NDgwMH0.L7Kr5w9jM-uBifzSXGLWf4kwP-iwQjiRAfdOsUySnLZvfq76glwwpyZedyp-mNG5Xgk8VeT1Ijizs8QK91472w';
 
 $(document).ready(function () {
     getBidStatus(getParameterByName('active'));
@@ -16,12 +16,18 @@ function getBidStatus(active) {
     }
 }
 function getBid(user, auction){
-    $.get("http://localhost:8080/api/user/"+user+"/auction/"+auction+"/bid", (data) => {
+    $.ajax({
+        headers: {'Authorization': token},
+        url:  "http://localhost:8080/api/user/"+user+"/auction/"+auction+"/bid" ,
+        async: false,
+        type: "get",
+        dataType: 'json',
+        contentType: 'application/json',
 
-        $("#information").append('<ul><li>You bidded for ' +data.bitcoins+ '₿</li><li>You have bid ' +data.amount + ' €</li></ul>');
+        success: function (data) {
+            $("#information").append('<ul><li>You bidded for ' +data.bitcoins+ '₿</li><li>You have bid ' +data.amount + ' €</li></ul>');
             console.log(data);
-            
-
+        },
     });
 
 }

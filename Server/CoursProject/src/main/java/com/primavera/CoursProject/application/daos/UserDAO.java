@@ -8,6 +8,8 @@ import com.primavera.CoursProject.application.dto.UserDTO;
 public interface UserDAO {
 
     public UserDTO getUser(String id);
+    
+    public UserDTO getUserByEmail(String email);
 
     public void updateUser(UserDTO user);
 

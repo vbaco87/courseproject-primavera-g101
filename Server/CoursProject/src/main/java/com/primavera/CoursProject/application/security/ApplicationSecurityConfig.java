@@ -1,16 +1,14 @@
 package com.primavera.CoursProject.application.security;
 
-import cat.tecnocampus.rooms.configuration.security.jwt.JwtConfig;
-import cat.tecnocampus.rooms.configuration.security.jwt.JwtTokenVerifierFilter;
-import cat.tecnocampus.rooms.configuration.security.jwt.JwtUsernamePasswordAuthenticationFilter;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+import com.primavera.CoursProject.application.security.jwt.JwtConfig;
+import com.primavera.CoursProject.application.security.jwt.JwtTokenVerifierFilter;
+import com.primavera.CoursProject.application.security.jwt.JwtUsernamePasswordAuthenticationFilter;
 import javax.sql.DataSource;
 
 @EnableWebSecurity
@@ -18,8 +16,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
 
-    private static final String USERS_QUERY = "select name, password, enabled from student where name = ?";
-    private static final String AUTHORITIES_QUERY = "select username, role from authorities where username = ?";
+    private static final String USERS_QUERY = "select email, password, enabled from users where email = ?";
+    private static final String AUTHORITIES_QUERY = "select email, role from authorities where email = ?";
 
     private DataSource dataSource;
 
@@ -34,16 +32,24 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+		        .csrf().disable()
+		        .cors().and()
+		        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		        .and()
+		        .addFilter(new JwtUsernamePasswordAuthenticationFilter(authenticationManager(), jwtConfig))
+		        .addFilterAfter(new JwtTokenVerifierFilter(jwtConfig),JwtUsernamePasswordAuthenticationFilter.class)
 
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
-                .antMatchers("/api/auctions", "/users/**/auctions").hasRole("BIDDER")
-                .antMatchers("/users/**/buyBitcoins", "/users/**/auctions", "/users/**/purchasedBitcoins", "/users/**/soldBitcoins").hasRole("BROKER")
+                //api/users/me/auctions no le va a el bidder
+                //.antMatchers("/api/auctions", "/api/users/me/auctions", "/api/users/me/bids/auctions/*").hasRole("BIDDER")
+                //.antMatchers("/api/users/me/buyBitcoins", "/api/users/me/auctions", "/api/users/me/purchasedBitcoins", "/api/users/me/soldBitcoins").hasRole("BROKER")
+                //algunos de broker provocan un forbbiden en el admin
                 .antMatchers("/api/**").hasRole("ADMIN")
-                .anyRequest().authenticated();
+                .anyRequest()
+                .authenticated();
+                
+		        
     }
 
     // users/me

@@ -130,4 +130,6 @@ public abstract class AbsUser {
     public void setUserType(int userType) {
         this.userType = userType;
     }
+
+
 }

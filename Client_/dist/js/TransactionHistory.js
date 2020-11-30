@@ -45,7 +45,7 @@ $(document).ready(function () {
 });
 
 function getPurchasedTransactionHistory() {
-    var url = "http://localhost:8080/api/users/" + userID + "/purchasedBitcoins";
+    var url = "http://localhost:8080/api/users/me/purchasedBitcoins";
     $.ajax
         ({
             async: false,
@@ -61,7 +61,7 @@ function getPurchasedTransactionHistory() {
 }
 
 function getSoldTransactionHistory() {
-    var url = "http://localhost:8080/api/users/" + userID + "/soldBitcoins";
+    var url = "http://localhost:8080/api/users/me/soldBitcoins";
     $.ajax
         ({
             async: false,

@@ -8,7 +8,7 @@ var userId= "963963963";
 var auctionId = getParameterByName('auction');
 var bitcoinsBid;
 var amountBid;
-var token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYmFyYmVyYW5AZWR1LnRlY25vY2FtcHVzLmNhdCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE2MDY3MzAzNjksImV4cCI6MTYwNzU1NDgwMH0.L7Kr5w9jM-uBifzSXGLWf4kwP-iwQjiRAfdOsUySnLZvfq76glwwpyZedyp-mNG5Xgk8VeT1Ijizs8QK91472w';
+var token = localStorage.getItem('token');
 
 $(document).ready(function () {
     $.ajax({
@@ -72,7 +72,7 @@ function addHTML() {
 }
 
 function addBid(){
-    var url = "http://localhost:8080/api/users/"+ userId+"/bids/auctions/"+auctionId;
+    var url = "http://localhost:8080/api/users/me/bids/auctions/"+auctionId;
     var datos = {
         "bitcoins": parseFloat(bitcoinsBid),
         "amount": parseFloat(amountBid)
@@ -87,22 +87,6 @@ function addBid(){
         dataType: 'json',
         data:JSON.stringify(datos)
     })
-
-    //pasar esto al back-end
-    $.ajax({
-        async: false,
-        headers: {'Authorization':'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYmFyYmVyYW5AZWR1LnRlY25vY2FtcHVzLmNhdCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE2MDY3MzAzNjksImV4cCI6MTYwNzU1NDgwMH0.L7Kr5w9jM-uBifzSXGLWf4kwP-iwQjiRAfdOsUySnLZvfq76glwwpyZedyp-mNG5Xgk8VeT1Ijizs8QK91472w'},
-        type:"POST",
-        url:"http://localhost:8080/api/users/"+userId+"/account/blocked",
-        contentType: 'application/json',
-        dataType: 'json',
-        data:JSON.stringify({
-            "quantity": parseFloat(amountBid),
-            "type":"euros"
-        })
-    })
-
-
 }
 
 function getParameterByName(name, url = window.location.href) {

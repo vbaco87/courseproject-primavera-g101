@@ -57,23 +57,23 @@ public class UserRestController {
     }
 
     @RequestMapping(value = "/users/{userId}/auctions", method = RequestMethod.POST)
-    public void addAuction(@RequestBody @Valid AuctionDTO auction, @PathVariable String userId) {
+    public void addAuction(@RequestBody @Valid AuctionDTO auction, @PathVariable String userId) throws Exception {
     	userController.addAuction(auction, userId);
     }
     
     @RequestMapping(value = "/users/me/auctions", method = RequestMethod.POST)
-    public void addMyAuction(@RequestBody @Valid AuctionDTO auction, Principal principal) {
+    public void addMyAuction(@RequestBody @Valid AuctionDTO auction, Principal principal) throws Exception {
     	String id = userController.getUserByEmail(principal.getName()).getId();
     	userController.addAuction(auction, id);
     }
     
     @RequestMapping(value = "/users/{userId}/bids/auctions/{auctionId}", method = RequestMethod.POST)
-    public void addBid(@RequestBody @Valid BidDTO bid, @PathVariable String userId,  @PathVariable String auctionId) {
+    public void addBid(@RequestBody @Valid BidDTO bid, @PathVariable String userId,  @PathVariable String auctionId) throws Exception {
     	userController.addBid(bid, userId, auctionId);
     }
     
     @RequestMapping(value = "/users/me/bids/auctions/{auctionId}", method = RequestMethod.POST)
-    public void addMyBid(@RequestBody @Valid BidDTO bid, @PathVariable String auctionId, Principal principal) {
+    public void addMyBid(@RequestBody @Valid BidDTO bid, @PathVariable String auctionId, Principal principal) throws Exception {
     	String id = userController.getUserByEmail(principal.getName()).getId();
     	userController.addBid(bid, id, auctionId);
     }

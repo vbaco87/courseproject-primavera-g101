@@ -2,7 +2,7 @@ var creatorId=963963963;
 var price;
 var totalBitcoins;
 var bitcoinsBroker;
-var token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYmFyYmVyYW5AZWR1LnRlY25vY2FtcHVzLmNhdCIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE2MDY3MzAzNjksImV4cCI6MTYwNzU1NDgwMH0.L7Kr5w9jM-uBifzSXGLWf4kwP-iwQjiRAfdOsUySnLZvfq76glwwpyZedyp-mNG5Xgk8VeT1Ijizs8QK91472w';
+var token = localStorage.getItem('token');
 
 $(document).ready(function() {
     noDisplay();
@@ -100,7 +100,7 @@ function updateClosingDate(){
 }
 
 function addAuction(){
-    var url = "http://localhost:8080/api/users/"+ creatorId+"/auctions";
+    var url = "http://localhost:8080/api/users/me/auctions";
 
     var datos = {
         "totalBitcoins": parseFloat(totalBitcoins),
@@ -120,18 +120,5 @@ function addAuction(){
         data:JSON.stringify(datos)
     })
 
-    //pasar esto al back end
-    $.ajax({
-        async: false,
-        headers: {'Access-Control-Allow-Origin': '*'},
-        type:"POST",
-        url:"http://localhost:8080/api/users/"+ creatorId+"/account",
-        contentType: 'application/json',
-        dataType: 'json',
-        data:JSON.stringify({
-            "quantity": parseFloat(-totalBitcoins),
-            "type":"bitcoin"
-        })
-    })
 }
 

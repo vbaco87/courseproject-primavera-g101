@@ -19,8 +19,9 @@ public class UserController {
     public PurchaseDAO purchase;
     public SoldDAO sold;
 	public TransactionDAO transaction;
+	public AccountController accountController;
     
-    public UserController(UserDAO user, AuctionDAO auction, BidDAO bid, PurchaseDAO purchase, SoldDAO sold, AccountDAO account, EntryDAO entry, TransactionDAO transaction) {
+    public UserController(UserDAO user, AuctionDAO auction, BidDAO bid, PurchaseDAO purchase, SoldDAO sold, AccountDAO account, EntryDAO entry, TransactionDAO transaction, AccountController accountController) {
         this.user = user;
         this.auction = auction;
         this.bid = bid;
@@ -29,7 +30,7 @@ public class UserController {
         this.account=account;
         this.entry = entry;
     	this.transaction = transaction;
-
+    	this.accountController= accountController;
     }
 
     public UserDTO getUser(String id) {
@@ -50,12 +51,17 @@ public class UserController {
         return this.user.createUser(user);
     }
     
-    public void addAuction(AuctionDTO auction, String userId) {
+    public void addAuction(AuctionDTO auction, String userId) throws Exception {
     	this.auction.addAuction(auction, userId);
+    	EntryDTO entry= new EntryDTO();
+    	entry.setType("bitcoin");
+    	entry.setQuantity(auction.getTotalBitcoins());
+    	this.accountController.updateWallet(userId, entry);
     }
     
-    public void addBid(BidDTO bid, String userId, String auctionId) {
+    public void addBid(BidDTO bid, String userId, String auctionId) throws Exception {
     	this.bid.addBid(bid, userId, auctionId);
+    	this.account.updateBlockedEuros(userId, bid.getAmount());
     }
     
     public List<UserDTO> getBidders(String auctionId){

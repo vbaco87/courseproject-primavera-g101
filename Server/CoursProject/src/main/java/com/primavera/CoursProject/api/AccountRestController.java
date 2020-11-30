@@ -75,14 +75,4 @@ public class AccountRestController {
 		accountController.updateWallet(id, entry);
 	 }
 	 
-	 @RequestMapping(value = "/users/{id}/account/blocked", method = RequestMethod.POST)
-	 public void updateBlockedEuros(@PathVariable String id, @RequestBody @Valid EntryDTO entry) throws Exception {
-		 accountController.updateBlockedEuros(id, entry.getQuantity());
-	 }
-	 
-	 @RequestMapping(value = "/users/me/account/blocked", method = RequestMethod.POST)
-	 public void updateMyBlockedEuros(@RequestBody @Valid EntryDTO entry,Principal principal) throws Exception{
-		 String id = userController.getUserByEmail(principal.getName()).getId();
-		 accountController.updateBlockedEuros(id, entry.getQuantity());
-	 }
 }

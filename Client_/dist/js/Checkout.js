@@ -9,9 +9,8 @@ $(document).ready(function () {
   getBitcoinPrice();
 
     $("#payButton").click(function () {
-        buyBitcoins() ;
         postTransaction();
-        makeEntry();
+        
     });
 });
 function getBitcoinPrice() {
@@ -40,15 +39,13 @@ function addHTML(){
     $("#Bitcoins").append(bitcoins+'₿');
     $("#Total").append(price+'€');
 }
+/*
 function buyBitcoins() {
-    var dataSend = {
-        "groupId": "primavera",
-        "amount": bitcoins
-    };
+
     $.ajax({
   
       headers: { 'Access-Control-Allow-Origin': '*' },
-      url:  "https://stockmarkettrading.azurewebsites.net/stocks/bitcoins/" ,
+      url:  "https://stockmarkettrading.azurewebsites.net/stocks/bitcoins" ,
       async: false,
       type: "post",
   
@@ -57,38 +54,51 @@ function buyBitcoins() {
       data: dataSend,
       success: function (dataReply) {
         price = dataReply.unitPriceInEur;
-
-
+        console.log("Success");
+        postTransaction();
+    
         
        
       },
-      //error: function() { alert('Failed!'); },
+      error: function() {
+          console.log("fail"); 
+          $("#TransactionError").show();
+       },
   
   });
-}
+}*/
 
 
 function postTransaction() {
-    var comisio = (price * 0.01) / 100 ;
-   price= (price + comisio)
+   // var price = price + (price * 0.01) / 100 ;
+   // price= (price +  (price * 0.01) / 100).toFixed(2);
+       var dataSend = {
+        "groupId": "primavera",
+        "amount": bitcoins
+    };
     $.ajax({
 
         headers: { 'Access-Control-Allow-Origin': '*' },
-        url:  "http://localhost:8080/api/users/" + accountId + "/buyBitcoins?bitcoins=" + bitcoins + "&price=" +price ,
+        url:  "http://localhost:8080/api/users/" + accountId + "/buyBitcoins?bitcoins=" + bitcoins,
         async: false,
         type: "POST",
 
-        dataType: 'json',
+        //dataType: 'json',
         contentType: 'application/json',
 
         success: function () {
-
+            $("#TransactionSuccess").show();
+            //makeEntry();
         },
-        //error: function() { alert('Failed!'); },
+        error: function() {
+            console.log("fail" ); 
+            $("#TransactionError").show();
+         },
+    
 
     });
 
-}
+}/*
 function makeEntry() {
 
     var data = {
@@ -110,6 +120,6 @@ function makeEntry() {
         },
         //error: function() { alert('Failed!'); },
     });
-    $("#TransactionSuccess").show();
-}
+  
+}*/
 

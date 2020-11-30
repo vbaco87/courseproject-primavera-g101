@@ -104,7 +104,7 @@ public class UserController {
         return sold.getAllSoldBitcoins();
     }
 
-    public void updateCurrency(String userId, double quantity, String currency) {
+    public void updateCurrency(String userId, double quantity, String currency) throws Exception {
 		if(currency.equals("BTC")) {
 			account.updateBitcoin(userId, quantity);
 		}
@@ -122,9 +122,12 @@ public class UserController {
 	public BidDTO getUserBidInAuction(String userId, String auctionId) throws Exception {
 		return bid.getBidByUserId(userId, auctionId);
 	}
-	public void buyBitcoins(String brokerId, double bitcoins, double price) {	
-		 String purchaseId = transaction.buyBitcoins(brokerId, bitcoins, price);
-		 transaction.addTransaction(purchaseId, brokerId);
+	public void buyBitcoins(String brokerId, double bitcoins, double price) throws Exception {	
+		price = price+(price*0.0001);
+		String purchaseId = transaction.buyBitcoins(brokerId, bitcoins, price);
+		transaction.addTransaction(purchaseId, brokerId);
+		entry.insertEntry(brokerId, new EntryDTO(bitcoins, "bitcoin"));
+		account.updateBitcoin(brokerId, bitcoins);
 		}
 
 

@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.primavera.CoursProject.application.dto.AccountDTO;
+import com.primavera.CoursProject.application.exceptions.UnblockMoneyException;
 
 
 @Repository
@@ -36,13 +37,20 @@ public class AccountDAO implements com.primavera.CoursProject.application.daos.A
 
 	}
 
-	public void updateBitcoin(String userId, double quantity){
+	public void updateBitcoin(String userId, double quantity) throws Exception{
+		if(userId==null)
+			return;
+		AccountDTO account;
+
+		account = getAccount(userId);
+		double bitcoins = quantity+account.getBitcoinBalance();
 		final var query = "UPDATE accounts SET bitcoin_balance =  ? WHERE user_id=?";
-		 jdbcTemplate.update(query,quantity , userId);
+		 jdbcTemplate.update(query,bitcoins , userId);
 	}
 	
 	public void updateEuro(String userId, double quantity){
-		final var query = "UPDATE accounts SET euro_balance = ? WHERE user_id=?";
+
+		final var query = "UPDATE accounts SET euro_balance = euro_balance + ? WHERE user_id=?";
 
 		 jdbcTemplate.update(query,quantity , userId);
 	}
@@ -52,9 +60,17 @@ public class AccountDAO implements com.primavera.CoursProject.application.daos.A
 		
 	}
 	
-	public void updateBlockedEuros(String userId, double quantity){
-		final var query = "UPDATE accounts SET blocked_euros = blocked_euros + ? WHERE user_id=?";
+	public void updateBlockedEuros(String userId, double quantity)  throws Exception {
+		AccountDTO account;
+		
+			account = getAccount(userId);
+			if ( (quantity+account.getBlockedEuros())<0)
+				throw new UnblockMoneyException(userId);
+	
 
-		 jdbcTemplate.update(query,quantity , userId);
+		
+		final var query = "UPDATE accounts SET blocked_euros =? WHERE user_id=?";
+
+		 jdbcTemplate.update(query,quantity+account.getBlockedEuros() , userId);
 	}
 }

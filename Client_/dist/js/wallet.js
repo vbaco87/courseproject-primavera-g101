@@ -3,7 +3,7 @@ var euros;
 var bitcoins;
 var locked;
 var usable;
-var accountId = 456456456;
+var accountId = 963963963;
 
 
 $(document).ready(function () {
@@ -20,6 +20,7 @@ $(document).ready(function () {
             bitcoins = data.bitcoinBalance;
             locked = data.blockedEuros;
             usable = euros - locked;
+            usable = usable.toFixed(2);
 
         },
         //error: function() { alert('Failed!'); },

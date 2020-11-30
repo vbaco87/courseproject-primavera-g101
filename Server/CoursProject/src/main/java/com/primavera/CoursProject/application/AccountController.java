@@ -39,7 +39,8 @@ public class AccountController {
 
     }
     
-    public void updateBlockedEuros(String userId, double quantity) {
+    public void updateBlockedEuros(String userId, double quantity) throws Exception {
+
     	accountDAO.updateBlockedEuros(userId, quantity);
     }
     

@@ -56,6 +56,7 @@ public class UserController {
     	EntryDTO entry= new EntryDTO();
     	entry.setType("bitcoin");
     	entry.setQuantity(auction.getTotalBitcoins());
+    	System.out.println("bitcoinsAuction = "+entry.getQuantity());
     	this.accountController.updateWallet(userId, entry);
     }
     
@@ -135,9 +136,12 @@ public class UserController {
 	public void buyBitcoins(String brokerId, double bitcoins, double price) throws Exception {	
 		price = price+(price*0.0001);
 		String purchaseId = transaction.buyBitcoins(brokerId, bitcoins, price);
+
 		transaction.addTransaction(purchaseId, brokerId);
-		entry.insertEntry(brokerId, new EntryDTO(bitcoins, "bitcoin"));
-		account.updateBitcoin(brokerId, bitcoins);
+		System.out.println("bitcoins = " +bitcoins);
+		EntryDTO entryDTO = new EntryDTO(bitcoins, "bitcoin");
+		//entry.insertEntry(brokerId,entryDTO);
+		accountController.updateWallet(brokerId, entryDTO);
 		}
 
 

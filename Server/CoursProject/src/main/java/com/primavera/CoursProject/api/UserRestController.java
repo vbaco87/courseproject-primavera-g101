@@ -179,8 +179,9 @@ public class UserRestController {
 	}
     
     @PostMapping( "/users/me/buyBitcoins")
-	public void buyMyBitcoins(@RequestParam double bitcoins, @RequestParam double price, Principal principal) throws Exception { 
+	public void buyMyBitcoins(@RequestParam double bitcoins, Principal principal) throws Exception { 
     	String brokerId = userController.getUserByEmail(principal.getName()).getId();
+      	double price =  bitcoinController.buyBitcoins(bitcoins);
 		userController.buyBitcoins(brokerId,bitcoins, price );
 	}
 

@@ -52,10 +52,12 @@ public class UserController {
     }
     
     public void addAuction(AuctionDTO auction, String userId) throws Exception {
+    	auction.setBrokerId(userId);
     	this.auction.addAuction(auction, userId);
     	EntryDTO entry= new EntryDTO();
     	entry.setType("bitcoin");
-    	entry.setQuantity(auction.getTotalBitcoins());
+    	entry.setQuantity(-auction.getTotalBitcoins());
+    	System.out.println(entry.getQuantity());
     	this.accountController.updateWallet(userId, entry);
     }
     

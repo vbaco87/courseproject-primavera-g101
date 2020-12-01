@@ -3,6 +3,7 @@ $(document).ready(function () {
 
         var settings = {
             "url": "http://localhost:8080/login",
+            "async": false,
             "method": "POST",
             "timeout": 0,
             "data": JSON.stringify( {

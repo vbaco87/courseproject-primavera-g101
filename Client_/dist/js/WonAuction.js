@@ -8,7 +8,7 @@ $(document).ready(function () {
 function getWonAuctions() {
     $.ajax({
         headers: {'Authorization': token},
-        url:  "http://localhost:8080/api/users/"+userId+"/auctions?onlyWon=true" ,
+        url:  "http://localhost:8080/api/bidders/me/auctions?onlyWon=true" ,
         async: false,
         type: "get",
         dataType: 'json',

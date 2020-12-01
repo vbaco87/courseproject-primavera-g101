@@ -10,7 +10,7 @@ function getAuctionHistory() {
 
     $.ajax({
         headers: {'Authorization': token},
-        url:  "http://localhost:8080/api/users/"+userId+"/auctions?status=all" ,
+        url:  "http://localhost:8080/api/bidders/me/auctions?status=all" ,
         async: false,
         type: "get",
         dataType: 'json',

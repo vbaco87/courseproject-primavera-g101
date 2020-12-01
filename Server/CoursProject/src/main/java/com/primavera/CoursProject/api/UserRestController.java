@@ -78,20 +78,21 @@ public class UserRestController {
     	userController.addBid(bid, id, auctionId);
     }
     
-    @GetMapping("/users/{userId}/auctions") 
-    public List<AuctionDTO> getBidderParticipatedAuctions(@PathVariable String userId, @RequestParam(defaultValue ="all") String status, @RequestParam(defaultValue ="false") boolean onlyWon){
+    @GetMapping("/bidders/me/auctions") 
+    public List<AuctionDTO> getBidderParticipatedAuctions(@RequestParam(defaultValue ="all") String status, @RequestParam(defaultValue ="false") boolean onlyWon, Principal principal){
+    	String id = userController.getUserByEmail(principal.getName()).getId();
     	if(onlyWon) {
-    		return userController.getBidderWonAuctions(userId);   
+    		return userController.getBidderWonAuctions(id);   
     	}
     	if(status.equals("all")) {
-    		return userController.getBidderAuctions(userId);
+    		return userController.getBidderAuctions(id);
     	}
     	else if(status.equals("active")) {
-    		return userController.getBidderActiveAuctions(userId);
+    		return userController.getBidderActiveAuctions(id);
     	}
     	
     	else if(status.equals("inactive")) { 
-    		return userController.getBidderInactiveAuctions(userId); 
+    		return userController.getBidderInactiveAuctions(id); 
     	}
     	  
     	return null;

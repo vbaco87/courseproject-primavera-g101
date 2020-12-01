@@ -21,7 +21,8 @@ $(document).ready(function () {
             localStorage.setItem('token', request.getResponseHeader('authorization'))
             console.log('Done Response. Data: ', request.getResponseHeader('authorization'));
         });
-        $(location).attr('href','index.html');
+        if(localStorage.getItem('token')!=null)
+            $(location).attr('href','index.html');
         return false;
     });
 });

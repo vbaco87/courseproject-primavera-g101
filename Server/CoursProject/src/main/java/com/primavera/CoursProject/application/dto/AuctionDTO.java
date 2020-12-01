@@ -27,7 +27,8 @@ public class AuctionDTO {
 
 	private String brokerId;
 	
-	private boolean active;
+	@Range(min=0, max=1)
+	private int active;
 
 	public void setBrokerId(String brokerId) {
 		this.brokerId = brokerId;
@@ -91,11 +92,11 @@ public class AuctionDTO {
 		this.bids = bids;
 	}
 
-	public boolean isActive() {
+	public int isActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(int active) {
 		this.active = active;
 	}
 

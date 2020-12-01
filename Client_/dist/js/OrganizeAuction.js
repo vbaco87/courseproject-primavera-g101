@@ -107,8 +107,7 @@ function addAuction(){
         "price": parseFloat(price),
         "openingDate": $("#openingDate").val(),
         "closeDate": $("#closingDate").val(),
-        "brokerId:" : creatorId,
-        "active" : true
+        "brokerId:" : creatorId
     };
     $.ajax({
         async: false,
@@ -118,6 +117,7 @@ function addAuction(){
         contentType: 'application/json',
         dataType: 'json',
         data:JSON.stringify(datos)
+
     })
 
 }

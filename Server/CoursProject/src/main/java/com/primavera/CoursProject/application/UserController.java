@@ -56,9 +56,7 @@ public class UserController {
     	this.auction.addAuction(auction, userId);
     	EntryDTO entry= new EntryDTO();
     	entry.setType("bitcoin");
-    	entry.setQuantity(auction.getTotalBitcoins());
-    	System.out.println("bitcoinsAuction = "+entry.getQuantity());
-
+    	entry.setQuantity(-auction.getTotalBitcoins());
     	this.accountController.updateWallet(userId, entry);
     }
     

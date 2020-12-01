@@ -8,7 +8,7 @@ $(document).ready(function() {
     noDisplay();
     $.ajax({
         headers: {'Authorization': token},
-        url: "http://localhost:8080/api/users/" + creatorId+"/account",
+        url: "http://localhost:8080/api/users/me/account",
         async: false,
         type: 'GET',
         crossDomain: true,

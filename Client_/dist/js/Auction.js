@@ -2,7 +2,7 @@ var bitcoins = getParameterByName('bitcoins');
 var date = getParameterByName('closeDate');
 var active = true;
 var euros;
-var basePrice = getParameterByName('price');
+var basePrice = parseFloat(getParameterByName('price'));
 
 var userId= "963963963";
 var auctionId = getParameterByName('auction');
@@ -42,20 +42,16 @@ $(document).ready(function () {
         $("#SubmitNotMoney").css("display", "none");
         $("#SubmitNotPrice").css("display", "none");
         bitcoinsBid= $("#bitcoins").val();
-        amountBid = $("#euros").val()
-        if(bitcoinsBid >=0 && amountBid>=0){
-            if(euros>=amountBid){
-                if(basePrice<=amountBid){
-                    addBid();
-                    $("#SubmitOk").show();
-                }else {
-                    $("#SubmitNotPrice").show();
-                }
+        amountBid = $("#euros").val();
+        if(amountBid >= basePrice ){
+            if(amountBid <= euros){
+                addBid();
+                $("#SubmitOk").show();
             }else {
                 $("#SubmitNotMoney").show();
             }
-        }else{
-            $("#SubmitNotOk").show();
+        }else {
+            $("#SubmitNotPrice").show();
         }
     });
 

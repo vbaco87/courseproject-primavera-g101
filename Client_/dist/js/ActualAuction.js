@@ -3,10 +3,14 @@ var token = localStorage.getItem('token');
 
 
 $(document).ready(function () {
+    if(token == null){
+        window.location.replace("errors/401.html");
+    }
     getActiveAuctions();
 });
 
 function getActiveAuctions() {
+
     $.ajax({
         headers: {'Authorization': token},
         url:  "http://localhost:8080/api/auctions?status=active" ,
@@ -23,7 +27,6 @@ function getActiveAuctions() {
             }
         }
     });
-
 }
 
 

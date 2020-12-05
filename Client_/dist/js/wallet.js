@@ -8,6 +8,11 @@ var token = localStorage.getItem('token');
 
 
 $(document).ready(function () {
+
+    if(token == null){
+        window.location.replace("errors/401.html");
+    }
+
     $.ajax({
 
         headers: {'Authorization': token},
@@ -23,11 +28,9 @@ $(document).ready(function () {
             usable = euros - locked;
             usable = usable.toFixed(2);
 
-        },
-        //error: function() { alert('Failed!'); },
+        }
 
-    });
-
+    })
     addHTML();
 
 

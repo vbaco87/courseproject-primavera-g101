@@ -8,6 +8,10 @@ var token = localStorage.getItem('token');
 
 $(document).ready(function () {
 
+    if(token == null){
+        window.location.replace("errors/401.html");
+    }
+
     $("select").change(function () {
         $("select option:selected").each(function () {
 
@@ -56,8 +60,9 @@ function getPurchasedTransactionHistory() {
             success: function (data) {
                 purchased = data;
             }
-        });
-    console.log(purchased);
+    
+        })
+
 }
 
 function getSoldTransactionHistory() {

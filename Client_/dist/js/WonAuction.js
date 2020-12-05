@@ -2,10 +2,14 @@ var userId = "456456456";
 var token = localStorage.getItem('token');
 
 $(document).ready(function () {
+    if(token == null){
+        window.location.replace("errors/401.html");
+    }
     getWonAuctions();
 });
 
 function getWonAuctions() {
+
     $.ajax({
         headers: {'Authorization': token},
         url:  "http://localhost:8080/api/bidders/me/auctions?onlyWon=true" ,
@@ -22,7 +26,8 @@ function getWonAuctions() {
 
             }
         }
-    });
+    })
+
 
 }
 

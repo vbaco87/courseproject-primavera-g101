@@ -5,6 +5,11 @@ var bitcoinsBroker;
 var token = localStorage.getItem('token');
 
 $(document).ready(function () {
+
+    if(token == null){
+        window.location.replace("errors/401.html");
+    }
+
     noDisplay();
     $.ajax({
         headers: { 'Authorization': token },
@@ -16,9 +21,9 @@ $(document).ready(function () {
         success: function (data) {
             bitcoinsBroker = data["bitcoinBalance"];
             $("#nBitcoins").append('<th scope="col" id="nBitcoins">nBitcoins: ' + parseFloat(bitcoinsBroker).toFixed(2) + '</th>');
-        },
-    });
+        }
 
+    })
 
     minDate();
     $("#closingDate").click(function () {

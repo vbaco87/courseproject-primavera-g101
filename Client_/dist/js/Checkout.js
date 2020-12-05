@@ -5,6 +5,9 @@ var accountId = 123123123;
 
 
 $(document).ready(function () {
+    if(token == null){
+        window.location.replace("errors/401.html");
+    }
     bitcoins = sessionStorage.getItem("AmountOfBitcoins");
     getBitcoinPrice();
 
@@ -89,14 +92,10 @@ function postTransaction() {
         success: function () {
             $("#TransactionSuccess").show();
             //makeEntry();
-        },
-        error: function () {
-            console.log("fail");
-            $("#TransactionError").show();
-        },
+        }
 
+    })
 
-    });
 
 }/*
 function makeEntry() {

@@ -1,6 +1,9 @@
 var token = localStorage.getItem('token');
 
 $(document).ready(function () {
+    if(token == null){
+        window.location.replace("errors/401.html");
+    }
     getBidStatus(getParameterByName('active'));
     getBid(getParameterByName('auction'), );
 });
@@ -25,8 +28,9 @@ function getBid(auction){
         success: function (data) {
             $("#information").append('<ul><li>You bidded for ' +data.bitcoins+ '₿</li><li>You have bid ' +data.amount + ' €</li></ul>');
             console.log(data);
-        },
-    });
+        }
+
+    })
 }
 
 function getParameterByName(name, url = window.location.href) {

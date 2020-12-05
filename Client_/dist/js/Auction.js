@@ -11,6 +11,9 @@ var amountBid;
 var token = localStorage.getItem('token');
 
 $(document).ready(function () {
+    if(token == null){
+        window.location.replace("errors/401.html");
+    }
     $.ajax({
         headers: {'Authorization': token },
         url: "http://localhost:8080/api/users/me/account/available",
@@ -22,9 +25,9 @@ $(document).ready(function () {
             euros = data;
             euros =parseFloat(euros).toFixed(2);
         }
-        //error: function() { alert('Failed!'); },
 
-    });
+    })
+
 
     addHTML();
     $("#Start").click(() => {

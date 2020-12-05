@@ -58,24 +58,25 @@ public class Scheduler {
                     euros += p.getAmount();
                     accountDAO.updateBitcoin(p.getUserId(), p.getBitcoins());
                     qttBitcoins -= p.getBitcoins();
-                    accountDAO.updateBlockedEuros(p.getUserId(), -(p.getAmount()+p.getAmount()*0.01));
-                  
+                    accountDAO.updateBlockedEuros(p.getUserId(), -(p.getAmount()));
+                    accountDAO.updateEuro(p.getUserId(), -p.getAmount());
                     userDAO.saveWinners(p, auction.getId(), p.getBitcoins());
                 }
                 else{
                     euros += p.getAmount();
                     accountDAO.updateBitcoin(p.getUserId(), qttBitcoins);
-                    accountDAO.updateBlockedEuros(p.getUserId(), -(p.getAmount()+p.getAmount()*0.01));
+                    accountDAO.updateBlockedEuros(p.getUserId(), -p.getAmount());
                     userDAO.saveWinners(p, auction.getId(), qttBitcoins);
                     qttBitcoins = 0;
                 }
             }
         }
+        System.out.println(euros - euros*0.01);
         if(qttBitcoins>0){
             accountDAO.updateBitcoin(auction.getBrokerId(), qttBitcoins);
-            accountDAO.updateEuro(auction.getBrokerId(), euros);
-        }
 
+        }
+        accountDAO.updateEuro(auction.getBrokerId(), euros - euros*0.01);
         participants.removeAll(winners); // nomès els que no han guanyat
 
         for (BidDTO p : participants){

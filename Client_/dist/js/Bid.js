@@ -2,10 +2,8 @@ var token = localStorage.getItem('token');
 
 $(document).ready(function () {
     getBidStatus(getParameterByName('active'));
-    getBid(getParameterByName('user'),getParameterByName('auction'), );
+    getBid(getParameterByName('auction'), );
 });
-//Bid.html?auction=1&user=456456456
-
 
 function getBidStatus(active) {
     if(active== "true"){
@@ -15,10 +13,10 @@ function getBidStatus(active) {
         $("#status").append('<h1 id="activeTab">Bid information <span class="badge badge-danger mt-4">Finished</span></h1>');
     }
 }
-function getBid(user, auction){
+function getBid(auction){
     $.ajax({
         headers: {'Authorization': token},
-        url:  "http://localhost:8080/api/user/"+user+"/auction/"+auction+"/bid" ,
+        url:  "http://localhost:8080/api/user/me/auction/"+auction+"/bid" ,
         async: false,
         type: "get",
         dataType: 'json',
@@ -29,7 +27,6 @@ function getBid(user, auction){
             console.log(data);
         },
     });
-
 }
 
 function getParameterByName(name, url = window.location.href) {

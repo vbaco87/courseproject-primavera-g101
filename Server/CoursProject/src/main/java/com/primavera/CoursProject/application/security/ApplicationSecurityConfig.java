@@ -42,7 +42,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
                 .antMatchers("/api/users/purchaseBitcoins", "/api/users/soldBitcoins").hasRole("ADMIN")
-                .antMatchers("/api/auctions").hasAnyRole("ADMIN", "BIDDER")
+                .antMatchers("/api/auctions", "api/users/me/bids/auctions/**").hasAnyRole("ADMIN", "BIDDER")
                 .antMatchers("/api/users/me/buyBitcoins", "api/users/me/auctions", "/api/users/me/purchasedBitcoins", "/api/users/me/soldBitcoins").hasAnyRole("ADMIN", "BROKER")
 
                 .anyRequest()

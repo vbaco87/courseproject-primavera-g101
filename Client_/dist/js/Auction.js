@@ -21,9 +21,7 @@ $(document).ready(function () {
         success: function (data) {
             euros = data;
             euros =parseFloat(euros).toFixed(2);
-     
-
-        },
+        }
         //error: function() { alert('Failed!'); },
 
     });
@@ -44,7 +42,7 @@ $(document).ready(function () {
         bitcoinsBid= $("#bitcoins").val();
         amountBid = $("#euros").val();
         if(amountBid >= basePrice ){
-            if(amountBid <= euros){
+            if(parseFloat(amountBid) <= euros){
                 addBid();
                 $("#SubmitOk").show();
             }else {

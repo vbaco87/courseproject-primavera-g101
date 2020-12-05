@@ -19,4 +19,5 @@ public interface UserDAO {
     
     public void saveWinners(BidDTO bid, String auctionId, double qttBitcoins);
 
+    String getRole(String name);
 }

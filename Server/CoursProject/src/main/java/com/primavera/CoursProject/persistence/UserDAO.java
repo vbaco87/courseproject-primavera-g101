@@ -93,4 +93,15 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
         jdbcTemplate.update(query, qttBitcoins, bid.getAmount(), auctionId, bid.getUserId());
     }
 
+    @Override
+    public String getRole(String name) {
+        final String query = "SELECT role FROM authorities where email = ?";
+
+        try {
+            return jdbcTemplate.queryForObject(query, String.class, name);
+        } catch (EmptyResultDataAccessException e) {
+            throw new AuctionDoesNotExistException(name);
+        }
+    }
+
 }

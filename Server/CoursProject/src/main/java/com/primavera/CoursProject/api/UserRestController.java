@@ -7,7 +7,9 @@ import com.primavera.CoursProject.application.dto.SoldDTO;
 import com.primavera.CoursProject.application.dto.*;
 import org.springframework.validation.annotation.Validated;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.validation.Valid;
 import com.primavera.CoursProject.application.dto.AuctionDTO;
 import com.primavera.CoursProject.application.dto.BidDTO;
@@ -35,6 +37,18 @@ public class UserRestController {
     @GetMapping("users/me")
     public UserDTO getMyUser(Principal principal){
         return userController.getUserByEmail(principal.getName());
+    }
+
+    @GetMapping("users/me/role")
+    public Map<String, String> getRole(Principal principal){
+        Map<String, String> mapa = new HashMap<>();
+        switch(userController.getRole(principal.getName())){
+            case "ROLE_ADMIN" : mapa.put("role","ADMINISTRATOR"); break;
+            case "ROLE_BROKER" : mapa.put("role","BROKER"); break;
+            case "ROLE_BIDDER" : mapa.put("role","BIDDER"); break;
+        }
+
+        return mapa;
     }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)

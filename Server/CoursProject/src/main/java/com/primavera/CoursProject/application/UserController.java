@@ -144,4 +144,7 @@ public class UserController {
 		accountController.updateWallet(brokerId, entryDTO);
 		}
 
+    public String getRole(String name) {
+        return user.getRole(name);
+    }
 }

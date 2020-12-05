@@ -23,7 +23,7 @@ function addMenu() {
 
     $("#menuWallet").append('<div class="sb-sidenav-menu-heading">Account</div><a class="nav-link" href="wallet.html"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Wallet</a>');
 
-    if (userType === "ROLE_ADMIN" || userType === "ROLE_BIDDER") {
+    if (userType === "ADMINISTRATOR" || userType === "BIDDER") {
         $("#menuCurrentAuctions").append('<a class="nav-link" href="ActualAuctions.html"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Current Auctions</a>')
 
         $("#menuAuctionHistory").append('<a class="nav-link" href="UserAuctionsHistorial.html"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Auction History</a>');
@@ -31,7 +31,7 @@ function addMenu() {
         $("#menuUserWonAuctions").append('<a class="nav-link" href="WonAuction.html"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>My won auctions</a>');
     }
 
-    if (userType === "ROLE_ADMIN" || userType === "ROLE_BROKER") {
+    if (userType === "ADMINISTRATOR" || userType === "BROKER") {
         $("#menuBuyBitcoins").append('<a class="nav-link" href="BuyBitcoins.html"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Buy Bitcoins</a>');
 
         $("#menuOrganizeAuction").append('<a class="nav-link" href="OrganizeAuction.html"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Organize an auction</a>')
@@ -39,7 +39,7 @@ function addMenu() {
         $("#menuTransactionHistory").append('<a class="nav-link" href="TransactionHistory.html"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Transaction History</a>')
     }
 
-    if (userType === "ROLE_ADMIN") {
+    if (userType === "ADMINISTRATOR") {
         $("#menuComissions").append('<a class="nav-link" href="Commissions.html"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Comissions</a>');
     }
 

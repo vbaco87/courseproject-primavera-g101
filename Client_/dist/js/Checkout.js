@@ -5,39 +5,39 @@ var accountId = 123123123;
 
 
 $(document).ready(function () {
-   bitcoins = sessionStorage.getItem("AmountOfBitcoins");
-  getBitcoinPrice();
+    bitcoins = sessionStorage.getItem("AmountOfBitcoins");
+    getBitcoinPrice();
 
     $("#payButton").click(function () {
         postTransaction();
-        
+
     });
 });
 function getBitcoinPrice() {
 
     $.ajax({
-  
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      url:  "https://stockmarkettrading.azurewebsites.net/stocks/bitcoins/primavera" ,
-      async: false,
-      type: "get",
-  
-      dataType: 'json',
-      contentType: 'application/json',
-  
-      success: function (data) {
-        price = data.unitPriceInEur * bitcoins;
-        price = parseFloat(price).toFixed(2);
-        addHTML();
 
-      },
-      //error: function() { alert('Failed!'); },
-  
-  });
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        url: "https://stockmarkettrading.azurewebsites.net/stocks/bitcoins/primavera",
+        async: false,
+        type: "get",
+
+        dataType: 'json',
+        contentType: 'application/json',
+
+        success: function (data) {
+            price = data.unitPriceInEur * bitcoins;
+            price = parseFloat(price).toFixed(2);
+            addHTML();
+
+        },
+        //error: function() { alert('Failed!'); },
+
+    });
 }
-function addHTML(){
-    $("#Bitcoins").append(bitcoins+'₿');
-    $("#Total").append(price+'€');
+function addHTML() {
+    $("#Bitcoins").append(bitcoins + '₿');
+    $("#Total").append(price + '€');
 }
 /*
 function buyBitcoins() {
@@ -70,15 +70,15 @@ function buyBitcoins() {
 
 
 function postTransaction() {
-   // var price = price + (price * 0.01) / 100 ;
-   // price= (price +  (price * 0.01) / 100).toFixed(2);
-       var dataSend = {
+    // var price = price + (price * 0.01) / 100 ;
+    // price= (price +  (price * 0.01) / 100).toFixed(2);
+    var dataSend = {
         "groupId": "primavera",
         "amount": bitcoins
     };
     $.ajax({
-        headers: {'Authorization': token},
-        url:  "http://localhost:8080/api/users/me/buyBitcoins?bitcoins=" + bitcoins,
+        headers: { 'Authorization': token },
+        url: "http://localhost:8080/api/users/me/buyBitcoins?bitcoins=" + bitcoins,
 
         async: false,
         type: "POST",
@@ -90,11 +90,11 @@ function postTransaction() {
             $("#TransactionSuccess").show();
             //makeEntry();
         },
-        error: function() {
-            console.log("fail" ); 
+        error: function () {
+            console.log("fail");
             $("#TransactionError").show();
-         },
-    
+        },
+
 
     });
 

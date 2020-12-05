@@ -19,7 +19,7 @@ function addMenu(userType) {
     if (userType === "ADMIN" || userType === "BIDDER") {
         $("#menuCurrentAuctions").append('<a class="nav-link" href="ActualAuctions.html"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Current Auctions</a>')
 
-        $("#menuCurrentAuctions").append('<a class="nav-link" href="UserAuctionsHistorial.html"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Auction History</a>');
+        $("#menuAuctionHistory").append('<a class="nav-link" href="UserAuctionsHistorial.html"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Auction History</a>');
 
         $("#menuUserWonAuctions").append('<a class="nav-link" href="WonAuction.html"><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>My won auctions</a>');
     }

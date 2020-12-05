@@ -8,7 +8,7 @@ INSERT INTO users VALUES ('789456123', 'Lorena', 'Gutierrez', 'lguiti@edu.tecnoc
 INSERT INTO accounts VALUES ('123123123', 2.35,1123.21,30);
 INSERT INTO accounts VALUES ('456456456',5.02,2550.53,200.12);
 INSERT INTO accounts VALUES ('963963963',18.4,9115.23,60.5);
-INSERT INTO accounts VALUES ('789456163', 31.74,6160.34,80.25);
+INSERT INTO accounts VALUES ('789456123', 31.74,6160.34,80.25);
 
 INSERT INTO auctions VALUES(1, '123123123', 80,90,'2020-08-21','2020-12-25', true);
 INSERT INTO auctions VALUES(2, '123123123', 120,50,'2020-10-25','2020-01-29', true);
@@ -43,3 +43,5 @@ INSERT INTO authorities (email, role) VALUES ('jbarberan@edu.tecnocampus.cat', '
 INSERT INTO authorities (email, role) VALUES ('lguiti@edu.tecnocampus.cat', 'ROLE_BROKER');
 INSERT INTO authorities (email, role) VALUES ('rvidal@edu.tecnocampus.cat', 'ROLE_BIDDER');
 
+INSERT INTO winners VALUES ('1',5, 10, '1', '456456456');
+INSERT INTO winners VALUES ('2',15, 12, '2','456456456');

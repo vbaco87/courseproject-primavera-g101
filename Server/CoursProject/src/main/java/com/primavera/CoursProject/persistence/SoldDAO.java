@@ -24,7 +24,7 @@ public class SoldDAO implements com.primavera.CoursProject.application.daos.Sold
 
     @Override
     public List<SoldDTO> getSoldTransactions(String userId) {
-        final String querySoldTransactions = "SELECT a.id, a.CLOSING_DATE as closingDate , SUM(w.AMOUNT) as amount, SUM(w.PRICE) as price\n" +
+        final String querySoldTransactions = "SELECT a.CLOSING_DATE as closingDate , SUM(w.AMOUNT) as amount, SUM(w.PRICE) as price\n" +
                 "FROM AUCTIONS a JOIN WINNERS w ON (a.ID = w.AUCTION_ID)\n" +
                 "WHERE CREATOR_ID = ? GROUP BY a.CLOSING_DATE;";
 
@@ -33,7 +33,7 @@ public class SoldDAO implements com.primavera.CoursProject.application.daos.Sold
 
     @Override
     public List<SoldDTO> getAllSoldBitcoins() {
-        final String querySoldTransactions = "SELECT a.id, a.CLOSING_DATE as closingDate , SUM(w.AMOUNT) as amount, SUM(w.PRICE) as price\n" +
+        final String querySoldTransactions = "SELECT a.CLOSING_DATE as closingDate , SUM(w.AMOUNT) as amount, SUM(w.PRICE) as price\n" +
                 "FROM AUCTIONS a JOIN WINNERS w ON (a.ID = w.AUCTION_ID)\n" +
                 "GROUP BY a.CLOSING_DATE;";
 

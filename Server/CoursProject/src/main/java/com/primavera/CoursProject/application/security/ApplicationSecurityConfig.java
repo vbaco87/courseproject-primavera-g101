@@ -41,14 +41,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
-                //api/users/me/auctions no le va a el bidder
-                //.antMatchers("/api/auctions", "/api/users/me/auctions", "/api/users/me/bids/auctions/*").hasRole("BIDDER")
-                //.antMatchers("/api/users/me/buyBitcoins", "/api/users/me/auctions", "/api/users/me/purchasedBitcoins", "/api/users/me/soldBitcoins").hasRole("BROKER")
-                //algunos de broker provocan un forbbiden en el admin
-                .antMatchers("/api/**").hasRole("ADMIN")
+                .antMatchers("/api/users/purchaseBitcoins", "/api/users/soldBitcoins").hasRole("ADMIN")
+                .antMatchers("/api/auctions").hasAnyRole("ADMIN", "BIDDER")
+                .antMatchers("/api/users/me/buyBitcoins", "api/users/me/auctions", "/api/users/me/purchasedBitcoins", "/api/users/me/soldBitcoins").hasAnyRole("ADMIN", "BROKER")
+
                 .anyRequest()
                 .authenticated();
-                
+
 		        
     }
 

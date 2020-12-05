@@ -30,7 +30,7 @@ $(document).ready(function () {
 
 function getUser() {
     var result = "";
-    var url = "http://localhost:8080/api/users/" + userID;
+    var url = "http://localhost:8080/api/users/me";
     $.ajax
         ({
             async: false,
@@ -56,7 +56,7 @@ function getUser() {
 
 
 function updateUser() {
-    var url = "http://localhost:8080/api/users/" + userID;
+    var url = "http://localhost:8080/api/users/me";
     var datos = {
         "name": $("#frist-name").val(),
         "secondName": $("#surname-name").val(),

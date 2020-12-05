@@ -14,7 +14,7 @@ $(document).ready(function () {
                 console.log('success: ',  request.getAllResponseHeaders());
             },
             "error": function (request, textStatus, errorThrown) {
-                console.log('error: ' + textStatus + ' headers: ' + request.getAllResponseHeaders() + ' ErrorThrown: ' + errorThrown);
+                $("#password").show();
             }
         };
 
@@ -23,7 +23,7 @@ $(document).ready(function () {
             console.log('Done Response. Data: ', request.getResponseHeader('authorization'));
         });
         if(localStorage.getItem('token')!=null)
-            $(location).attr('href','index.html');
+            $(location).attr('href','pagInicial.html');
         return false;
     });
 });

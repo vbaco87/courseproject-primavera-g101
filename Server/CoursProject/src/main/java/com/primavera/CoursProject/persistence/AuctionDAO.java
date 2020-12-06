@@ -25,6 +25,7 @@ public class AuctionDAO implements com.primavera.CoursProject.application.daos.A
         auction.setPrice(resultSet.getDouble("price"));
         auction.setOpeningDate(resultSet.getDate("opening_date"));
         auction.setCloseDate(resultSet.getDate("closing_date"));
+        auction.setCreatorId(resultSet.getString("creator_id"));
         return auction;
     };
 

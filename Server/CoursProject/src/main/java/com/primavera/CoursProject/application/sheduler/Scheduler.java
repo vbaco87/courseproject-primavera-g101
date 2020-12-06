@@ -1,8 +1,11 @@
 package com.primavera.CoursProject.application.sheduler;
 
+import com.primavera.CoursProject.application.AccountController;
 import com.primavera.CoursProject.application.daos.*;
 import com.primavera.CoursProject.application.dto.AuctionDTO;
 import com.primavera.CoursProject.application.dto.BidDTO;
+import com.primavera.CoursProject.application.dto.EntryDTO;
+
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -17,13 +20,15 @@ public class Scheduler {
     AccountDAO accountDAO;
     BidDAO bidDAO;
     TransactionDAO transaction;
+    AccountController accountController;
 
-    public Scheduler(AuctionDAO auctionDAO, UserDAO userDAO, AccountDAO accountDAO, BidDAO bidDAO, TransactionDAO transaction) {
+    public Scheduler(AuctionDAO auctionDAO, UserDAO userDAO, AccountDAO accountDAO, BidDAO bidDAO, TransactionDAO transaction, AccountController accountController) {
         this.auctionDAO = auctionDAO;
         this.userDAO = userDAO;
         this.accountDAO = accountDAO;
         this.bidDAO = bidDAO;
         this.transaction = transaction;
+        this.accountController = accountController;
     }
 
     @Scheduled(cron="*/5 * * * * *")
@@ -59,29 +64,31 @@ public class Scheduler {
                     accountDAO.updateBitcoin(p.getUserId(), p.getBitcoins());
                     qttBitcoins -= p.getBitcoins();
                     accountDAO.updateBlockedEuros(p.getUserId(), -(p.getAmount()));
-                    accountDAO.updateEuro(p.getUserId(), -p.getAmount());
+                    accountController.updateWallet(p.getUserId(), new EntryDTO (p.getAmount(), "euros"));
                     userDAO.saveWinners(p, auction.getId(), p.getBitcoins());
+                    winners.add(p);
                 }
                 else{
                     euros += p.getAmount();
                     accountDAO.updateBitcoin(p.getUserId(), qttBitcoins);
                     accountDAO.updateBlockedEuros(p.getUserId(), -p.getAmount());
+                    accountController.updateWallet(p.getUserId(), new EntryDTO (p.getAmount(), "euros"));
                     userDAO.saveWinners(p, auction.getId(), qttBitcoins);
+                    winners.add(p);
                     qttBitcoins = 0;
                 }
             }
         }
         System.out.println(euros - euros*0.01);
         if(qttBitcoins>0){
-            accountDAO.updateBitcoin(auction.getBrokerId(), qttBitcoins);
+            accountDAO.updateBitcoin(auction.getCreatorId(), qttBitcoins);
 
         }
-        accountDAO.updateEuro(auction.getBrokerId(), euros - euros*0.01);
+        accountController.updateWallet(auction.getCreatorId(), new EntryDTO(euros - euros*0.01, "euros"));
         participants.removeAll(winners); // nomès els que no han guanyat
 
         for (BidDTO p : participants){
             accountDAO.updateBlockedEuros(p.getUserId(), -p.getAmount());
-            accountDAO.updateEuro(p.getUserId(), p.getAmount());
         }
     }
 }

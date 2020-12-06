@@ -52,7 +52,7 @@ public class UserController {
     }
     
     public void addAuction(AuctionDTO auction, String userId) throws Exception {
-    	auction.setBrokerId(userId);
+    	auction.setCreatorId(userId);
     	this.auction.addAuction(auction, userId);
     	EntryDTO entry= new EntryDTO();
     	entry.setType("bitcoin");

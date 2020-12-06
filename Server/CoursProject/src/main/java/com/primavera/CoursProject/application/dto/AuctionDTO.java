@@ -25,17 +25,17 @@ public class AuctionDTO {
 	@NotNull(message = "CloseDate cannot be null")
 	private Date closeDate;
 
-	private String brokerId;
+	private String creatorId;
 	
 	@Range(min=0, max=1)
 	private int active;
 
-	public void setBrokerId(String brokerId) {
-		this.brokerId = brokerId;
+	public void setCreatorId(String creatorId) {
+		this.creatorId = creatorId;
 	}
 
-	public String getBrokerId() {
-		return brokerId;
+	public String getCreatorId() {
+		return creatorId;
 	}
 
 	Set<Bid> bids = new HashSet<Bid>();
@@ -108,7 +108,7 @@ public class AuctionDTO {
 				", price=" + price +
 				", openingDate=" + openingDate +
 				", closeDate=" + closeDate +
-				", brokerId='" + brokerId + '\'' +
+				", creatorId='" + creatorId + '\'' +
 				", bids=" + bids +
 				'}';
 	}

@@ -70,3 +70,7 @@ function addUserType() {
         });
         console.log("DESPRES " + userType);
 }
+
+function remUserToken(){
+    localStorage.removeItem('token');
+}

@@ -79,11 +79,11 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
 		String role = "";
 		switch (userType) {
 		case 0:
-			role = "ROLE_ADMIN";
+			role = "ADMIN";
 		case 1:
-			role = "ROLE_BROKER";
+			role = "BROKER";
 		case 2:
-			role = "ROLE_BIDDER";
+			role = "BIDDER";
 		}
 
 		final String createUserAuthority = "INSERT INTO accounts (email, role) VALUES (?, ?)";

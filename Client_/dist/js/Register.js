@@ -18,8 +18,7 @@ function registerNewUser() {
                 "country": $("#inputCounty").val(),
                 "city": $("#inputCity").val(),
                 "homeAddress": $("#inputHomeAddress").val(),
-                "user_type": type
-                
+                "userType": parseInt(type)
             };
 
             $.ajax({

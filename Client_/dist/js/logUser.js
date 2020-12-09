@@ -23,7 +23,7 @@ $(document).ready(function () {
             console.log('Done Response. Data: ', request.getResponseHeader('authorization'));
         });
         if(localStorage.getItem('token')!=null)
-            $(location).attr('href','pagInicial.html');
+            $(location).attr('href','index.html');
         return false;
     });
 });

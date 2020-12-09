@@ -7,7 +7,7 @@ function registerNewUser() {
 
             var status;
             var type = getUserType();
-            var url = "http://localhost:8080/api/users?"+type;
+            var url = "http://localhost:8080/api/users";
             var datos = {
                 "name": $("#inputName").val(),
                 "secondName": $("#inputSurname").val(),
@@ -18,6 +18,7 @@ function registerNewUser() {
                 "country": $("#inputCounty").val(),
                 "city": $("#inputCity").val(),
                 "homeAddress": $("#inputHomeAddress").val(),
+                "user_type": type
                 
             };
 

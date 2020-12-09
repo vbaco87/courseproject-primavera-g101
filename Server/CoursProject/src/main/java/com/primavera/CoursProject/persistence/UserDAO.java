@@ -66,7 +66,7 @@ public class UserDAO implements com.primavera.CoursProject.application.daos.User
 
 	@Override
 	public UserDTO createUser(UserDTO user) {
-		final String insertUser = "INSERT INTO users (id, name, second_name, email, phone_number, country, city, city_home_address, user_type) "
+		final String insertUser = "INSERT INTO users (id, name, second_name, email, phone_number, country, city, city_home_address) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		jdbcTemplate.update(insertUser, user.getId(), user.getName(), user.getSecondName(), user.getEmail(),
 				user.getPhoneNumber(), user.getCountry(), user.getCity(), user.getHomeAddress(), user.getUserType());

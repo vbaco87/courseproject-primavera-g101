@@ -1,8 +1,0 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="lai" id="01BD488F-8292-1213-D103-D33E83754D44" version="3.5">
-<createdBy>victo</createdBy>
-<createdTime>2020-10-15 17:35:19 UTC</createdTime>
-<ownerDesignName>lai</ownerDesignName>
-<capitalNames>false</capitalNames>
-<designId>01BD488F-8292-1213-D103-D33E83754D44</designId>
-</OSDM_Design>

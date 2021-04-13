@@ -1,0 +1,55 @@
+var userId = "456456456";
+var active;
+var token = localStorage.getItem('token');
+
+$(document).ready(function () {
+    if(token == null){
+        window.location.replace("errors/401.html");
+    }
+    getAuctionHistory();
+});
+
+function getAuctionHistory() {
+
+
+    var status = "";
+    $.ajax({
+        headers: { 'Authorization': token },
+        url: "http://localhost:8080/api/bidders/me/auctions?status=all",
+        async: false,
+        type: "get",
+        dataType: 'json',
+        contentType: 'application/json',
+
+        success: function (data) {
+            for (i = 0; i < data.length; i++) {
+                console.log(data[i]);
+                var auctionStatus;
+                if (TDate(data[i].closeDate)) {
+                    auctionStatus = '</a><span class="badge badge-success active">Active</span>';
+                    active = true;
+                }
+                else {
+                    auctionStatus = '<span class="badge badge-danger active">Finished</span>';
+                    active = false;
+                }
+
+                html = '<div class="col-lg-6 mb-4"><div class="card h-100"><div class="card-body"><h4 class="card-title"><a href="#">' + data[i].openingDate + '</a>' + auctionStatus + '</h4><ul><li>Opening date: ' + data[i].openingDate + '</li><li> Closing date: ' + data[i].closeDate + '</li><li>Bitcoins amount ' + data[i].totalBitcoins + '</li><li>Starting price: ' + data[i].price + '</ul></div><a type="button" class="btn btn-outline-primary" href="Bid.html?auction=' + data[i].id + '&user=' + userId + '&active=' + active + '">SEE MY BID</a></div></div>';
+                $("#subastas").append(html);
+
+            }
+        }
+
+    })
+
+}
+
+function TDate(date) {
+    var ToDate = new Date();
+
+    if (new Date(date).getTime() <= ToDate.getTime()) {
+        return false;
+    }
+    return true;
+}
+

@@ -8,7 +8,8 @@ In the folder Server, there is the spring project in the folder named CoursProje
     ├── Server                    
     │   └── CoursProject --> Folder to open the spring project
 
-
+## **HOW TO RUN THE APPLICATION**
+Open the Spring application in your IDE and then run the project inside the folder CoursProject, after this you can navigate through the webpages such as index.html.
 
 ## **USERS**
 | ROLE | USER | PASSWORD |
@@ -32,7 +33,7 @@ In the menu we can see the different actions that can do the different type of u
 ![image](https://user-images.githubusercontent.com/59828377/102488153-e7d36000-406b-11eb-8bed-5c0b575b12d5.png)
 
 
-## **FUNCTIONALLITY**
+## **FUNCTIONALITIES**
 (We can see it in the front end)
 - **Sign in** ROLE_BIDDER,
 - **Register new user** ALL
@@ -44,6 +45,7 @@ In the menu we can see the different actions that can do the different type of u
 - **Show user auctions history** ROLE_ADMIN, ROLE_BIDDER
 - **Show the user won auctions** ROLE_ADMIN, ROLE_BIDDER
 - **Buy bitcoins**  ROLE_ADMIN, ROLE_BROKER
+	- This is a call for an external API, it might not work since it was made for educational purpose.
 - **Organize an auction** ROLE_ADMIN, ROLE_BROKER
 - **Show the user transaction history** ROLE_ADMIN, ROLE_BROKER
 - **Show the comissions** ROLE_ADMIN
@@ -53,5 +55,6 @@ In the menu we can see the different actions that can do the different type of u
 - Crono for update the finished auctions and distribute the bitcoins and the money
 - Security 
 - AOP
-- Database is in Azure
+- Configured to run an Azure or H2 database
 - Front end exceptions
+
